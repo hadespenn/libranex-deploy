@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <title>Libranex Icon</title>
+  <desc>Libranex favicon / app icon: compass star nexus symbol only.</desc>
+  <style>@media(prefers-color-scheme:dark){.star{fill:#378ADD;stroke:#D4AF37}.arc{stroke:#D4AF37}.nd{fill:#D4AF37}.dia{fill:#D4AF37}}</style>
+  <path class="arc" d="M 90,18 A 72,72 0 0,1 162,90 A 72,72 0 0,1 90,162 A 72,72 0 0,1 18,90 A 72,72 0 0,1 90,18" fill="none" stroke="#B8932E" stroke-width="2.5"/>
+  <path class="star" d="M 90,18 L 105,78 L 162,90 L 105,102 L 90,162 L 75,102 L 18,90 L 75,78 Z" fill="#0C447C" stroke="#B8932E" stroke-width="2.5"/>
+  <circle class="nd" cx="90" cy="18" r="7" fill="#B8932E"/>
+  <circle class="nd" cx="162" cy="90" r="7" fill="#B8932E"/>
+  <circle class="nd" cx="90" cy="162" r="7" fill="#B8932E"/>
+  <circle class="nd" cx="18" cy="90" r="7" fill="#B8932E"/>
+  <path class="dia" d="M 90,80 L 100,90 L 90,100 L 80,90 Z" fill="#B8932E"/>
+</svg>

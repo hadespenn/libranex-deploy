@@ -1,0 +1,949 @@
+{
+  "brand": {
+    "name": "Libranex",
+    "slogan": "LIBERTY · NEXUS · EXCHANGE",
+    "taglineTop": "COMPLIANT GLOBAL PAYMENTS",
+    "title1": "One operating layer.",
+    "title2": "Clearer global",
+    "title3": "money.",
+    "subtitle": "为全球企业提供合规收款、虚拟账户、智能路由与可审计结算服务。",
+    "metrics": {
+      "markets": "120+",
+      "marketsLabel": "Markets",
+      "currencies": "40+",
+      "currenciesLabel": "Currencies",
+      "monitoring": "24/7",
+      "monitoringLabel": "Monitoring"
+    }
+  },
+  "login": {
+    "welcomeBack": "欢迎回来",
+    "subtitle": "登录企业账户，继续管理您的全球资金。",
+    "emailLabel": "企业邮箱",
+    "emailPlaceholder": "finance@unitycentre.com",
+    "passwordLabel": "密码",
+    "showPassword": "显示",
+    "hidePassword": "隐藏",
+    "remember": "记住此设备 30 天",
+    "forgot": "忘记密码?",
+    "submit": "登录",
+    "or": "或",
+    "google": "Google Workspace",
+    "microsoft": "Microsoft Entra",
+    "noAccount": "还没有企业账户？",
+    "register": "创建账户",
+    "staffPortal": "内部员工？",
+    "staffPortalLink": "进入运营管理平台"
+  },
+  "verify": {
+    "step1": "账户",
+    "step2": "安全验证",
+    "step3": "控制台",
+    "title": "验证登录",
+    "subtitle": "请输入验证码中的 6 位安全码。高风险操作同样需要二次验证。",
+    "submit": "验证并登录",
+    "resend": "重新发送代码",
+    "back": "返回",
+    "warning": "本次登录来自 Shenzhen, CN，若非本人操作，请立即停止验证并联系支持团队。"
+  },
+  "dashboard": {
+    "nav": {
+      "search": "搜索功能、交易、客户",
+      "dashboard": "仪表盘",
+      "accounts": "账户管理",
+      "statements": "账户对账单",
+      "payments": "收付款管理",
+      "exchange": "兑换与转账",
+      "global": "全球收单",
+      "crypto": "加密货币",
+      "approval": "审批中心",
+      "developer": "开发者中心",
+      "more": "设置",
+      "tickets": "工单与通知"
+    },
+    "ai": "AI 助手",
+    "aiHint": "按 E",
+    "activate": "激活账户",
+    "startOperation": "发起操作",
+    "header": {
+      "title": "仪表盘",
+      "subtitle": "多币种资金、交易与风险态势总览"
+    },
+    "fundOverview": {
+      "label": "资产总览",
+      "title": "资金概览",
+      "subtitle": "查看企业当前法币与虚拟币资产余额，并快速进入常用功能。",
+      "balance": "资产总额估算",
+      "unit": "折算约 8 种资产币种",
+      "assetTypes": "资产 8 种",
+      "updated": "余额已更新 · 刚刚",
+      "disclaimer": "按当前参考汇率折算，仅供展示；最终金额以各资产账户实际余额为准。"
+    },
+    "balances": {
+      "title": "各币种余额",
+      "subtitle": "暂留法币账户和虚拟币账户的可用余额。",
+      "viewAll": "查看账户",
+      "available": "可用",
+      "pending": "资金中",
+      "viewLedger": "查看余额明细",
+      "viewCrypto": "查看虚拟币账户",
+      "currencies": {
+        "usd": {
+          "name": "USD",
+          "fullName": "法币账户"
+        },
+        "eur": {
+          "name": "EUR",
+          "fullName": "法币账户"
+        },
+        "sgd": {
+          "name": "SGD",
+          "fullName": "法币账户"
+        },
+        "usdt": {
+          "name": "USDT",
+          "fullName": "虚拟币账户"
+        },
+        "usdc": {
+          "name": "USDC",
+          "fullName": "虚拟币账户"
+        }
+      },
+      "amount": {
+        "usd": "$4,210,320.18",
+        "eur": "€920,180.00",
+        "sgd": "S$1,480,000.00",
+        "usdt": "680,400.00 USDT",
+        "usdc": "600,000.00 USDC"
+      },
+      "equiv": {
+        "usd": "≈ $4,210,320.18 USD",
+        "eur": "≈ $1,004,927.17 USD",
+        "sgd": "≈ $1,091,640.00 USD",
+        "usdt": "≈ $680,400.00 USD",
+        "usdc": "≈ $600,060.00 USD"
+      }
+    },
+    "quickSection": {
+      "title": "常用功能",
+      "subtitle": "一键进入最常用的资金操作。",
+      "table": {
+        "ticket": "工单",
+        "category": "分类",
+        "sla": "SLA",
+        "status": "状态"
+      }
+    },
+    "quick": {
+      "topup": "充值 / 入金",
+      "topupDesc": "法币或虚拟币充值",
+      "batch": "批量付款",
+      "batchDesc": "上传清单并发起付款",
+      "swap": "快速兑换",
+      "swapDesc": "法币与虚拟币互换",
+      "link": "生成收款链接",
+      "linkDesc": "创建链接或二维码",
+      "payee": "常用收款人",
+      "payeeDesc": "管理已登记收款人",
+      "address": "地址管理",
+      "addressDesc": "管理虚拟币地址和网络"
+    },
+    "toast": "登录成功，欢迎进入 Libranex 控制台",
+    "footer": "© 2026 Unity Centre Investment Ltd. · Compliant payment infrastructure",
+    "console": "企业操作台"
+  },
+  "accounts": {
+    "header": {
+      "title": "账户管理",
+      "subtitle": "虚拟账户、内部划转、外部银行钱包绑定、限额控制"
+    },
+    "hero": {
+      "title": "账户管理",
+      "subtitle": "虚拟账户、内部划转、外部银行钱包绑定、限额控制"
+    },
+    "tabs": {
+      "accounts": "账户总览",
+      "topup": "充值 / 入金",
+      "internal": "内部划转",
+      "external": "外部账户绑定",
+      "limit": "交易限额",
+      "va": "VA / Collection",
+      "settlement": "Settlement",
+      "safeguard": "Safeguarding",
+      "wealth": "法币理财"
+    },
+    "cta": {
+      "create": "创建账户"
+    },
+    "overview": {
+      "label": "客户资产规模",
+      "title": "法币与虚拟币账户",
+      "disclaimer": "分别查看银行账户与数字资产账户的余额、状态及相关操作。",
+      "unit": "资产总额估算",
+      "updated": "余额已更新 · 刚刚"
+    },
+    "fiat": {
+      "title": "$ 法币账户",
+      "subtitle": "银行账户、收付款、法币充值及内部划转。",
+      "network": "银行账户",
+      "active": "Active",
+      "viewDetail": "查看账户",
+      "create": "创建法币账户"
+    },
+    "fiatList": {
+      "title": "法币账户列表",
+      "col": {
+        "currency": "Currency",
+        "account": "Account",
+        "balance": "Balance",
+        "status": "Status"
+      }
+    },
+    "virtual": {
+      "title": "虚拟币账户",
+      "subtitle": "数字资产余额、网络、钱包地址及 OSL 审核状态。",
+      "create": "创建虚拟币账户",
+      "notice": "虚拟币账户的 KYC、合规审核、托管及资产相关服务由 OSL 或相关合规服务主体负责。Libranex 仅提供信息转接。",
+      "equiv": "≈ $680,400.00 USD"
+    },
+    "virtualList": {
+      "title": "虚拟币账户列表",
+      "col": {
+        "asset": "Asset",
+        "wallet": "Wallet",
+        "network": "Network",
+        "balance": "Balance",
+        "status": "Status"
+      }
+    }
+  },
+  "statements": {
+    "header": {
+      "title": "账户对账单",
+      "subtitle": "法币、Crypto、投资产品和账户交易明细"
+    },
+    "hero": {
+      "label": "账户服务",
+      "title": "账户对账单",
+      "subtitle": "查看法币、Crypto、投资产品、定期收益和账户交易明细。"
+    },
+    "cta": {
+      "export": "导出 CSV"
+    },
+    "form": {
+      "period": "对账单期间",
+      "account": "账户",
+      "assetType": "资产类型",
+      "allAssets": "全部资产",
+      "fiat": "法币",
+      "investment": "投资产品"
+    },
+    "summary": {
+      "title": "对账单摘要",
+      "entity": "威尔科贸易有限公司 · 账户ID: B0001267",
+      "columns": {
+        "currency": "币种",
+        "opening": "期初余额",
+        "openingPending": "期初待处理",
+        "openingAvailable": "期初可用",
+        "credit": "期间贷记",
+        "debit": "期间借记",
+        "closingPending": "期末待处理",
+        "closingAvailable": "期末可用",
+        "closing": "期末余额"
+      }
+    },
+    "cols": {
+      "cur": "币种",
+      "open": "期初余额",
+      "in": "期初待处理",
+      "avail": "期初可用",
+      "debit": "期初贷记",
+      "credit": "期间借记",
+      "endPending": "期末待处理",
+      "end": "期末余额"
+    },
+    "label": "账户服务",
+    "title": "账户对账单",
+    "subtitle": "查看法币、Crypto、投资产品、定期收益和账户交易明细。",
+    "crypto": {
+      "title": "Crypto 账户",
+      "subtitle": "期间内 Crypto 余额、贷记、借记及待处理金额。",
+      "columns": {
+        "asset": "资产",
+        "opening": "期初余额",
+        "credit": "期间贷记",
+        "debit": "期间借记",
+        "available": "期末可用",
+        "closing": "期末余额"
+      }
+    },
+    "investment": {
+      "title": "投资与定期收益",
+      "subtitle": "投资法币、固定期限产品和预计到期收益。",
+      "fiat": "投资法币 · USD",
+      "fixed": "固定期限 · USDT",
+      "columns": {
+        "product": "产品",
+        "holding": "持仓 / 认购金额",
+        "term": "APR / 期限",
+        "maturity": "到期日",
+        "return": "预计收益",
+        "settlement": "预计结算金额"
+      }
+    },
+    "transactions": {
+      "title": "账户交易明细",
+      "subtitle": "查看订阅、赎回、贷记和借记交易。",
+      "filter": "筛选",
+      "columns": {
+        "date": "日期",
+        "event": "Event ID",
+        "type": "交易类型",
+        "currency": "币种",
+        "credit": "贷记",
+        "debit": "借记",
+        "action": "操作"
+      },
+      "types": {
+        "subscription": "FIP 认购",
+        "redemption": "FIP 赎回"
+      }
+    },
+    "notices": {
+      "exported": "对账单已导出。",
+      "filtered": "已应用交易筛选。",
+      "detail": "已打开交易 {id}。"
+    },
+    "notes": {
+      "balanceTitle": "余额说明",
+      "balance": "对账单余额反映期间内已完成、处理中和待处理交易，可能与实时可用余额不同。",
+      "providerTitle": "服务商与监管主体",
+      "provider": "法币和 Crypto 服务由 MetaComp Pte. Ltd. 提供；投资服务由 Alpha Ladder Finance Pte. Ltd. 提供。两者独立运营并受各自司法辖区监管。"
+    }
+  },
+  "payments": {
+    "header": {
+      "title": "收付款管理",
+      "subtitle": "批量付款、收款链接、对账与退款"
+    },
+    "hero": {
+      "title": "收付款管理",
+      "subtitle": "批量付款、模板、定时、进度跟踪、收款链接、自动对账与退款。"
+    },
+    "cta": {
+      "generate": "生成收款链接"
+    },
+    "tabs": {
+      "bulk": "批量付款",
+      "link": "收款链接",
+      "reconcile": "自动对账",
+      "payee": "常用收款人",
+      "refund": "退款 / 失败重试"
+    },
+    "purpose": {
+      "title": "付款用途与凭证",
+      "subtitle": "每笔付款必须填写真实用途，并附上可核验的业务凭证。",
+      "submit": "提交前必填",
+      "fields": {
+        "required": {
+          "label": "付款用途",
+          "value": "必填",
+          "desc": "如：供应商结算",
+          "cta": "添加付款用途与凭证"
+        },
+        "tracking": {
+          "label": "物流单号",
+          "value": "可选",
+          "desc": "快递、货运或提单号",
+          "cta": "查看凭证要求"
+        },
+        "amount": {
+          "label": "交易截图",
+          "value": "可选",
+          "desc": "订单或沟通记录",
+          "cta": ""
+        },
+        "invoice": {
+          "label": "发票 / 合同",
+          "value": "可选",
+          "desc": "商业发票或协议",
+          "cta": ""
+        }
+      }
+    },
+    "upload": {
+      "title": "上传付款清单",
+      "hint": "拖拽 Excel/CSV 到这里",
+      "empty": "尚未上传付款文件"
+    },
+    "progress": {
+      "title": "批次实时进度",
+      "label": "已处理 64%"
+    }
+  },
+  "exchange": {
+    "header": {
+      "title": "兑换与转账",
+      "subtitle": "实时兑换报价与多路径转账"
+    },
+    "hero": {
+      "title": "兑换与转账",
+      "subtitle": "实时报价、策略切换、费用明细、报价过期保护、平台内与跨境银行转账。"
+    },
+    "cta": {
+      "refresh": "刷新报价"
+    },
+    "swap": {
+      "title": "法币账户 ↔ Crypto 互换",
+      "subtitle": "平台仅负责展示报价、收集确认信息并将订单转移至 OSL：实际交易、资产兑换和结算由 OSL 完成。",
+      "badge": "OSL 信息转接"
+    },
+    "quote": {
+      "title": "智能兑换报价",
+      "sell": "Sell",
+      "buy": "Buy",
+      "expired": "Expired",
+      "fee": "查看费用明细",
+      "lock": "确认兑换",
+      "expire": "模拟报价过期",
+      "strategies": {
+        "balanced": "平衡",
+        "cost": "最低成本",
+        "speed": "最快到账"
+      },
+      "strategyDetails": {
+        "balanced": "Fee 0.28% · T+1",
+        "cost": "Fee 0.18% · T+2",
+        "speed": "Fee 0.42% · 当日"
+      }
+    },
+    "transfer": {
+      "title": "转账中心",
+      "tabs": {
+        "internal": "平台内转账",
+        "cross": "跨境银行",
+        "payee": "常用收款人"
+      },
+      "id": "ID / 手机号 / 邮箱",
+      "name": "购销姓名",
+      "amount": "金额",
+      "tfa": "2FA",
+      "submit": "提交并实时到账",
+      "purpose": "添加付款用途与凭证",
+      "account": "收款账户",
+      "saved": "已保存收款人",
+      "savedDesc": "选择经过验证的收款人，减少重复录入并降低误付风险。",
+      "add": "新增收款人"
+    }
+  },
+  "global": {
+    "header": {
+      "title": "全球收单",
+      "subtitle": "在线、线下、订阅与稳定币收单"
+    },
+    "hero": {
+      "title": "全球收单",
+      "subtitle": "参考 UQPAY · 在线支付、线下 POS/QR、订阅扣款、稳定币收单与统一结算。"
+    },
+    "cta": {
+      "create": "创建 Checkout"
+    },
+    "checkout": {
+      "title": "创建支付 Checkout",
+      "amount": "金额",
+      "currency": "币种",
+      "callback": "Callback URL",
+      "expiry": "有效期",
+      "expiry24": "24 小时",
+      "submit": "创建安全收银台",
+      "cancel": "取消",
+      "close": "关闭 Checkout 弹框",
+      "success": "安全收银台已创建。",
+      "errors": {
+        "amount": "金额必须大于 0。",
+        "callback": "Callback URL 必须使用 HTTPS。"
+      }
+    },
+    "channels": {
+      "online": {
+        "title": "在线支付",
+        "desc": "Hosted checkout、插件、卡/钱包/银行转账。"
+      },
+      "offline": {
+        "title": "线下支付",
+        "desc": "POS 终端与 QR 本地收款。"
+      },
+      "subscription": {
+        "title": "订阅支付",
+        "desc": "周期扣款、续费、失败重试。"
+      },
+      "stablecoin": {
+        "title": "稳定币支付",
+        "desc": "合规边界下的稳定币收款与结算。"
+      }
+    },
+    "insight": {
+      "title": "支付洞察",
+      "card": "Card",
+      "wallet": "Wallet",
+      "bank": "Bank",
+      "qr": "QR",
+      "ussd": "USSD"
+    }
+  },
+  "crypto": {
+    "header": {
+      "title": "加密货币",
+      "subtitle": "数字资产、网络、收发与兑换"
+    },
+    "hero": {
+      "title": "加密货币",
+      "subtitle": "管理数字资产、网络、收发、兑换与链上交易。"
+    },
+    "cta": {
+      "newAsset": "新增资产"
+    },
+    "portfolio": {
+      "label": "持仓市值"
+    },
+    "receive": {
+      "title": "收款",
+      "network": "网络",
+      "warning": "仅发送支持 TRX 的 USDT。发送到错误网络或发送其他资产后，资金将永久丢失。",
+      "qr": "QR",
+      "input": "添加该资产的储值地址",
+      "cta": "生成充值地址"
+    },
+    "subnav": {
+      "label": "Crypto 子菜单",
+      "overview": "概览",
+      "orders": "订单",
+      "addresses": "地址管理",
+      "transactions": "交易记录",
+      "investment": "加密资产投资",
+      "fixedTerm": "加密定期",
+      "safeguarding": "保障",
+      "settlement": "结算"
+    },
+    "notices": {
+      "newAsset": "已打开新增资产流程。",
+      "address": "已请求生成充值地址。",
+      "exchange": "兑换请求已提交审核。",
+      "action": "已请求执行操作。"
+    },
+    "top": {
+      "title": "热门持仓",
+      "allTransactions": "全部交易 ›",
+      "col": {
+        "asset": "资产",
+        "amount": "金额",
+        "available": "可用",
+        "margin": "保证金",
+        "frozen": "冻结"
+      }
+    },
+    "activity": {
+      "title": "近期活动",
+      "empty": "暂无近期订单"
+    },
+    "pages": {
+      "action": "打开操作",
+      "common": {
+        "asset": "资产",
+        "network": "网络",
+        "apr": "APR",
+        "status": "状态",
+        "redeem": "赎回"
+      },
+      "orders": {
+        "title": "订单",
+        "description": "查看买入、卖出和转换订单，包括状态、路径与结算详情。",
+        "empty": "No records yet.",
+        "type": "类型",
+        "status": "状态",
+        "time": "时间"
+      },
+      "addresses": {
+        "title": "地址管理",
+        "description": "管理白名单地址和支持的网络。",
+        "empty": "暂无充值地址。",
+        "action": "添加地址"
+      },
+      "transactions": {
+        "title": "加密货币交易",
+        "description": "查看链上充值、提现和合规审核记录。",
+        "empty": "暂无数字资产交易记录。"
+      },
+      "investment": {
+        "title": "加密资产投资",
+        "description": "锁定指定资产与网络的 Crypto 本金，按产品规则计算收益。",
+        "empty": "No records yet.",
+        "subscribe": "申购",
+        "principal": "本金",
+        "holdings": "持有中",
+        "note": "资产、网络、托管主体、执行主体、收益来源与风险须明确；赎回后返回 Crypto 账户，如需法币需另建 Crypto → 法币订单。"
+      },
+      "fixedTerm": {
+        "title": "加密定期",
+        "description": "固定期限锁仓，约定收益，到期赎回。",
+        "empty": "No records yet.",
+        "subscribe": "申购",
+        "holdings": "锁仓中",
+        "lockedAmount": "锁仓量",
+        "maturity": "到期",
+        "note": "提前赎回受产品与网络规则限制。"
+      },
+      "safeguarding": {
+        "title": "加密资产保障",
+        "description": "按隔离要求受控转入 Crypto 资产，保持独立可追溯。",
+        "empty": "No records yet.",
+        "releaseNote": "资金放行与释放由 Libranex 运营管理平台统一执行；你可在此查看批次状态与对账差异。",
+        "controlledIn": "受控转入",
+        "info": "隔离信息",
+        "owner": "归属主体",
+        "reason": "隔离原因",
+        "reasonText": "监管客户资金隔离",
+        "note": "默认不支持自由付款或兑换；释放需审批。"
+      },
+      "settlement": {
+        "title": "加密资产结算",
+        "description": "OSL 交易完成后的 Crypto 结算资金，按资产、网络与客户归集分配。",
+        "empty": "No records yet.",
+        "releaseNote": "资金放行与释放由 Libranex 运营管理平台统一执行；你可在此查看批次状态与对账差异。",
+        "batch": "结算批次",
+        "batchId": "批次ID",
+        "amount": "金额",
+        "allocate": "分配",
+        "note": "Crypto 结算与法币结算分别记账，不直接混用余额。"
+      }
+    },
+    "exchange": {
+      "title": "交换",
+      "subtitle": "购买、出售和兑换加密货币",
+      "modes": {
+        "buy": "购买",
+        "sell": "出售",
+        "convert": "兑换",
+        "fiatCrypto": "法币 ↔ 加密货币"
+      },
+      "pay": "您需支付",
+      "recv": "您将收到",
+      "trade": "交易执行方：OSL",
+      "reason": "原因（选填）",
+      "agree": "我已知悉并同意由 OSL 完成实际互换，Libranex 仅作为信息转接平台。",
+      "disclaimer": "Libranex 不执行数字资产交易，仅将你的兑换信息和确认结果安全转接至 OSL。最终报价、交易执行、资产托管及结算以 OSL 页面和协议为准。",
+      "actions": {
+        "buy": "买入 USDT",
+        "sell": "卖出 USDT",
+        "convert": "兑换加密货币",
+        "fiatCrypto": "法币 ↔ 加密货币"
+      }
+    }
+  },
+  "common": {
+    "selectLanguage": "选择语言"
+  },
+  "approval": {
+    "header": {
+      "title": "审批中心",
+      "subtitle": "待办审批、历史记录与企业审批策略"
+    },
+    "hero": {
+      "title": "待处理审批",
+      "subtitle": "审核高风险操作，并保留完整的审计记录。"
+    },
+    "cta": "创建审批策略",
+    "stats": {
+      "pending": {
+        "label": "待审批",
+        "value": "4",
+        "hint": "2 项需要优先处理"
+      },
+      "today": {
+        "label": "今日提交",
+        "value": "12",
+        "hint": "较昨日增加 3 项"
+      },
+      "approved": {
+        "label": "本月已通过",
+        "value": "186",
+        "hint": "完成率 98.4%"
+      },
+      "rejected": {
+        "label": "本月已拒绝",
+        "value": "3",
+        "hint": "策略已拦截风险"
+      }
+    },
+    "section": {
+      "title": "审批队列",
+      "subtitle": "按业务类型与风险优先级处理申请。"
+    },
+    "cards": {
+      "payment": {
+        "icon": "↗",
+        "title": "付款审批",
+        "description": "批量付款、跨境转账及大额交易申请。",
+        "action": "审核 2 项申请"
+      },
+      "account": {
+        "icon": "▣",
+        "title": "账户申请",
+        "description": "新建虚拟账户、调整限额及关闭账户。",
+        "action": "审核 1 项申请"
+      },
+      "beneficiary": {
+        "icon": "◎",
+        "title": "收款人变更",
+        "description": "新增收款人与可信提币地址变更。",
+        "action": "审核 1 项申请"
+      }
+    }
+  },
+  "developer": {
+    "header": {
+      "title": "开发者中心",
+      "subtitle": "API 密钥、Webhook、日志与集成工具"
+    },
+    "hero": {
+      "title": "开发者工作台",
+      "subtitle": "构建、测试并监控 Libranex 系统集成。"
+    },
+    "cta": "创建 API 密钥",
+    "stats": {
+      "apiCalls": {
+        "label": "今日 API 调用",
+        "value": "24.8K",
+        "hint": "可用率 99.98%"
+      },
+      "successRate": {
+        "label": "成功率",
+        "value": "99.6%",
+        "hint": "最近 24 小时"
+      },
+      "webhooks": {
+        "label": "有效 Webhook",
+        "value": "6",
+        "hint": "所有端点正常"
+      },
+      "keys": {
+        "label": "API 密钥",
+        "value": "3",
+        "hint": "1 个测试 · 2 个正式"
+      }
+    },
+    "section": {
+      "title": "集成工具",
+      "subtitle": "管理凭证、事件投递和请求诊断。"
+    },
+    "cards": {
+      "apiKeys": {
+        "icon": "⌘",
+        "title": "API 密钥",
+        "description": "安全创建和轮换测试或生产环境凭证。",
+        "action": "管理密钥"
+      },
+      "webhooks": {
+        "icon": "⇄",
+        "title": "Webhook",
+        "description": "订阅付款、账户和合规事件。",
+        "action": "配置端点"
+      },
+      "logs": {
+        "icon": "≡",
+        "title": "API 日志",
+        "description": "查看请求、响应、延迟和错误详情。",
+        "action": "查看日志"
+      }
+    },
+    "explorer": {
+      "title": "API Explorer",
+      "subtitle": "版本化 REST API、Webhooks、加密传输、API 密钥与调用审计。",
+      "run": "运行沙箱",
+      "copy": "复制 cURL"
+    },
+    "capabilities": {
+      "title": "API 能力",
+      "subtitle": "集成可使用的核心资源。",
+      "balance": {
+        "title": "余额",
+        "path": "GET /v1/accounts"
+      },
+      "transfer": {
+        "title": "转账",
+        "path": "POST /v1/transfers"
+      },
+      "collection": {
+        "title": "收款",
+        "path": "POST /v1/payment_links"
+      },
+      "webhook": {
+        "title": "Webhook",
+        "path": "幂等事件投递"
+      }
+    },
+    "logs": {
+      "title": "API 调用审计",
+      "subtitle": "最近的请求、响应与延迟。",
+      "view": "查看全部日志"
+    }
+  },
+  "settings": {
+    "header": {
+      "title": "设置",
+      "subtitle": "企业、权限、参数与语言"
+    },
+    "hero": {
+      "title": "设置",
+      "subtitle": "企业资料、权限角色、合规参数库、语言与地区。"
+    },
+    "cta": "保存更改",
+    "stats": {
+      "members": {
+        "label": "团队成员",
+        "value": "18",
+        "hint": "15 人活跃"
+      },
+      "roles": {
+        "label": "自定义角色",
+        "value": "5",
+        "hint": "已启用最小权限"
+      },
+      "security": {
+        "label": "安全评分",
+        "value": "92%",
+        "hint": "2 项优化建议"
+      },
+      "notifications": {
+        "label": "通知规则",
+        "value": "8",
+        "hint": "邮件与 Webhook"
+      }
+    },
+    "section": {
+      "title": "配置管理",
+      "subtitle": "集中管理核心企业设置。"
+    },
+    "cards": {
+      "organization": {
+        "icon": "◇",
+        "title": "企业资料",
+        "description": "法人主体、业务信息、语言和结算偏好。",
+        "action": "编辑企业资料"
+      },
+      "members": {
+        "icon": "♙",
+        "title": "成员与角色",
+        "description": "邀请团队成员并通过精细角色控制访问权限。",
+        "action": "管理访问权限"
+      },
+      "security": {
+        "icon": "⌾",
+        "title": "安全与通知",
+        "description": "配置 2FA、会话、告警和审批策略。",
+        "action": "打开安全设置"
+      }
+    }
+  },
+  "tickets": {
+    "header": {
+      "title": "工单与通知",
+      "subtitle": "待办、提醒与客服闭环"
+    },
+    "hero": {
+      "title": "工单列表",
+      "subtitle": "安全、交易、系统通知优先级展示；"
+    },
+    "cta": "新建工单",
+    "count": "2 个待处理",
+    "table": {
+      "ticket": "工单",
+      "category": "分类",
+      "sla": "SLA",
+      "status": "状态"
+    },
+    "section": {
+      "title": "待处理工单",
+      "subtitle": "客户信息已脱敏，客服无资金操作权限。",
+      "table": {
+        "ticket": "工单",
+        "category": "分类",
+        "sla": "SLA",
+        "status": "状态"
+      }
+    },
+    "items": {
+      "first": {
+        "title": "#TCK-9321 · 结算延迟",
+        "time": "剩余 22 分钟",
+        "description": "Unity Centre 正等待 Canada ACH 结算批次完成。",
+        "meta": "Unity Centre · P2 · 清结算",
+        "action": "打开"
+      },
+      "second": {
+        "title": "#TCK-9318 · KYC 补件",
+        "time": "剩余 4 小时",
+        "description": "Atlas Commerce 需要补充受益所有人证明材料。",
+        "meta": "Atlas Commerce · P3 · KYC",
+        "action": "打开"
+      },
+      "third": {
+        "title": "知识库建议",
+        "time": "刚刚更新",
+        "description": "查看已批准的回复模板与客服安全边界。",
+        "meta": "内部客服指引",
+        "action": "查看"
+      }
+    }
+  },
+  "notifications": {
+    "header": {
+      "title": "通知中心",
+      "subtitle": "审批、合规与平台活动提醒"
+    },
+    "hero": {
+      "title": "通知中心",
+      "subtitle": "客服工单创建、处理与满意度。"
+    },
+    "cta": "全部标为已读",
+    "count": "3 条未读",
+    "section": {
+      "title": "最近通知",
+      "subtitle": "需要关注的重要事件将优先显示。",
+      "table": {
+        "priority": "优先级",
+        "message": "消息",
+        "status": "状态"
+      }
+    },
+    "table": {
+      "priority": "优先级",
+      "message": "消息",
+      "status": "状态"
+    },
+    "items": {
+      "first": {
+        "title": "付款需要审批",
+        "time": "8 分钟前",
+        "description": "一笔 USD 98,500 的批量付款正在等待审批。",
+        "meta": "付款 · 高优先级",
+        "action": "审核"
+      },
+      "second": {
+        "title": "需要补充 KYC 材料",
+        "time": "1 小时前",
+        "description": "Atlas Commerce 已提交新的受益所有人材料。",
+        "meta": "合规 · KYC",
+        "action": "查看"
+      },
+      "third": {
+        "title": "结算批次已匹配",
+        "time": "3 小时前",
+        "description": "SG FAST 结算批次 SET-20260730-02 已完成对账。",
+        "meta": "清结算 · 已完成",
+        "action": "查看"
+      }
+    }
+  }
+}

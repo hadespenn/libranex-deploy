@@ -1,0 +1,939 @@
+{
+  "brand": {
+    "name": "Libranex",
+    "slogan": "LIBERTY · NEXUS · EXCHANGE",
+    "taglineTop": "COMPLIANT GLOBAL PAYMENTS",
+    "title1": "One operating layer.",
+    "title2": "Clearer global",
+    "title3": "money.",
+    "subtitle": "Compliant collection, virtual accounts, smart routing and auditable settlement for global enterprises.",
+    "metrics": {
+      "markets": "120+",
+      "marketsLabel": "Markets",
+      "currencies": "40+",
+      "currenciesLabel": "Currencies",
+      "monitoring": "24/7",
+      "monitoringLabel": "Monitoring"
+    }
+  },
+  "login": {
+    "welcomeBack": "Welcome back",
+    "subtitle": "Sign in to your enterprise account to continue managing your global funds.",
+    "emailLabel": "Business email",
+    "emailPlaceholder": "finance@unitycentre.com",
+    "passwordLabel": "Password",
+    "showPassword": "Show",
+    "hidePassword": "Hide",
+    "remember": "Remember this device for 30 days",
+    "forgot": "Forgot password?",
+    "submit": "Sign in",
+    "or": "or",
+    "google": "Google Workspace",
+    "microsoft": "Microsoft Entra",
+    "noAccount": "No enterprise account?",
+    "register": "Create account",
+    "staffPortal": "Internal staff?",
+    "staffPortalLink": "Go to operations console"
+  },
+  "verify": {
+    "step1": "Account",
+    "step2": "Security",
+    "step3": "Console",
+    "title": "Verify sign-in",
+    "subtitle": "Enter the 6-digit security code from your authenticator. High-risk operations also require 2FA.",
+    "submit": "Verify and sign in",
+    "resend": "Resend code",
+    "back": "Back",
+    "warning": "This sign-in originated from Shenzhen, CN. If this wasn't you, stop verification immediately and contact support."
+  },
+  "dashboard": {
+    "nav": {
+      "search": "Search features, transactions, customers",
+      "dashboard": "Dashboard",
+      "accounts": "Accounts",
+      "statements": "Statements",
+      "payments": "Payments",
+      "exchange": "Exchange & Transfer",
+      "global": "Global Checkout",
+      "crypto": "Crypto",
+      "approval": "Approvals",
+      "developer": "Developer",
+      "more": "Settings",
+      "tickets": "Tickets & notifications"
+    },
+    "ai": "AI assistant",
+    "aiHint": "press E",
+    "activate": "Activate",
+    "startOperation": "New action",
+    "header": {
+      "title": "Dashboard",
+      "subtitle": "Overview of multi-currency funds, transactions and risk"
+    },
+    "fundOverview": {
+      "label": "Asset overview",
+      "title": "Funds overview",
+      "subtitle": "Review your current fiat and virtual asset balances, and jump into common actions.",
+      "balance": "Estimated total assets",
+      "unit": "Equivalent across 8 asset currencies",
+      "assetTypes": "8 asset types",
+      "updated": "Updated · just now",
+      "disclaimer": "Converted at the current reference rate for display only; final figures are based on the actual balance of each asset account."
+    },
+    "balances": {
+      "title": "Balances by currency",
+      "subtitle": "Available balances across fiat and virtual accounts.",
+      "viewAll": "View accounts",
+      "available": "Available",
+      "pending": "Pending",
+      "viewLedger": "View ledger",
+      "viewCrypto": "View virtual account",
+      "currencies": {
+        "usd": {
+          "name": "USD",
+          "fullName": "Fiat account"
+        },
+        "eur": {
+          "name": "EUR",
+          "fullName": "Fiat account"
+        },
+        "sgd": {
+          "name": "SGD",
+          "fullName": "Fiat account"
+        },
+        "usdt": {
+          "name": "USDT",
+          "fullName": "Virtual account"
+        },
+        "usdc": {
+          "name": "USDC",
+          "fullName": "Virtual account"
+        }
+      },
+      "amount": {
+        "usd": "$4,210,320.18",
+        "eur": "€920,180.00",
+        "sgd": "S$1,480,000.00",
+        "usdt": "680,400.00 USDT",
+        "usdc": "600,000.00 USDC"
+      },
+      "equiv": {
+        "usd": "≈ $4,210,320.18 USD",
+        "eur": "≈ $1,004,927.17 USD",
+        "sgd": "≈ $1,091,640.00 USD",
+        "usdt": "≈ $680,400.00 USD",
+        "usdc": "≈ $600,060.00 USD"
+      }
+    },
+    "quickSection": {
+      "title": "Quick actions",
+      "subtitle": "Jump into your most common money operations.",
+      "table": {
+        "ticket": "工單",
+        "category": "分類",
+        "sla": "SLA",
+        "status": "狀態"
+      }
+    },
+    "quick": {
+      "topup": "Top up",
+      "topupDesc": "Fiat or virtual asset deposit",
+      "batch": "Bulk pay",
+      "batchDesc": "Upload a list and pay",
+      "swap": "Quick swap",
+      "swapDesc": "Fiat ↔ virtual asset",
+      "link": "Collection link",
+      "linkDesc": "Create a link or QR code",
+      "payee": "Frequent payees",
+      "payeeDesc": "Manage registered payees",
+      "address": "Address book",
+      "addressDesc": "Manage virtual addresses & networks"
+    },
+    "toast": "Signed in successfully — welcome to the Libranex console",
+    "footer": "© 2026 Unity Centre Investment Ltd. · Compliant payment infrastructure",
+    "console": "Enterprise console"
+  },
+  "accounts": {
+    "header": {
+      "title": "Accounts",
+      "subtitle": "Virtual accounts, internal transfers, external wallet binding, limits"
+    },
+    "hero": {
+      "title": "Accounts",
+      "subtitle": "Virtual accounts, internal transfers, external wallet binding, limits"
+    },
+    "tabs": {
+      "accounts": "Overview",
+      "topup": "Top-up",
+      "internal": "Internal transfer",
+      "external": "External binding",
+      "limit": "Limits",
+      "va": "VA / Collection",
+      "settlement": "Settlement",
+      "safeguard": "Safeguarding",
+      "wealth": "Fiat wealth"
+    },
+    "cta": {
+      "create": "Create account"
+    },
+    "overview": {
+      "label": "Customer AUM",
+      "title": "Fiat & Virtual Accounts",
+      "disclaimer": "Separately inspect bank and digital asset account balances, status and related actions.",
+      "unit": "Estimated total assets",
+      "updated": "Updated · just now"
+    },
+    "fiat": {
+      "title": "$ Fiat account",
+      "subtitle": "Bank accounts, payments, fiat top-up and internal transfer.",
+      "network": "Bank account",
+      "active": "Active",
+      "viewDetail": "View account",
+      "create": "Create fiat account"
+    },
+    "fiatList": {
+      "title": "Fiat account list",
+      "col": {
+        "currency": "Currency",
+        "account": "Account",
+        "balance": "Balance",
+        "status": "Status"
+      }
+    },
+    "virtual": {
+      "title": "Virtual asset account",
+      "subtitle": "Digital asset balances, networks, wallet addresses and OSL review status.",
+      "create": "Create virtual account",
+      "notice": "KYC, compliance review, custody and asset-related services for virtual asset accounts are provided by OSL or the relevant compliance service entity. Libranex is only an information conduit.",
+      "equiv": "≈ $680,400.00 USD"
+    },
+    "virtualList": {
+      "title": "Virtual account list",
+      "col": {
+        "asset": "Asset",
+        "wallet": "Wallet",
+        "network": "Network",
+        "balance": "Balance",
+        "status": "Status"
+      }
+    }
+  },
+  "statements": {
+    "header": {
+      "title": "Statements",
+      "subtitle": "Fiat, crypto, investment products and account transactions"
+    },
+    "hero": {
+      "label": "Account Services",
+      "title": "Statements",
+      "subtitle": "Inspect fiat, crypto, investment, recurring yield and account transactions."
+    },
+    "cta": {
+      "export": "Export CSV"
+    },
+    "form": {
+      "period": "Period",
+      "account": "Account",
+      "assetType": "Asset type",
+      "allAssets": "All assets",
+      "fiat": "Fiat",
+      "investment": "Investment"
+    },
+    "summary": {
+      "title": "Account Statement Summary",
+      "entity": "WELLKO TRADE LIMITED · Account ID: B0001267",
+      "columns": {
+        "currency": "Currency",
+        "opening": "Opening balance",
+        "openingPending": "Pending at opening",
+        "openingAvailable": "Opening available",
+        "credit": "Total credit",
+        "debit": "Total debit",
+        "closingPending": "Pending at closing",
+        "closingAvailable": "Closing available",
+        "closing": "Closing balance"
+      }
+    },
+    "cols": {
+      "cur": "Currency",
+      "open": "Opening",
+      "in": "Pending (open)",
+      "avail": "Available (open)",
+      "debit": "Credit (open)",
+      "credit": "Debit (period)",
+      "endPending": "Pending (close)",
+      "end": "Closing"
+    },
+    "label": "Account Services",
+    "title": "Statements",
+    "subtitle": "Inspect fiat, crypto, investment, recurring yield and account transactions.",
+    "crypto": {
+      "title": "Crypto account",
+      "subtitle": "Crypto balances, credits, debits and pending amounts during the period.",
+      "columns": {
+        "asset": "Asset",
+        "opening": "Opening",
+        "credit": "Credit",
+        "debit": "Debit",
+        "available": "Available",
+        "closing": "Closing"
+      }
+    },
+    "investment": {
+      "title": "Investment & fixed income",
+      "subtitle": "Investment fiat, fixed-term products and estimated maturity returns.",
+      "fiat": "Investment fiat · USD",
+      "fixed": "Fixed Term · USDT",
+      "columns": {
+        "product": "Product",
+        "holding": "Holding / subscription",
+        "term": "APR / term",
+        "maturity": "Maturity",
+        "return": "Est. return",
+        "settlement": "Est. settlement"
+      }
+    },
+    "transactions": {
+      "title": "Account transactions",
+      "subtitle": "Review subscriptions, redemptions, credits and debits.",
+      "filter": "Filter",
+      "columns": {
+        "date": "Date",
+        "event": "Event ID",
+        "type": "Transaction type",
+        "currency": "Currency",
+        "credit": "Credit",
+        "debit": "Debit",
+        "action": "Action"
+      },
+      "types": {
+        "subscription": "FIP Subscription",
+        "redemption": "FIP Redemption"
+      }
+    },
+    "notices": {
+      "exported": "Statement exported.",
+      "filtered": "Transaction filter applied.",
+      "detail": "Transaction {id} opened."
+    },
+    "notes": {
+      "balanceTitle": "Balance note",
+      "balance": "Statement balances include completed, processing and pending transactions and may differ from real-time available balances.",
+      "providerTitle": "Providers and regulators",
+      "provider": "Fiat and crypto services are provided by MetaComp Pte. Ltd.; investment services by Alpha Ladder Finance Pte. Ltd. They operate independently under their respective jurisdictions."
+    }
+  },
+  "payments": {
+    "header": {
+      "title": "Payments",
+      "subtitle": "Bulk pay, collection links, reconciliation and refunds"
+    },
+    "hero": {
+      "title": "Payments",
+      "subtitle": "Bulk payments, templates, scheduling, progress tracking, collection links, auto reconciliation and refunds."
+    },
+    "cta": {
+      "generate": "Generate link"
+    },
+    "tabs": {
+      "bulk": "Bulk pay",
+      "link": "Collection link",
+      "reconcile": "Auto reconcile",
+      "payee": "Frequent payees",
+      "refund": "Refunds / Retry"
+    },
+    "purpose": {
+      "title": "Purpose & evidence",
+      "subtitle": "Every payment must include a real purpose plus verifiable business evidence.",
+      "submit": "Required before submit",
+      "fields": {
+        "required": {
+          "label": "Purpose",
+          "value": "Required",
+          "desc": "e.g. vendor settlement",
+          "cta": "Add purpose & evidence"
+        },
+        "tracking": {
+          "label": "Tracking #",
+          "value": "Optional",
+          "desc": "Express, freight or B/L",
+          "cta": "View evidence rules"
+        },
+        "amount": {
+          "label": "Tx screenshot",
+          "value": "Optional",
+          "desc": "Order or chat record",
+          "cta": ""
+        },
+        "invoice": {
+          "label": "Invoice / Contract",
+          "value": "Optional",
+          "desc": "Commercial invoice or agreement",
+          "cta": ""
+        }
+      }
+    },
+    "upload": {
+      "title": "Upload payment list",
+      "hint": "Drop Excel/CSV here",
+      "empty": "No payment file uploaded"
+    },
+    "progress": {
+      "title": "Real-time batch progress",
+      "label": "64% processed"
+    }
+  },
+  "exchange": {
+    "header": {
+      "title": "Exchange & transfer",
+      "subtitle": "Real-time quotes and multi-path transfers"
+    },
+    "hero": {
+      "title": "Exchange & transfer",
+      "subtitle": "Real-time quotes, strategy switching, fee breakdown, expiry protection, intra-platform and cross-border bank transfers."
+    },
+    "cta": {
+      "refresh": "Refresh quote"
+    },
+    "swap": {
+      "title": "Fiat account ↔ Crypto swap",
+      "subtitle": "The platform only displays quotes, collects confirmation and hands off to OSL: actual trading, asset swap and settlement are completed by OSL.",
+      "badge": "OSL hand-off"
+    },
+    "quote": {
+      "title": "Smart quote",
+      "sell": "Sell",
+      "buy": "Buy",
+      "expired": "Expired",
+      "fee": "View fees",
+      "lock": "Confirm Redemption",
+      "expire": "Simulated Quote Expired",
+      "strategies": {
+        "balanced": "Balanced",
+        "cost": "Lowest cost",
+        "speed": "Fastest"
+      },
+      "strategyDetails": {
+        "balanced": "Fee 0.28% · T+1",
+        "cost": "Fee 0.18% · T+2",
+        "speed": "Fee 0.42% · Same day"
+      }
+    },
+    "transfer": {
+      "title": "Transfer center",
+      "tabs": {
+        "internal": "Intra-platform",
+        "cross": "Cross-border bank",
+        "payee": "Frequent payees"
+      },
+      "id": "ID / Phone / Email",
+      "name": "Counterparty name",
+      "amount": "Amount",
+      "tfa": "2FA",
+      "submit": "Submit and instant settle",
+      "purpose": "Add purpose & evidence",
+      "account": "Recipient account",
+      "saved": "Saved beneficiaries",
+      "savedDesc": "Select a verified beneficiary to reduce duplicate entry and payment risk.",
+      "add": "Add beneficiary"
+    }
+  },
+  "global": {
+    "header": {
+      "title": "Global checkout",
+      "subtitle": "Online, offline, subscription and stablecoin"
+    },
+    "hero": {
+      "title": "Global checkout",
+      "subtitle": "Reference UQPAY · online payment, offline POS/QR, subscription billing, stablecoin and unified settlement."
+    },
+    "cta": {
+      "create": "Create checkout"
+    },
+    "checkout": {
+      "title": "Create payment checkout",
+      "amount": "Amount",
+      "currency": "Currency",
+      "callback": "Callback URL",
+      "expiry": "Expiry",
+      "expiry24": "24 hours",
+      "submit": "Create secure checkout",
+      "cancel": "Cancel",
+      "close": "Close checkout dialog",
+      "success": "Secure checkout created.",
+      "errors": {
+        "amount": "Amount must be greater than 0.",
+        "callback": "Callback URL must use HTTPS."
+      }
+    },
+    "channels": {
+      "online": {
+        "title": "Online",
+        "desc": "Hosted checkout, plugins, card / wallet / bank transfer."
+      },
+      "offline": {
+        "title": "Offline",
+        "desc": "POS terminals and local QR collection."
+      },
+      "subscription": {
+        "title": "Subscription",
+        "desc": "Recurring billing, renewal, retry."
+      },
+      "stablecoin": {
+        "title": "Stablecoin",
+        "desc": "Compliant stablecoin collection and settlement."
+      }
+    },
+    "insight": {
+      "title": "Payment insights",
+      "card": "Card",
+      "wallet": "Wallet",
+      "bank": "Bank",
+      "qr": "QR",
+      "ussd": "USSD"
+    }
+  },
+  "crypto": {
+    "header": {
+      "title": "Crypto",
+      "subtitle": "Digital Assets, Network, Send/Receive and Exchange"
+    },
+    "hero": {
+      "title": "Crypto",
+      "subtitle": "Manage digital assets, networks, deposits, withdrawals, swaps and on-chain activity."
+    },
+    "cta": {
+      "newAsset": "New asset"
+    },
+    "portfolio": {
+      "label": "PORTFOLIO VALUE"
+    },
+    "receive": {
+      "title": "Receive",
+      "network": "NETWORK",
+      "warning": "Only send USDT via TRX. Funds sent on the wrong network or as a different asset will be permanently lost.",
+      "qr": "QR",
+      "input": "Add this asset to your deposit address",
+      "cta": "Generate deposit address"
+    },
+    "subnav": {
+      "label": "Crypto sections",
+      "overview": "Overview",
+      "orders": "Orders",
+      "addresses": "Addresses",
+      "transactions": "Transactions",
+      "investment": "Crypto Investment",
+      "fixedTerm": "Crypto Fixed Term",
+      "safeguarding": "Safeguarding",
+      "settlement": "Settlement"
+    },
+    "notices": {
+      "newAsset": "New asset flow opened.",
+      "address": "Deposit address generation requested.",
+      "exchange": "Exchange request submitted for review.",
+      "action": "Action requested."
+    },
+    "top": {
+      "title": "Top holdings",
+      "allTransactions": "All transactions ›",
+      "col": {
+        "asset": "Asset",
+        "amount": "Amount",
+        "available": "Available",
+        "margin": "Margin",
+        "frozen": "Frozen"
+      }
+    },
+    "activity": {
+      "title": "Recent activity",
+      "empty": "No recent orders"
+    },
+    "pages": {
+      "action": "Open action",
+      "common": {
+        "asset": "Asset",
+        "network": "Network",
+        "apr": "APR",
+        "status": "Status",
+        "redeem": "Redeem"
+      },
+      "orders": {
+        "title": "Orders",
+        "description": "View buy, sell and conversion orders with status, route and settlement details.",
+        "empty": "No records yet.",
+        "type": "Type",
+        "status": "Status",
+        "time": "Time"
+      },
+      "addresses": {
+        "title": "Deposit addresses",
+        "description": "Manage whitelisted addresses and supported networks.",
+        "empty": "No deposit address available.",
+        "action": "Add address",
+        "subscribe": "Subscribe"
+      },
+      "transactions": {
+        "title": "Crypto transactions",
+        "description": "On-chain deposits, withdrawals and compliance review records.",
+        "empty": "No records yet."
+      },
+      "investment": {
+        "title": "Crypto Investment",
+        "description": "Lock Crypto principal on a chosen asset and network; yield follows product rules.",
+        "empty": "No records yet.",
+        "subscribe": "Subscribe",
+        "principal": "Principal",
+        "holdings": "Active",
+        "note": "Asset, network, custodian, executing party, yield source and risk must be clear; redeemed assets return to the Crypto account; a separate Crypto → Fiat order is required for fiat off-ramp."
+      },
+      "fixedTerm": {
+        "title": "Crypto Fixed Term",
+        "description": "Fixed lock-up, agreed yield, redeem at maturity.",
+        "empty": "No records yet.",
+        "subscribe": "Subscribe",
+        "holdings": "Locked",
+        "lockedAmount": "Locked Amount",
+        "maturity": "Maturity",
+        "note": "Early redemption is subject to product and network rules."
+      },
+      "safeguarding": {
+        "title": "Crypto Safeguarding",
+        "description": "Crypto assets are received under isolation rules, with independent traceability.",
+        "empty": "No records yet.",
+        "releaseNote": "Approve via Ops.",
+        "controlledIn": "Controlled In",
+        "info": "Isolation Info",
+        "owner": "Account Holder",
+        "reason": "Isolation reason",
+        "reasonText": "E.g. customer withdrawal, refund, transfer back to operating balance.",
+        "note": "Free spending or FX is disabled by default; release requires approval."
+      },
+      "settlement": {
+        "title": "Crypto Settlement",
+        "description": "Crypto settlement funds after OSL execution; aggregate and allocate per asset, network and customer.",
+        "empty": "No records yet.",
+        "releaseNote": "Approve via Ops.",
+        "batch": "Settlement Batch",
+        "batchId": "Batch ID",
+        "amount": "Amount",
+        "allocate": "Allocate",
+        "note": "Crypto and fiat settlements are booked separately and are not mixed in balance."
+      }
+    },
+    "exchange": {
+      "title": "Exchange",
+      "subtitle": "Buy, sell, and swap crypto",
+      "modes": {
+        "buy": "Buy",
+        "sell": "Sell",
+        "convert": "Convert",
+        "fiatCrypto": "Fiat ↔ Crypto"
+      },
+      "pay": "You pay",
+      "recv": "You receive",
+      "trade": "Execution provider: OSL",
+      "reason": "Reason (optional)",
+      "agree": "I understand and agree that OSL completes the actual exchange and Libranex acts only as an information relay.",
+      "disclaimer": "Libranex does not execute digital asset transactions. It only securely relays your exchange information and confirmation results to OSL. The final quotations, trade execution, asset custody, and settlement shall be governed by the pages and agreements of OSL.",
+      "actions": {
+        "buy": "Buy USDT",
+        "sell": "Sell USDT",
+        "convert": "Convert crypto",
+        "fiatCrypto": "Fiat ↔ Crypto"
+      }
+    }
+  },
+  "common": {
+    "selectLanguage": "Select language"
+  },
+  "approval": {
+    "header": {
+      "title": "Approval center",
+      "subtitle": "Pending Approvals, Approval History & Enterprise Approval Policies"
+    },
+    "hero": {
+      "title": "Pending approvals",
+      "subtitle": "Review high-risk operations and maintain a complete audit trail."
+    },
+    "cta": "Create approval policy",
+    "stats": {
+      "pending": {
+        "label": "Pending",
+        "value": "4",
+        "hint": "2 require attention"
+      },
+      "today": {
+        "label": "Submitted today",
+        "value": "12",
+        "hint": "+3 from yesterday"
+      },
+      "approved": {
+        "label": "Approved this month",
+        "value": "186",
+        "hint": "98.4% completed"
+      },
+      "rejected": {
+        "label": "Rejected this month",
+        "value": "3",
+        "hint": "Policy protected"
+      }
+    },
+    "section": {
+      "title": "Approval queues",
+      "subtitle": "Process requests by business type and risk priority."
+    },
+    "cards": {
+      "payment": {
+        "icon": "↗",
+        "title": "Payment approvals",
+        "description": "Bulk payments, cross-border transfers and high-value transactions.",
+        "action": "Review 2 requests"
+      },
+      "account": {
+        "icon": "▣",
+        "title": "Account requests",
+        "description": "New virtual accounts, limit changes and account closures.",
+        "action": "Review 1 request"
+      },
+      "beneficiary": {
+        "icon": "◎",
+        "title": "Beneficiary changes",
+        "description": "New payees and changes to trusted withdrawal addresses.",
+        "action": "Review 1 request"
+      }
+    }
+  },
+  "developer": {
+    "header": {
+      "title": "Developer center",
+      "subtitle": "API keys, webhooks, logs and integration tools"
+    },
+    "hero": {
+      "title": "Developer workspace",
+      "subtitle": "Build, test and monitor your Libranex integration."
+    },
+    "cta": "Create API key",
+    "stats": {
+      "apiCalls": {
+        "label": "API calls today",
+        "value": "24.8K",
+        "hint": "99.98% available"
+      },
+      "successRate": {
+        "label": "Success rate",
+        "value": "99.6%",
+        "hint": "Last 24 hours"
+      },
+      "webhooks": {
+        "label": "Active webhooks",
+        "value": "6",
+        "hint": "All endpoints healthy"
+      },
+      "keys": {
+        "label": "API keys",
+        "value": "3",
+        "hint": "1 test · 2 live"
+      }
+    },
+    "section": {
+      "title": "Integration tools",
+      "subtitle": "Manage credentials, event delivery and request diagnostics."
+    },
+    "cards": {
+      "apiKeys": {
+        "icon": "⌘",
+        "title": "API keys",
+        "description": "Create and rotate test or production credentials securely.",
+        "action": "Manage keys"
+      },
+      "webhooks": {
+        "icon": "⇄",
+        "title": "Webhooks",
+        "description": "Subscribe to payment, account and compliance events.",
+        "action": "Configure endpoints"
+      },
+      "logs": {
+        "icon": "≡",
+        "title": "API logs",
+        "description": "Inspect requests, responses, latency and error details.",
+        "action": "View logs"
+      }
+    },
+    "explorer": {
+      "title": "API Explorer",
+      "subtitle": "Versioned REST API, Webhooks, encrypted transmission, API keys, and call auditing.",
+      "run": "Run sandbox",
+      "copy": "Copy cURL"
+    },
+    "capabilities": {
+      "title": "API capabilities",
+      "subtitle": "Core resources available to your integration.",
+      "balance": {
+        "title": "Balance",
+        "path": "GET /v1/accounts"
+      },
+      "transfer": {
+        "title": "Transfer",
+        "path": "POST /v1/transfers"
+      },
+      "collection": {
+        "title": "Collection",
+        "path": "POST /v1/payment_links"
+      },
+      "webhook": {
+        "title": "Webhook",
+        "path": "Idempotent event delivery"
+      }
+    },
+    "logs": {
+      "title": "API request audit",
+      "subtitle": "Recent calls, responses and latency.",
+      "view": "View all logs"
+    }
+  },
+  "settings": {
+    "header": {
+      "title": "Settings",
+      "subtitle": "Enterprise, Permissions, Parameters, and Language"
+    },
+    "hero": {
+      "title": "Enterprise settings",
+      "subtitle": "Configure your organization and account-level controls."
+    },
+    "cta": "Save changes",
+    "stats": {
+      "members": {
+        "label": "Team members",
+        "value": "18",
+        "hint": "15 active"
+      },
+      "roles": {
+        "label": "Custom roles",
+        "value": "5",
+        "hint": "Least privilege enabled"
+      },
+      "security": {
+        "label": "Security score",
+        "value": "92%",
+        "hint": "2 recommendations"
+      },
+      "notifications": {
+        "label": "Notification rules",
+        "value": "8",
+        "hint": "Email and webhook"
+      }
+    },
+    "section": {
+      "title": "Configuration",
+      "subtitle": "Manage core enterprise settings from one place."
+    },
+    "cards": {
+      "organization": {
+        "icon": "◇",
+        "title": "Organization profile",
+        "description": "Legal entity, business details, locale and settlement preferences.",
+        "action": "Edit organization"
+      },
+      "members": {
+        "icon": "♙",
+        "title": "Members and roles",
+        "description": "Invite teammates and control access with granular roles.",
+        "action": "Manage access"
+      },
+      "security": {
+        "icon": "⌾",
+        "title": "Security and notifications",
+        "description": "Configure 2FA, sessions, alerts and approval policies.",
+        "action": "Open security"
+      }
+    }
+  },
+  "tickets": {
+    "header": {
+      "title": "Tickets & notifications",
+      "subtitle": "To-do, Reminder, and Customer Service Closed-loop"
+    },
+    "hero": {
+      "title": "Ticket list",
+      "subtitle": "Display of priorities for security, transactions, and system notifications;"
+    },
+    "cta": "Create ticket",
+    "count": "2 open",
+    "section": {
+      "title": "Open tickets",
+      "subtitle": "Customer information is masked and no fund operation is allowed."
+    },
+    "table": {
+      "ticket": "Ticket",
+      "category": "Category",
+      "sla": "SLA",
+      "status": "Status"
+    },
+    "items": {
+      "first": {
+        "title": "#TCK-9321 · Settlement delay",
+        "time": "22m left",
+        "description": "Unity Centre is waiting for the Canada ACH settlement batch.",
+        "meta": "Unity Centre · P2 · Settlement",
+        "action": "Open"
+      },
+      "second": {
+        "title": "#TCK-9318 · KYC evidence",
+        "time": "4h left",
+        "description": "Atlas Commerce needs clarification on beneficial owner documents.",
+        "meta": "Atlas Commerce · P3 · KYC",
+        "action": "Open"
+      },
+      "third": {
+        "title": "Knowledge base suggestions",
+        "time": "Updated now",
+        "description": "Review approved response templates and support security boundaries.",
+        "meta": "Internal support guidance",
+        "action": "View"
+      }
+    }
+  },
+  "notifications": {
+    "header": {
+      "title": "Notifications",
+      "subtitle": "Alerts, approvals and platform activity"
+    },
+    "hero": {
+      "title": "Notification center",
+      "subtitle": " along with ticket creation, handling, and customer satisfaction."
+    },
+    "cta": "Mark all read",
+    "count": "3 unread",
+    "section": {
+      "title": "Recent notifications",
+      "subtitle": "Important events requiring your attention are shown first."
+    },
+    "table": {
+      "priority": "Priority",
+      "message": "Message",
+      "status": "Status"
+    },
+    "items": {
+      "first": {
+        "title": "Payment approval required",
+        "time": "8m ago",
+        "description": "A bulk payment of USD 98,500 is waiting for your approval.",
+        "meta": "Payments · High priority",
+        "action": "Review"
+      },
+      "second": {
+        "title": "KYC evidence requested",
+        "time": "1h ago",
+        "description": "Atlas Commerce has submitted new beneficial owner documents.",
+        "meta": "Compliance · KYC",
+        "action": "View"
+      },
+      "third": {
+        "title": "Settlement batch matched",
+        "time": "3h ago",
+        "description": "SG FAST settlement batch SET-20260730-02 has been reconciled.",
+        "meta": "Settlement · Completed",
+        "action": "View"
+      }
+    }
+  }
+}
