@@ -154,6 +154,7 @@ export default function DashboardShell({
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activationOpen, setActivationOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
   const [operationOpen, setOperationOpen] = useState(false);
   const t = useTranslations();
   const tDash = useTranslations("dashboard");
@@ -161,14 +162,63 @@ export default function DashboardShell({
   const locale = params.locale;
   const pathname = usePathname();
 
+  const notifications = [
+    {
+      id: 1,
+      title: locale === "en" ? "Login alert" : "异地登录提醒",
+      description:
+        locale === "en"
+          ? "A new device in Toronto was used to access the console."
+          : "新设备 Toronto 访问了控制台，系统已记录该登录行为。",
+      time: locale === "en" ? "2 min ago" : "2 分钟前",
+      type: "warn",
+      unread: true,
+    },
+    {
+      id: 2,
+      title: locale === "en" ? "Payment approval" : "付款审批",
+      description:
+        locale === "en"
+          ? "Batch payout #PAY-18291 is waiting for your approval."
+          : "批量付款 PAY-18291 需要你完成审批，已在待办中保留。",
+      time: locale === "en" ? "18 min ago" : "18 分钟前",
+      type: "info",
+      unread: true,
+    },
+    {
+      id: 3,
+      title: locale === "en" ? "KYC completed" : "KYC 通过",
+      description:
+        locale === "en"
+          ? "Client BGM-004 has passed the business verification."
+          : "客户 BGM-004 已完成企业识别与受益人审核。",
+      time: locale === "en" ? "1 hour ago" : "1 小时前",
+      type: "success",
+      unread: false,
+    },
+    {
+      id: 4,
+      title: locale === "en" ? "System maintenance" : "系统维护",
+      description:
+        locale === "en"
+          ? "The exchange API will undergo scheduled maintenance tonight."
+          : "兑换 API 将于今晚进行例行维护，影响窗口仅为 15 分钟。",
+      time: locale === "en" ? "5 hours ago" : "5 小时前",
+      type: "info",
+      unread: false,
+    },
+  ];
+
   useEffect(() => {
     function closeAccountMenu(event: PointerEvent) {
-      const target = event.target as Element;
-      if (target && !target.closest?.(".lx-account-menu")) setAccountMenuOpen(false);
+      const target = event.target as Element | null;
+      if (target && !target.closest(".lx-account-menu")) setAccountMenuOpen(false);
+      if (target && !target.closest(".lx-notification-menu")) setNotificationOpen(false);
     }
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setAccountMenuOpen(false);
+        setNotificationOpen(false);
         setOperationOpen(false);
       }
     }
@@ -323,24 +373,85 @@ export default function DashboardShell({
 
           <LanguageSwitcher />
 
-          <Link
-            className="lx-bell"
-            href={`/${locale}/notifications`}
-            aria-label="notifications"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
+          <div className="lx-notification-menu">
+            <button
+              className="lx-bell"
+              type="button"
+              aria-label="notifications"
+              aria-expanded={notificationOpen}
+              aria-controls="notification-center"
+              onClick={() => {
+                setAccountMenuOpen(false);
+                setNotificationOpen((open) => !open);
+              }}
             >
-              <path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8z" />
-              <path d="M10 19a2 2 0 0 0 4 0" />
-            </svg>
-            <span className="dot">7</span>
-          </Link>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              >
+                <path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8z" />
+                <path d="M10 19a2 2 0 0 0 4 0" />
+              </svg>
+              <span className="dot">7</span>
+            </button>
+
+            {notificationOpen && (
+              <div id="notification-center" className="lx-notification-menu__panel" role="dialog" aria-modal="false" aria-label="notification center">
+                <div className="lx-notification-menu__header">
+                  <div>
+                    {/* <div className="lx-notification-menu__eyebrow">{locale === "en" ? "INBOX" : "通知中心"}</div> */}
+                    <strong>{locale === "en" ? "Notifications" : "通知中心"}</strong>
+                  </div>
+                  <button
+                    className="lx-notification-menu__close"
+                    type="button"
+                    aria-label="Close notifications"
+                    onClick={() => setNotificationOpen(false)}
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="lx-notification-menu__summary">
+                  <div>
+                    <strong>{notifications.filter((item) => item.unread).length}</strong>
+                    <small>{locale === "en" ? "unread" : "未读消息"}</small>
+                  </div>
+                  <button type="button" className="lx-notification-menu__summary-button">
+                    {locale === "en" ? "Mark all read" : "全部已读"}
+                  </button>
+                </div>
+
+                <div className="lx-notification-menu__list">
+                  {notifications.map((item) => (
+                    <div
+                      key={item.id}
+                      className={`lx-notification-menu__item ${item.unread ? "unread" : ""}`}
+                      onClick={() => setNotificationOpen(false)}
+                    >
+                      <div className="lx-notification-menu__icon">
+                        {item.type === "warn" ? "!" : item.type === "success" ? "✓" : "•"}
+                      </div>
+                      <div className="lx-notification-menu__content">
+                        <strong>{item.title}</strong>
+                        <p>{item.description}</p>
+                      </div>
+                      <div className="lx-notification-menu__time">{item.time}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="lx-notification-menu__footer">
+                  <a href={`/${locale}/notifications`} onClick={() => setNotificationOpen(false)}>{locale === "en" ? "View all notifications" : "查看全部通知"}</a>
+                  <button type="button" onClick={() => setNotificationOpen(false)}>{locale === "en" ? "Close" : "关闭"}</button>
+                </div>
+              </div>
+            )}
+          </div>
 
           <button className="lx-user" type="button" onClick={() => setActivationOpen(true)}>
             {tDash("activate")}
@@ -355,7 +466,10 @@ export default function DashboardShell({
             type="button"
             aria-expanded={accountMenuOpen}
             aria-haspopup="menu"
-            onClick={() => setAccountMenuOpen((open) => !open)}
+            onClick={() => {
+              setNotificationOpen(false);
+              setAccountMenuOpen((open) => !open);
+            }}
           >
             <span className="lx-user__avatar">LM</span>
             <span>Lin Manager</span>

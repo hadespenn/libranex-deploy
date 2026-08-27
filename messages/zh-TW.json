@@ -294,7 +294,7 @@
     },
     "transactions": {
       "title": "账户交易明细",
-      "subtitle": "查看订阅、赎回、贷记和借记交易。",
+      "subtitle": "查看訂閱、赎回、贷记和借记交易。",
       "filter": "筛选",
       "columns": {
         "date": "日期",
@@ -332,7 +332,9 @@
       "subtitle": "批量付款、範本、定時、進度追蹤、收款連結、自動對帳與退款。"
     },
     "cta": {
-      "generate": "產生收款連結"
+      "generate": "產生收款連結",
+      "submit": "提交批次",
+      "create": "建立連結"
     },
     "tabs": {
       "bulk": "批量付款",
@@ -341,45 +343,148 @@
       "payee": "常用收款人",
       "refund": "退款 / 失敗重試"
     },
-    "purpose": {
-      "title": "付款用途與憑證",
-      "subtitle": "每筆付款必須填寫真實用途，並附上可核驗的業務憑證。",
-      "submit": "提交前必填",
-      "fields": {
-        "required": {
-          "label": "付款用途",
-          "value": "必填",
-          "desc": "如：供應商結算",
-          "cta": "新增付款用途與憑證"
+    "summary": {
+      "title": "付款概覽",
+      "subtitle": "監控出款金額、流動性和異常處理效率。",
+      "metrics": {
+        "outgoing": {
+          "label": "本月出款",
+          "value": "¥4.82M",
+          "desc": "較上月 +12.4%"
         },
-        "tracking": {
-          "label": "物流單號",
-          "value": "可選",
-          "desc": "快遞、貨運或提單號",
-          "cta": "查看憑證要求"
+        "pending": {
+          "label": "待處理",
+          "value": "¥930K",
+          "desc": "31 筆待審核"
         },
-        "amount": {
-          "label": "交易截圖",
-          "value": "可選",
-          "desc": "訂單或溝通記錄",
-          "cta": ""
+        "success": {
+          "label": "成功率",
+          "value": "98.6%",
+          "desc": "最近 30 天"
         },
-        "invoice": {
-          "label": "發票 / 合約",
-          "value": "可選",
-          "desc": "商業發票或協議",
-          "cta": ""
+        "revenue": {
+          "label": "已收款",
+          "value": "¥2.14M",
+          "desc": "7 日結算"
         }
       }
     },
-    "upload": {
-      "title": "上傳付款清單",
-      "hint": "拖曳 Excel/CSV 到這裡",
-      "empty": "尚未上傳付款檔案"
+    "batch": {
+      "title": "付款用途與憑證",
+      "uploadTitle": "上傳付款清單",
+      "uploadHint": "拖曳 Excel/CSV 到這裡",
+      "empty": "尚未上傳付款檔案",
+      "chooseFile": "選擇檔案",
+      "parse": "解析並檢查",
+      "submit": "提交批次",
+      "saveTemplate": "儲存為範本",
+      "schedule": "定時付款",
+      "progressTitle": "批次即時進度",
+      "progressLabel": "已處理 64%",
+      "fields": {
+        "purpose": "付款用途",
+        "purposeValue": "供應商結算",
+        "vendor": "對方主體",
+        "vendorValue": "Northwind Retail",
+        "submit": "儲存用途與憑證",
+        "evidence": "新增憑證"
+      },
+      "metrics": {
+        "valid": {
+          "label": "有效記錄",
+          "value": "128"
+        },
+        "abnormal": {
+          "label": "異常記錄",
+          "value": "2"
+        },
+        "amount": {
+          "label": "總金額",
+          "value": "USD 248,600"
+        }
+      }
     },
-    "progress": {
-      "title": "批次即時進度",
-      "label": "已處理 64%"
+    "link": {
+      "title": "收款連結",
+      "subtitle": "建立收款連結或 QR Code，並即時查看付款狀態。",
+      "name": "連結名稱",
+      "nameValue": "春季採購結算",
+      "currency": "幣別",
+      "amount": "金額",
+      "expiry": "有效期",
+      "expiryValue": "24 小時",
+      "expiry48": "48 小時",
+      "expiry72": "72 小時",
+      "create": "建立連結",
+      "preview": "預覽",
+      "url": "連結位址",
+      "copy": "複製連結",
+      "share": "分享"
+    },
+    "reconcile": {
+      "title": "自動對帳",
+      "subtitle": "自動比對銀行回執、訂單與發票記錄。",
+      "search": "搜尋 / 交易編號",
+      "searchPlaceholder": "請輸入關鍵字",
+      "status": "狀態",
+      "all": "全部狀態",
+      "run": "執行自動比對",
+      "detail": "檢視詳情",
+      "columns": {
+        "reference": "對帳編號",
+        "match": "比對來源",
+        "amount": "金額",
+        "status": "狀態"
+      }
+    },
+    "payees": {
+      "title": "常用收款人",
+      "subtitle": "集中管理已驗證的銀行帳戶與錢包地址。",
+      "search": "搜尋",
+      "searchPlaceholder": "依名稱或帳戶搜尋",
+      "add": "新增收款人",
+      "columns": {
+        "name": "名稱",
+        "account": "帳戶",
+        "risk": "風險等級",
+        "limit": "日限額"
+      }
+    },
+    "refund": {
+      "title": "退款 / 失敗重試",
+      "subtitle": "對失敗付款進行選擇性重試，並按需發起退款。",
+      "customer": "客戶名稱",
+      "amount": "金額",
+      "submit": "提交退款",
+      "retry": "重試失敗付款",
+      "reasonMismatch": "資訊不符",
+      "reasonDuplicate": "重複付款",
+      "reasonLost": "匯款遺失",
+      "columns": {
+        "id": "申請編號",
+        "customer": "客戶",
+        "reason": "原因",
+        "amount": "金額",
+        "status": "狀態"
+      }
+    },
+    "status": {
+      "pending": "待處理",
+      "processing": "處理中",
+      "review": "審核中",
+      "completed": "已完成",
+      "verified": "已驗證"
+    },
+    "notice": {
+      "linkReady": "收款連結工作台已就緒。",
+      "purposeReady": "付款用途與憑證表單已開啟。",
+      "fileParsed": "{file} 已上傳並解析完成。",
+      "parseComplete": "檔案解析完成：128 條有效記錄，2 條異常記錄。",
+      "batchSubmitted": "批次已提交，等待合規審核。",
+      "linkCreated": "收款連結已建立並啟用。",
+      "reconcileRun": "自動對帳已啟動，結果將很快顯示。",
+      "payeeSaved": "收款人已加入已保存清單。",
+      "refundQueued": "退款申請已進入審批隊列。"
     }
   },
   "exchange": {

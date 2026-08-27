@@ -332,7 +332,9 @@
       "subtitle": "Bulk payments, templates, scheduling, progress tracking, collection links, auto reconciliation and refunds."
     },
     "cta": {
-      "generate": "Generate link"
+      "generate": "Generate link",
+      "submit": "Submit batch",
+      "create": "Create link"
     },
     "tabs": {
       "bulk": "Bulk pay",
@@ -341,45 +343,148 @@
       "payee": "Frequent payees",
       "refund": "Refunds / Retry"
     },
-    "purpose": {
-      "title": "Purpose & evidence",
-      "subtitle": "Every payment must include a real purpose plus verifiable business evidence.",
-      "submit": "Required before submit",
-      "fields": {
-        "required": {
-          "label": "Purpose",
-          "value": "Required",
-          "desc": "e.g. vendor settlement",
-          "cta": "Add purpose & evidence"
+    "summary": {
+      "title": "Payment overview",
+      "subtitle": "Monitor outbound payment volume, liquidity and resolution efficiency.",
+      "metrics": {
+        "outgoing": {
+          "label": "Outgoing volume",
+          "value": "$4.82M",
+          "desc": "+12.4% vs last month"
         },
-        "tracking": {
-          "label": "Tracking #",
-          "value": "Optional",
-          "desc": "Express, freight or B/L",
-          "cta": "View evidence rules"
+        "pending": {
+          "label": "Pending",
+          "value": "$930K",
+          "desc": "31 items awaiting review"
         },
-        "amount": {
-          "label": "Tx screenshot",
-          "value": "Optional",
-          "desc": "Order or chat record",
-          "cta": ""
+        "success": {
+          "label": "Success rate",
+          "value": "98.6%",
+          "desc": "Last 30 days"
         },
-        "invoice": {
-          "label": "Invoice / Contract",
-          "value": "Optional",
-          "desc": "Commercial invoice or agreement",
-          "cta": ""
+        "revenue": {
+          "label": "Collected",
+          "value": "$2.14M",
+          "desc": "7-day settlement"
         }
       }
     },
-    "upload": {
-      "title": "Upload payment list",
-      "hint": "Drop Excel/CSV here",
-      "empty": "No payment file uploaded"
+    "batch": {
+      "title": "Payment purpose & evidence",
+      "uploadTitle": "Upload payment list",
+      "uploadHint": "Drop Excel/CSV here",
+      "empty": "No payment file uploaded",
+      "chooseFile": "Choose file",
+      "parse": "Parse and review",
+      "submit": "Submit batch",
+      "saveTemplate": "Save as template",
+      "schedule": "Schedule payment",
+      "progressTitle": "Batch progress",
+      "progressLabel": "64% processed",
+      "fields": {
+        "purpose": "Payment purpose",
+        "purposeValue": "Vendor settlement",
+        "vendor": "Counterparty",
+        "vendorValue": "Northwind Retail",
+        "submit": "Save purpose and evidence",
+        "evidence": "Add evidence"
+      },
+      "metrics": {
+        "valid": {
+          "label": "Valid records",
+          "value": "128"
+        },
+        "abnormal": {
+          "label": "Abnormal records",
+          "value": "2"
+        },
+        "amount": {
+          "label": "Total amount",
+          "value": "USD 248,600"
+        }
+      }
     },
-    "progress": {
-      "title": "Real-time batch progress",
-      "label": "64% processed"
+    "link": {
+      "title": "Collection link",
+      "subtitle": "Create a payment link or QR code and track its status in real time.",
+      "name": "Link name",
+      "nameValue": "Spring purchase settlement",
+      "currency": "Currency",
+      "amount": "Amount",
+      "expiry": "Expiry",
+      "expiryValue": "24 hours",
+      "expiry48": "48 hours",
+      "expiry72": "72 hours",
+      "create": "Create link",
+      "preview": "Preview",
+      "url": "Link URL",
+      "copy": "Copy URL",
+      "share": "Share"
+    },
+    "reconcile": {
+      "title": "Auto reconciliation",
+      "subtitle": "Match payment records, invoices and bank statements automatically.",
+      "search": "Search / reference",
+      "searchPlaceholder": "Enter keyword",
+      "status": "Status",
+      "all": "All",
+      "run": "Run matching",
+      "detail": "View details",
+      "columns": {
+        "reference": "Reference",
+        "match": "Match source",
+        "amount": "Amount",
+        "status": "Status"
+      }
+    },
+    "payees": {
+      "title": "Frequent payees",
+      "subtitle": "Review trusted counterparties, limits and compliance status.",
+      "search": "Search",
+      "searchPlaceholder": "By name or account",
+      "add": "Add beneficiary",
+      "columns": {
+        "name": "Name",
+        "account": "Account",
+        "risk": "Risk",
+        "limit": "Daily limit"
+      }
+    },
+    "refund": {
+      "title": "Refunds / retries",
+      "subtitle": "Retry failed payments or issue a selective refund when needed.",
+      "customer": "Customer name",
+      "amount": "Amount",
+      "submit": "Submit refund",
+      "retry": "Retry failed",
+      "reasonMismatch": "Incorrect metadata",
+      "reasonDuplicate": "Duplicate payment",
+      "reasonLost": "Lost remittance",
+      "columns": {
+        "id": "Request ID",
+        "customer": "Customer",
+        "reason": "Reason",
+        "amount": "Amount",
+        "status": "Status"
+      }
+    },
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "review": "Under review",
+      "completed": "Completed",
+      "verified": "Verified"
+    },
+    "notice": {
+      "linkReady": "Payment link workspace is ready.",
+      "purposeReady": "Purpose and evidence form opened.",
+      "fileParsed": "{file} uploaded and parsed successfully.",
+      "parseComplete": "File parsed successfully: 128 valid records, 2 abnormal records.",
+      "batchSubmitted": "Batch submitted and awaiting compliance review.",
+      "linkCreated": "Collection link created and activated.",
+      "reconcileRun": "Matching started. Results will appear shortly.",
+      "payeeSaved": "Payee has been added to the saved list.",
+      "refundQueued": "Refund request has been queued for approval."
     }
   },
   "exchange": {

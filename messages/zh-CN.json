@@ -332,7 +332,9 @@
       "subtitle": "批量付款、模板、定时、进度跟踪、收款链接、自动对账与退款。"
     },
     "cta": {
-      "generate": "生成收款链接"
+      "generate": "生成收款链接",
+      "submit": "提交批次",
+      "create": "创建链接"
     },
     "tabs": {
       "bulk": "批量付款",
@@ -341,45 +343,148 @@
       "payee": "常用收款人",
       "refund": "退款 / 失败重试"
     },
-    "purpose": {
-      "title": "付款用途与凭证",
-      "subtitle": "每笔付款必须填写真实用途，并附上可核验的业务凭证。",
-      "submit": "提交前必填",
-      "fields": {
-        "required": {
-          "label": "付款用途",
-          "value": "必填",
-          "desc": "如：供应商结算",
-          "cta": "添加付款用途与凭证"
+    "summary": {
+      "title": "付款概览",
+      "subtitle": "监控出款金额、流动性和异常处理效率。",
+      "metrics": {
+        "outgoing": {
+          "label": "本月出款",
+          "value": "¥4.82M",
+          "desc": "较上月 +12.4%"
         },
-        "tracking": {
-          "label": "物流单号",
-          "value": "可选",
-          "desc": "快递、货运或提单号",
-          "cta": "查看凭证要求"
+        "pending": {
+          "label": "待处理",
+          "value": "¥930K",
+          "desc": "31 笔待审核"
         },
-        "amount": {
-          "label": "交易截图",
-          "value": "可选",
-          "desc": "订单或沟通记录",
-          "cta": ""
+        "success": {
+          "label": "成功率",
+          "value": "98.6%",
+          "desc": "最近 30 天"
         },
-        "invoice": {
-          "label": "发票 / 合同",
-          "value": "可选",
-          "desc": "商业发票或协议",
-          "cta": ""
+        "revenue": {
+          "label": "已收款",
+          "value": "¥2.14M",
+          "desc": "7 日结算"
         }
       }
     },
-    "upload": {
-      "title": "上传付款清单",
-      "hint": "拖拽 Excel/CSV 到这里",
-      "empty": "尚未上传付款文件"
+    "batch": {
+      "title": "付款用途与凭证",
+      "uploadTitle": "上传付款清单",
+      "uploadHint": "拖拽 Excel/CSV 到这里",
+      "empty": "尚未上传付款文件",
+      "chooseFile": "选择文件",
+      "parse": "解析并检查",
+      "submit": "提交批次",
+      "saveTemplate": "保存为模板",
+      "schedule": "定时付款",
+      "progressTitle": "批次实时进度",
+      "progressLabel": "已处理 64%",
+      "fields": {
+        "purpose": "付款用途",
+        "purposeValue": "供应商结算",
+        "vendor": "对方主体",
+        "vendorValue": "Northwind Retail",
+        "submit": "保存用途与凭证",
+        "evidence": "添加凭证"
+      },
+      "metrics": {
+        "valid": {
+          "label": "有效记录",
+          "value": "128"
+        },
+        "abnormal": {
+          "label": "异常记录",
+          "value": "2"
+        },
+        "amount": {
+          "label": "总金额",
+          "value": "USD 248,600"
+        }
+      }
     },
-    "progress": {
-      "title": "批次实时进度",
-      "label": "已处理 64%"
+    "link": {
+      "title": "收款链接",
+      "subtitle": "创建收款链接或二维码，并实时查看付款状态。",
+      "name": "链接名称",
+      "nameValue": "春季采购结算",
+      "currency": "币种",
+      "amount": "金额",
+      "expiry": "有效期",
+      "expiryValue": "24 小时",
+      "expiry48": "48 小时",
+      "expiry72": "72 小时",
+      "create": "创建链接",
+      "preview": "预览",
+      "url": "链接地址",
+      "copy": "复制链接",
+      "share": "分享"
+    },
+    "reconcile": {
+      "title": "自动对账",
+      "subtitle": "自动匹配银行回执、订单和发票记录。",
+      "search": "搜索 / 交易编号",
+      "searchPlaceholder": "请输入关键词",
+      "status": "状态",
+      "all": "全部状态",
+      "run": "运行自动匹配",
+      "detail": "查看详情",
+      "columns": {
+        "reference": "对账编号",
+        "match": "匹配来源",
+        "amount": "金额",
+        "status": "状态"
+      }
+    },
+    "payees": {
+      "title": "常用收款人",
+      "subtitle": "集中管理已验证的银行账户与钱包地址。",
+      "search": "搜索",
+      "searchPlaceholder": "按名称或账户搜索",
+      "add": "新增收款人",
+      "columns": {
+        "name": "名称",
+        "account": "账户",
+        "risk": "风险等级",
+        "limit": "日限额"
+      }
+    },
+    "refund": {
+      "title": "退款 / 失败重试",
+      "subtitle": "对失败付款进行选择性重试，并按需发起退款。",
+      "customer": "客户名称",
+      "amount": "金额",
+      "submit": "提交退款",
+      "retry": "重试失败支付",
+      "reasonMismatch": "信息不匹配",
+      "reasonDuplicate": "重复付款",
+      "reasonLost": "汇款丢失",
+      "columns": {
+        "id": "申请编号",
+        "customer": "客户",
+        "reason": "原因",
+        "amount": "金额",
+        "status": "状态"
+      }
+    },
+    "status": {
+      "pending": "待处理",
+      "processing": "处理中",
+      "review": "审核中",
+      "completed": "已完成",
+      "verified": "已验证"
+    },
+    "notice": {
+      "linkReady": "收款链接工作台已就绪。",
+      "purposeReady": "付款用途与凭证表单已打开。",
+      "fileParsed": "{file} 已上传并解析完成。",
+      "parseComplete": "文件解析完成：128 条有效记录，2 条异常记录。",
+      "batchSubmitted": "批次已提交，等待合规审核。",
+      "linkCreated": "收款链接已创建并启用。",
+      "reconcileRun": "自动对账已启动，结果将很快展示。",
+      "payeeSaved": "收款人已加入已保存列表。",
+      "refundQueued": "退款申请已进入审批队列。"
     }
   },
   "exchange": {
