@@ -163,8 +163,8 @@ export default function DashboardShell({
 
   useEffect(() => {
     function closeAccountMenu(event: PointerEvent) {
-      const target = event.target as Node;
-      if (!target.closest(".lx-account-menu")) setAccountMenuOpen(false);
+      const target = event.target as Element;
+      if (target && !target.closest?.(".lx-account-menu")) setAccountMenuOpen(false);
     }
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
