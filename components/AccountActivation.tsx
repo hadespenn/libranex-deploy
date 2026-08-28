@@ -484,13 +484,13 @@ export default function AccountActivation({ onClose }: { onClose: () => void }) 
                 </div>
                 <div className="activation-actions">
                   <button className="secondary" type="button" onClick={onClose}>返回</button>
-                  <button className="primary" type="button" onClick={onClose}>进入受限控制台</button>
+                  <button className="lx-cta" type="button" onClick={onClose}>进入受限控制台</button>
                 </div>
               </section>
             ) : (
               <div className="activation-actions">
                 <button type="button" className="secondary" onClick={onClose}>返回</button>
-                <button type="button" className="primary" onClick={() => (view === "review" ? go("submitted") : go(next[view]))}>
+                <button type="button" className="lx-cta" onClick={() => (view === "review" ? go("submitted") : go(next[view]))}>
                   {view === "review" ? "提交激活申请" : "保存并继续"}
                 </button>
                 <span className="activation-progress">{views.findIndex((v) => v.id === view) + 1} / {views.length} · 自动保存</span>

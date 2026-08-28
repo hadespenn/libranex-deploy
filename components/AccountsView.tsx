@@ -431,7 +431,7 @@ export default function AccountsView() {
               <b>{t('i18n.cryptoGenerateAddress')}</b>
             </div>
             <div className="actions">
-              <button className="primary" type="button">{t('i18n.generateTopupAddress')}</button>
+              <button className="lx-cta" type="button">{t('i18n.generateTopupAddress')}</button>
               <button className="ghost" type="button">{t('i18n.viewTopupRecords')}</button>
             </div>
           </div>
@@ -590,7 +590,7 @@ export default function AccountsView() {
             </div>
           </div>
           <div className="actions">
-            <button className="primary" type="button">{t('i18n.saveLimits')}</button>
+            <button className="lx-cta" type="button">{t('i18n.saveLimits')}</button>
           </div>
         </div>
       </div>

@@ -1,10 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import DashboardShell from "./DashboardShell";
 
 export default function DeveloperView() {
   const t = useTranslations("developer");
+  const [apiKeyOpen, setApiKeyOpen] = useState(false);
   return (
     <DashboardShell
       active="developer"
@@ -16,7 +18,7 @@ export default function DeveloperView() {
           <h2 className="lx-section-title">{t("hero.title")}</h2>
           <p className="lx-section-sub">{t("hero.subtitle")}</p>
         </div>
-        <button className="lx-cta" type="button">
+        <button className="lx-cta" type="button" onClick={() => setApiKeyOpen(true)}>
           {t("cta")}
         </button>
       </div>
@@ -92,6 +94,14 @@ export default function DeveloperView() {
           </div>
         </div>
       </section>
+      {apiKeyOpen && <div className="lx-api-key-modal" role="dialog" aria-modal="true" onClick={(e) => e.target === e.currentTarget && setApiKeyOpen(false)}>
+        <div className="lx-api-key-modal__panel">
+          <div className="lx-api-key-modal__head"><h2>{t("apiKeyModal.title")}</h2><button type="button" aria-label={t("apiKeyModal.close")} onClick={() => setApiKeyOpen(false)}>×</button></div>
+          <p className="lx-section-sub">{t("apiKeyModal.note")}</p>
+          <pre className="lx-api-code"><code><span>{t("apiKeyModal.prefix")}</span>••••••••••••••••</code></pre>
+          <button className="lx-cta" type="button" onClick={() => setApiKeyOpen(false)}>{t("apiKeyModal.generate")}</button>
+        </div>
+      </div>}
     </DashboardShell>
   );
 }

@@ -559,6 +559,14 @@
       "filtered": "Transaction filter applied.",
       "detail": "Transaction {id} opened."
     },
+    "filterModal": {
+      "title": "Filter account details",
+      "description": "Choose an asset or transaction type, then refresh the current statement details.",
+      "apply": "Apply filters",
+      "resetButton": "Clear filters",
+      "applied": "Transaction filter applied.",
+      "reset": "Transaction filters cleared."
+    },
     "notes": {
       "balanceTitle": "Balance note",
       "balance": "Statement balances include completed, processing and pending transactions and may differ from real-time available balances.",
@@ -939,6 +947,41 @@
       "saved": "Saved beneficiaries",
       "savedDesc": "Select a verified beneficiary to reduce duplicate entry and payment risk.",
       "add": "Add beneficiary"
+    },
+    "modal": {
+      "close": "Close",
+      "purposeTitle": "Payment purpose & evidence",
+      "purposeNote": "Evidence is linked to this payment, beneficiary and batch ID for review and audit retention. Do not upload sensitive personal information unrelated to the payment.",
+      "purposeLabel": "Payment purpose",
+      "required": "Required",
+      "purposeValue": "July 2026 supplier settlement",
+      "purposePlaceholder": "Describe the genuine business purpose, e.g. July 2026 supplier settlement",
+      "tracking": "Logistics tracking number",
+      "trackingPlaceholder": "e.g. DHL / FedEx / bill of lading",
+      "invoice": "Order / invoice number",
+      "invoicePlaceholder": "Invoice / PO number",
+      "screenshot": "Transaction or order screenshot",
+      "documents": "Logistics, invoice or contract evidence",
+      "fileHint": "JPG, PNG or PDF. Order, payment notice or business communication screenshots are recommended.",
+      "documentHint": "Upload logistics records, commercial invoices, contracts or purchase orders.",
+      "confirmPurpose": "I confirm that the purpose and evidence are accurate and complete, and authorize them for payment review.",
+      "savePurpose": "Save evidence and continue payment",
+      "beneficiaryTitle": "Add beneficiary",
+      "beneficiaryNote": "Adding or editing a beneficiary triggers ownership verification, sanctions screening and dual approval; it cannot be used for payments until approved.",
+      "name": "Beneficiary name",
+      "type": "Beneficiary type",
+      "bank": "Bank account",
+      "wallet": "Digital wallet",
+      "internal": "Internal account",
+      "contact": "Email / contact",
+      "network": "Bank / network",
+      "account": "Account / wallet address",
+      "defaultPurpose": "Default payment purpose",
+      "purposeDefault": "Supplier settlement",
+      "notes": "Notes and tags",
+      "notesValue": "Long-term supplier; invoice and logistics evidence required",
+      "confirmBeneficiary": "I confirm the beneficiary information has been verified by an authorized company representative.",
+      "saveBeneficiary": "Save and start verification"
     }
   },
   "global": {
@@ -1292,6 +1335,13 @@
       "title": "API request audit",
       "subtitle": "Recent calls, responses and latency.",
       "view": "View all logs"
+    },
+    "apiKeyModal": {
+      "title": "Generate API key",
+      "note": "The new key is shown only once. All calls are recorded in the Security Center audit log.",
+      "prefix": "sk_live_",
+      "generate": "Generate key",
+      "close": "Close"
     }
   },
   "settings": {
@@ -1394,6 +1444,20 @@
         "meta": "Internal support guidance",
         "action": "View"
       }
+    },
+    "modal": {
+      "title": "Create support ticket",
+      "category": "Category",
+      "settlement": "Settlement delay",
+      "kyc": "KYC / activation",
+      "payment": "Payment issue",
+      "priority": "Priority",
+      "normal": "Normal",
+      "urgent": "Urgent",
+      "description": "Description",
+      "descriptionValue": "Describe the issue and relevant transaction reference.",
+      "submit": "Create ticket",
+      "close": "Close"
     }
   },
   "notifications": {

@@ -559,6 +559,14 @@
       "filtered": "已应用交易筛选。",
       "detail": "已打开交易 {id}。"
     },
+    "filterModal": {
+      "title": "筛选交易明细",
+      "description": "选择资产或交易类型后刷新当前对账单明细。",
+      "apply": "应用筛选",
+      "resetButton": "清除筛选",
+      "applied": "已应用交易筛选。",
+      "reset": "已清除交易筛选。"
+    },
     "notes": {
       "balanceTitle": "余额说明",
       "balance": "对账单余额反映期间内已完成、处理中和待处理交易，可能与实时可用余额不同。",
@@ -939,6 +947,41 @@
       "saved": "已保存收款人",
       "savedDesc": "选择经过验证的收款人，减少重复录入并降低误付风险。",
       "add": "新增收款人"
+    },
+    "modal": {
+      "close": "关闭",
+      "purposeTitle": "付款用途与凭证",
+      "purposeNote": "凭证将与本笔付款、收款人和批次 ID 绑定，进入审核与审计留存。禁止上传与付款无关的敏感个人信息。",
+      "purposeLabel": "付款用途",
+      "required": "必填",
+      "purposeValue": "支付 2026 年 7 月供应商货款",
+      "purposePlaceholder": "请说明真实商业用途，例如：支付 2026 年 7 月供应商货款",
+      "tracking": "物流单号",
+      "trackingPlaceholder": "如 DHL / FedEx / 提单号",
+      "invoice": "订单 / 发票号",
+      "invoicePlaceholder": "Invoice / PO number",
+      "screenshot": "交易截图或订单截图",
+      "documents": "物流、发票或合同凭证",
+      "fileHint": "支持 JPG、PNG、PDF，建议上传订单、付款通知或业务沟通截图。",
+      "documentHint": "可上传物流单、商业发票、合同、采购订单等佐证材料。",
+      "confirmPurpose": "我确认用途和凭证真实、完整，并授权用于付款审核。",
+      "savePurpose": "保存凭证并继续付款",
+      "beneficiaryTitle": "新增收款人",
+      "beneficiaryNote": "新增或修改收款人会触发账户所有权、制裁筛查和双人审批；通过前不可用于付款。",
+      "name": "收款人名称",
+      "type": "收款人类型",
+      "bank": "银行账户",
+      "wallet": "数字钱包",
+      "internal": "平台内账户",
+      "contact": "邮箱 / 联系方式",
+      "network": "银行 / 网络",
+      "account": "收款账户 / 钱包地址",
+      "defaultPurpose": "默认付款用途",
+      "purposeDefault": "供应商结算",
+      "notes": "备注与标签",
+      "notesValue": "长期供应商；需要发票和物流凭证",
+      "confirmBeneficiary": "我确认收款人信息已由企业授权人员核验。",
+      "saveBeneficiary": "保存并发起验证"
     }
   },
   "global": {
@@ -1291,6 +1334,13 @@
       "title": "API 调用审计",
       "subtitle": "最近的请求、响应与延迟。",
       "view": "查看全部日志"
+    },
+    "apiKeyModal": {
+      "title": "生成 API 密钥",
+      "note": "新密钥仅展示一次。所有调用会进入安全中心审计。",
+      "prefix": "sk_live_",
+      "generate": "生成密钥",
+      "close": "关闭"
     }
   },
   "settings": {
@@ -1399,6 +1449,20 @@
         "meta": "内部客服指引",
         "action": "查看"
       }
+    },
+    "modal": {
+      "title": "创建支持工单",
+      "category": "分类",
+      "settlement": "结算延迟",
+      "kyc": "KYC / 账户激活",
+      "payment": "付款问题",
+      "priority": "优先级",
+      "normal": "普通",
+      "urgent": "紧急",
+      "description": "问题描述",
+      "descriptionValue": "请描述问题并提供相关交易编号。",
+      "submit": "创建工单",
+      "close": "关闭"
     }
   },
   "notifications": {

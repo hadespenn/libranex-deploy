@@ -62,6 +62,17 @@ const text: Record<Locale, Record<string, string>> = {
     mfa: "Dual control + MFA",
     auto: "Auto-expire after 24h",
     done: "Approval updated",
+    policyDialogTitle: "Save approval policy",
+    policyDialogNote: "Review the approval rules before saving. Changes take effect for new requests and are recorded in the audit trail.",
+    delegationTitle: "Set temporary delegation",
+    delegationNote: "Delegate approval authority for a limited period. The original approver remains accountable and all actions are recorded.",
+    delegateTo: "Delegate to",
+    startDate: "Start date",
+    endDate: "End date",
+    reason: "Reason",
+    reasonValue: "Business trip coverage",
+    cancel: "Cancel",
+    confirm: "Confirm",
   },
   "zh-CN": {
     delegate: "设置临时授权",
@@ -116,6 +127,17 @@ const text: Record<Locale, Record<string, string>> = {
     mfa: "双人复核 + MFA",
     auto: "24h 自动失效",
     done: "审批已更新",
+    policyDialogTitle: "保存审批策略",
+    policyDialogNote: "请确认审批规则后保存。变更将应用于新的申请，并记录在审计日志中。",
+    delegationTitle: "设置临时授权",
+    delegationNote: "在限定时间内委托审批权限。原审批人仍承担责任，所有操作都会记录在审计日志中。",
+    delegateTo: "授权给",
+    startDate: "开始日期",
+    endDate: "结束日期",
+    reason: "授权原因",
+    reasonValue: "出差期间代审批",
+    cancel: "取消",
+    confirm: "确认",
   },
   "zh-TW": {
     delegate: "設定臨時授權",
@@ -179,6 +201,7 @@ export default function ApprovalView() {
   const c = text[locale] || text.en;
   const [tab, setTab] = useState<Tab>("pending");
   const [notice, setNotice] = useState("");
+  const [dialog, setDialog] = useState<"policy" | "delegation" | null>(null);
   const act = () => {
     setNotice(c.done);
     window.setTimeout(() => setNotice(""), 2200);
@@ -202,7 +225,7 @@ export default function ApprovalView() {
             MFA 记录。
           </p>
         </div>
-        <button className="lx-outline-btn" onClick={act}>
+        <button className="lx-outline-btn" onClick={() => setDialog("delegation")}>
           {c.delegate}
         </button>
       </div>
@@ -262,7 +285,7 @@ export default function ApprovalView() {
                 </label>
               ))}
             </div>
-            <button className="lx-cta" onClick={act}>
+            <button className="lx-cta" onClick={() => setDialog("policy")}>
               {c.save}
             </button>
           </section>
@@ -276,6 +299,18 @@ export default function ApprovalView() {
         </div>
       )}
       {notice && <div className="lx-toast">{notice}</div>}
+      {dialog && <div className="lx-approval-modal" role="dialog" aria-modal="true" onClick={(e) => e.target === e.currentTarget && setDialog(null)}>
+        <div className="lx-approval-modal__panel">
+          <div className="lx-approval-modal__head"><h2>{dialog === "policy" ? c.policyDialogTitle : c.delegationTitle}</h2><button type="button" aria-label="Close" onClick={() => setDialog(null)}>×</button></div>
+          <p className="lx-section-sub">{dialog === "policy" ? c.policyDialogNote : c.delegationNote}</p>
+          {dialog === "policy" ? <div className="lx-approval-modal__rules">{[[c.external,c.threshold],[c.bulk,c.always],[c.changes,c.mfa],[c.timeout,c.auto]].map(([label,value]) => <div key={label}><b>{label}</b><span>{value}</span></div>)}</div> : <div className="lx-approval-form lx-approval-modal__form">
+            <label>{c.delegateTo}<select defaultValue="lin"><option value="lin">{c.lin}</option><option value="chen">{c.chen}</option></select></label>
+            <label>{c.startDate}<input type="date" defaultValue="2026-08-28" /></label><label>{c.endDate}<input type="date" defaultValue="2026-09-04" /></label>
+            <label>{c.reason}<input defaultValue={c.reasonValue} /></label>
+          </div>}
+          <div className="lx-approval-modal__actions"><button className="lx-outline-btn" type="button" onClick={() => setDialog(null)}>{c.cancel}</button><button className="lx-cta" type="button" onClick={() => { setDialog(null); act(); }}>{c.confirm}</button></div>
+        </div>
+      </div>}
     </DashboardShell>
   );
 }

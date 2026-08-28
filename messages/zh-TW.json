@@ -559,6 +559,14 @@
       "filtered": "已应用交易筛选。",
       "detail": "已打开交易 {id}。"
     },
+    "filterModal": {
+      "title": "篩選交易明細",
+      "description": "選擇資產或交易類型後刷新當前對帳單明細。",
+      "apply": "套用篩選",
+      "resetButton": "清除篩選",
+      "applied": "已套用交易篩選。",
+      "reset": "已清除交易篩選。"
+    },
     "notes": {
       "balanceTitle": "余额说明",
       "balance": "对账单余额反映期间内已完成、处理中和待处理交易，可能与实时可用余额不同。",
@@ -939,6 +947,41 @@
       "saved": "已儲存收款人",
       "savedDesc": "選擇經過驗證的收款人，減少重複輸入並降低誤付風險。",
       "add": "新增收款人"
+    },
+    "modal": {
+      "close": "關閉",
+      "purposeTitle": "付款用途與憑證",
+      "purposeNote": "憑證將與本筆付款、收款人和批次 ID 綁定，進入審核與審計留存。禁止上傳與付款無關的敏感個人資訊。",
+      "purposeLabel": "付款用途",
+      "required": "必填",
+      "purposeValue": "支付 2026 年 7 月供應商貨款",
+      "purposePlaceholder": "請說明真實商業用途，例如：支付 2026 年 7 月供應商貨款",
+      "tracking": "物流單號",
+      "trackingPlaceholder": "如 DHL / FedEx / 提單號",
+      "invoice": "訂單 / 發票號",
+      "invoicePlaceholder": "Invoice / PO number",
+      "screenshot": "交易截圖或訂單截圖",
+      "documents": "物流、發票或合約憑證",
+      "fileHint": "支援 JPG、PNG、PDF，建議上傳訂單、付款通知或業務溝通截圖。",
+      "documentHint": "可上傳物流單、商業發票、合約、採購訂單等佐證材料。",
+      "confirmPurpose": "我確認用途和憑證真實、完整，並授權用於付款審核。",
+      "savePurpose": "儲存憑證並繼續付款",
+      "beneficiaryTitle": "新增收款人",
+      "beneficiaryNote": "新增或修改收款人會觸發帳戶所有權、制裁篩查和雙人審批；通過前不可用於付款。",
+      "name": "收款人名稱",
+      "type": "收款人類型",
+      "bank": "銀行帳戶",
+      "wallet": "數位錢包",
+      "internal": "平台內帳戶",
+      "contact": "電子郵件 / 聯絡方式",
+      "network": "銀行 / 網路",
+      "account": "收款帳戶 / 錢包地址",
+      "defaultPurpose": "預設付款用途",
+      "purposeDefault": "供應商結算",
+      "notes": "備註與標籤",
+      "notesValue": "長期供應商；需要發票和物流憑證",
+      "confirmBeneficiary": "我確認收款人資訊已由企業授權人員核驗。",
+      "saveBeneficiary": "儲存並發起驗證"
     }
   },
   "global": {
@@ -1299,6 +1342,13 @@
       "title": "API 呼叫稽核",
       "subtitle": "最近的請求、回應與延遲。",
       "view": "查看全部日誌"
+    },
+    "apiKeyModal": {
+      "title": "產生 API 金鑰",
+      "note": "新金鑰僅展示一次。所有呼叫會進入安全中心稽核。",
+      "prefix": "sk_live_",
+      "generate": "產生金鑰",
+      "close": "關閉"
     }
   },
   "settings": {
@@ -1401,6 +1451,20 @@
         "meta": "内部客服指引",
         "action": "查看"
       }
+    },
+    "modal": {
+      "title": "建立支援工單",
+      "category": "分類",
+      "settlement": "結算延遲",
+      "kyc": "KYC / 帳戶啟用",
+      "payment": "付款問題",
+      "priority": "優先級",
+      "normal": "普通",
+      "urgent": "緊急",
+      "description": "問題描述",
+      "descriptionValue": "請描述問題並提供相關交易編號。",
+      "submit": "建立工單",
+      "close": "關閉"
     }
   },
   "notifications": {
