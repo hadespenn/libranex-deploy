@@ -544,7 +544,7 @@ export default function DashboardShell({
                   <small>finance@unitycentre.com</small>
                 </div>
                 <Link
-                  href={`/${locale}/settings`}
+                  href={`/${locale}/more`}
                   role="menuitem"
                   onClick={() => setAccountMenuOpen(false)}
                 >
@@ -553,7 +553,7 @@ export default function DashboardShell({
                     : "账户资料与安全"}
                 </Link>
                 <Link
-                  href={`/${locale}/settings`}
+                  href={`/${locale}/more`}
                   role="menuitem"
                   onClick={() => setAccountMenuOpen(false)}
                 >
