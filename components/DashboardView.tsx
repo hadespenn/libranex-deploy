@@ -150,7 +150,6 @@ export default function DashboardView() {
       active="dashboard"
       headerTitle={tDash("header.title")}
       headerSubtitle={tDash("header.subtitle")}
-      toast={tDash("toast")}
     >
       {/* ===== 资金概览 ===== */}
       <div className="lx-section-header">

@@ -1,7 +1,12 @@
 import DashboardView from '@/components/DashboardView';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
-export default function DashboardPage({ params }: { params: { locale: string } }) {
-  unstable_setRequestLocale(params.locale);
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return <DashboardView />;
 }
