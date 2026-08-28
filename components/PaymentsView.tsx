@@ -7,6 +7,7 @@ import DashboardShell from "./DashboardShell";
 const TABS = ["bulk", "link", "reconcile", "payee", "refund"] as const;
 
 type TabKey = (typeof TABS)[number];
+type ModalType = "evidence" | "schedule" | "link" | "manualReview" | "beneficiary" | null;
 
 export default function PaymentsView() {
   const t = useTranslations("payments");
@@ -14,6 +15,7 @@ export default function PaymentsView() {
   const [uploaded, setUploaded] = useState(false);
   const [fileName, setFileName] = useState("");
   const [notice, setNotice] = useState("");
+  const [modal, setModal] = useState<ModalType>(null);
 
   const action = (message: string) => setNotice(message);
 
@@ -68,6 +70,120 @@ export default function PaymentsView() {
     { id: "RF-20260811-917", customer: "EverGlow", amount: "$1,940", reason: t("refund.reasonLost"), status: t("status.completed") },
   ];
 
+  const uploadChecklist = [
+    { label: t("batch.checklist.columns.label"), value: t("batch.checklist.columns.value") },
+    { label: t("batch.checklist.mapping.label"), value: t("batch.checklist.mapping.value") },
+    { label: t("batch.checklist.compliance.label"), value: t("batch.checklist.compliance.value") },
+  ];
+
+  const progressPipeline = [
+    { title: t("batch.pipeline.parse"), detail: "12:48 · " + t("batch.pipeline.parseDetail"), state: "ok" },
+    { title: t("batch.pipeline.review"), detail: "12:56 · " + t("batch.pipeline.reviewDetail"), state: "warn" },
+    { title: t("batch.pipeline.settle"), detail: "13:05 · " + t("batch.pipeline.settleDetail"), state: "gray" },
+  ];
+
+  const batchProgressStats = [
+    { label: t("batch.metrics.success.label"), value: "624" },
+    { label: t("batch.metrics.failed.label"), value: "12" },
+    { label: t("batch.metrics.processing.label"), value: "364" },
+  ];
+
+  const batchRows = [
+    { id: "PAY-000624", result: t("batch.progress.results.success"), amount: "USD 18,430", status: t("status.completed") },
+    { id: "PAY-000625", result: t("batch.progress.results.review"), amount: "USD 9,760", status: t("status.review") },
+    { id: "PAY-000626", result: t("batch.progress.results.processing"), amount: "USD 5,660", status: t("status.processing") },
+  ];
+
+  const statusClass = (status: string) => {
+    if (status === t("status.completed")) return "ok";
+    if (status === t("status.processing")) return "warn";
+    return "gray";
+  };
+
+  const evidenceNote = t("batch.modal.evidenceNote");
+  const cancelLabel = t("batch.modal.cancel");
+  const evidencePurpose = t("batch.modal.purpose");
+  const purposeRequired = t("batch.modal.required");
+  const trackingLabel = t("batch.modal.logistics");
+  const invoiceLabel = t("batch.modal.invoice");
+  const screenshotLabel = t("batch.modal.screenshot");
+  const docsLabel = t("batch.modal.documents");
+  const consentLabel = t("batch.modal.confirm");
+  const scheduleRecipient = t("batch.modal.recipient");
+  const scheduleCycle = t("batch.modal.cycle");
+  const scheduleAmount = t("batch.modal.amount");
+  const successScheduleText = t("batch.modal.scheduleSuccess");
+
+  const renderBatchProgressTable = () => (
+    <table className="table" style={{ marginTop: 14 }}>
+      <thead>
+        <tr>
+          <th>{t("batch.progress.table.id")}</th>
+          <th>{t("batch.progress.table.result")}</th>
+          <th>{t("batch.progress.table.amount")}</th>
+          <th>{t("batch.progress.table.status")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {batchRows.map((row) => (
+          <tr key={row.id}>
+            <td>{row.id}</td>
+            <td>{row.result}</td>
+            <td>{row.amount}</td>
+            <td>
+              <span className={`status ${statusClass(row.status)}`}>{row.status}</span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+
+  const renderProgressPanel = () => (
+    <div className="batch-progress">
+      <div className="batch-progress__head">
+        <div>
+          {/* <span className="batch-progress__eyebrow">{t("batch.progress.eyebrow")}</span> */}
+          <h2>{t("batch.progressTitle")}</h2>
+          <p>{t("batch.progress.batchId")}: <b>BULK-20260828-126</b></p>
+        </div>
+        <span className="status warn">{t("status.processing")}</span>
+      </div>
+      {/* <div className="batch-progress__summary">
+        <div><small>{t("batch.progress.total")}</small><strong>1,000</strong></div>
+        <div><small>{t("batch.progress.started")}</small><strong>12:48</strong></div>
+        <div><small>{t("batch.progress.estimated")}</small><strong>13:18</strong></div>
+      </div> */}
+      <div className="batch-progress__bar-label">
+        <b>{t("batch.progressLabel")}</b><span>636 / 1,000</span>
+      </div>
+      <div className="progress-track">
+        <span style={{ width: "64%" }} />
+      </div>
+      <div className="grid three batch-progress__metrics">
+        {batchProgressStats.map((item) => (
+          <div key={item.label} className="metric">
+            <small>{item.label}</small>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
+      </div>
+      {/* <div className="batch-progress__stages">
+        {progressPipeline.map((item, index) => (
+          <div key={item.title} className={`batch-progress__stage ${item.state}`}>
+            <span>{item.state === "ok" ? "✓" : index + 1}</span>
+            <div><strong>{item.title}</strong><small>{item.detail}</small></div>
+          </div>
+        ))}
+      </div> */}
+      <div className="batch-progress__table-head">
+        <h3>{t("batch.progress.recent")}</h3>
+        <button className="ghost mini" type="button">{t("batch.export")}</button>
+      </div>
+      <div className="table-scroll">{renderBatchProgressTable()}</div>
+    </div>
+  );
+
   return (
     <DashboardShell
       active="payments"
@@ -80,10 +196,10 @@ export default function PaymentsView() {
           <p>{t("hero.subtitle")}</p>
         </div>
         <button
-          className="primary lx-cta"
+          className="lx-cta"
           type="button"
           onClick={() => {
-            setTab("link");
+            setModal("link");
             action(t("notice.linkReady"));
           }}
         >
@@ -108,39 +224,34 @@ export default function PaymentsView() {
 
       {tab === "bulk" && (
         <>
-          <div className="panel payment-stack">
-            <h2>{t("batch.title")}</h2>
-            <div className="lx-balance-row" style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
-              {summaryCards.map((item) => (
-                <article key={item.key} className="metric">
-                  <small>{item.label}</small>
-                  <strong>{item.value}</strong>
-                  <span>{item.desc}</span>
-                </article>
+          <div className="panel payment-evidence-panel">
+            <div className="section-head">
+              <div>
+                <h2>{t("batch.title")}</h2>
+                <p>{t("batch.evidenceDescription")}</p>
+              </div>
+              <span className="status warn">{t("batch.evidenceRequired")}</span>
+            </div>
+            <div className="grid four">
+              {[
+                ["purpose", "purposeExample"],
+                ["logistics", "logisticsExample"],
+                ["screenshot", "screenshotExample"],
+                ["invoice", "invoiceExample"],
+              ].map(([label, example], index) => (
+                <div className="metric" key={label}>
+                  <small>{t(`batch.evidence.${label}`)}</small>
+                  <strong>{index === 0 ? t("batch.evidence.required") : t("batch.evidence.optional")}</strong>
+                  <span>{t(`batch.evidence.${example}`)}</span>
+                </div>
               ))}
             </div>
-
-            <div className="grid two" style={{ marginTop: 16 }}>
-              <div className="field">
-                <label>{t("batch.fields.purpose")}</label>
-                <input defaultValue={t("batch.fields.purposeValue")} />
-              </div>
-              <div className="field">
-                <label>{t("batch.fields.vendor")}</label>
-                <input defaultValue={t("batch.fields.vendorValue")} />
-              </div>
-            </div>
-
             <div className="actions">
-              <button
-                className="primary lx-cta"
-                type="button"
-                onClick={() => action(t("notice.purposeReady"))}
-              >
-                {t("batch.fields.submit")}
+              <button className="primary lx-cta" type="button" onClick={() => { setModal("evidence"); action(t("notice.purposeReady")); }}>
+                {t("batch.addEvidence")}
               </button>
-              <button className="ghost" type="button">
-                {t("batch.fields.evidence")}
+              <button className="ghost" type="button" onClick={() => action(t("batch.evidencePolicyNotice"))}>
+                {t("batch.viewEvidencePolicy")}
               </button>
             </div>
           </div>
@@ -150,7 +261,7 @@ export default function PaymentsView() {
               <h2>{t("batch.uploadTitle")}</h2>
               <div className="upload">
                 <b>{t("batch.uploadHint")}</b>
-                <p>{t("batch.empty")}</p>
+                <p>{t("batch.tips")}</p>
                 <label className="file-picker">
                   <input
                     type="file"
@@ -200,39 +311,66 @@ export default function PaymentsView() {
 
               <div className="actions">
                 <button
-                  className="primary lx-cta"
+                  className="lx-cta"
                   type="button"
                   onClick={() => action(t("notice.batchSubmitted"))}
                 >
                   {t("batch.submit")}
                 </button>
+                <button
+                  className="ghost"
+                  type="button"
+                  onClick={() => setModal("evidence")}
+                >
+                  {t("batch.addEvidence")}
+                </button>
+                <button
+                  className="ghost"
+                  type="button"
+                  onClick={() => action(t("notice.correctionMerged"))}
+                >
+                  {t("batch.mergeCorrection")}
+                </button>
                 <button className="ghost" type="button">
                   {t("batch.saveTemplate")}
                 </button>
-                <button className="ghost" type="button">
+                <button className="ghost" type="button" onClick={() => setModal("schedule")}>
                   {t("batch.schedule")}
                 </button>
               </div>
             </article>
 
             <article className="panel">
-              <h2>{t("batch.progressTitle")}</h2>
-              <div className="progress-track">
-                <span style={{ width: "64%" }} />
-              </div>
-              <p className="progress-label">{t("batch.progressLabel")}</p>
-
-              {processingQueue.map((item) => (
-                <div key={item.id} className="payment-list">
-                  <b>{item.id}</b>
-                  <span>{item.detail}</span>
-                  <span className={`status ${item.status === t("status.completed") ? "ok" : item.status === t("status.processing") ? "warn" : "gray"}`}>
-                    {item.status}
-                  </span>
-                </div>
-              ))}
+              {renderProgressPanel()}
             </article>
           </div>
+
+          {/* <div className="panel" style={{ marginTop: 24 }}>
+            <h2>{t("batch.checklist.title")}</h2>
+            <div className="checklist">
+              {uploadChecklist.map((item) => (
+                <div key={item.label} className="checklist-item">
+                  <span className="checklist-label">{item.label}</span>
+                  <span className="checklist-value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="panel" style={{ marginTop: 24 }}>
+            <h2>{t("batch.pipeline.title")}</h2>
+            <div className="pipeline">
+              {progressPipeline.map((item) => (
+                <div key={item.title} className="pipeline-item">
+                  <div className="pipeline-dot" style={{ backgroundColor: item.state === "ok" ? "#4caf50" : item.state === "warn" ? "#ff9800" : "#e0e0e0" }} />
+                  <div className="pipeline-content">
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div> */}
         </>
       )}
 
@@ -240,65 +378,57 @@ export default function PaymentsView() {
         <div className="grid two">
           <article className="panel">
             <h2>{t("link.title")}</h2>
-            <p className="lx-section-sub">{t("link.subtitle")}</p>
-
-            <div className="form-grid" style={{ marginTop: 18 }}>
+            <div className="form-grid payment-link-form">
               <div className="field">
-                <label>{t("link.name")}</label>
-                <input defaultValue={t("link.nameValue")} />
+                <label>{t("link.amount")}</label>
+                <input defaultValue="125.50" />
               </div>
               <div className="field">
                 <label>{t("link.currency")}</label>
                 <select defaultValue="USD">
                   <option>USD</option>
                   <option>EUR</option>
+                  <option>HKD</option>
                   <option>SGD</option>
+                  <option>USDC</option>
                 </select>
-              </div>
-              <div className="field">
-                <label>{t("link.amount")}</label>
-                <input defaultValue="$2,540.00" />
               </div>
               <div className="field">
                 <label>{t("link.expiry")}</label>
-                <select defaultValue={t("link.expiryValue")}>
-                  <option>{t("link.expiryValue")}</option>
-                  <option>{t("link.expiry48")}</option>
-                  <option>{t("link.expiry72")}</option>
+                <select defaultValue="7 days">
+                  <option>7 days</option>
+                  <option>24 hours</option>
+                  <option>30 days</option>
                 </select>
+              </div>
+              <div className="field">
+                <label>{t("link.orderId")}</label>
+                <input defaultValue="PL_MOCK_ACTIVE" />
               </div>
             </div>
 
             <div className="actions">
-              <button
-                className="primary lx-cta"
-                type="button"
-                onClick={() => action(t("notice.linkCreated"))}
-              >
-                {t("link.create")}
+              <button className="lx-cta" type="button" onClick={() => action(t("notice.linkCreated"))}>
+                {t("link.generate")}
               </button>
-              <button className="ghost" type="button">
-                {t("link.preview")}
+              <button className="ghost" type="button" onClick={() => action(t("notice.linkCopied"))}>
+                {t("link.copy")}
               </button>
             </div>
           </article>
 
-          <article className="panel">
-            <h2>{t("link.preview")}</h2>
-            <div style={{ display: "flex", justifyContent: "center", padding: "8px 0 18px" }}>
-              <div className="qr" aria-label="QR code" />
-            </div>
-            <div className="field">
-              <label>{t("link.url")}</label>
-              <input defaultValue="https://pay.libranex.io/c/LM-09612" />
-            </div>
-            <div className="actions">
-              <button className="ghost" type="button">
-                {t("link.copy")}
-              </button>
-              <button className="ghost" type="button">
-                {t("link.share")}
-              </button>
+          <article className="panel payment-checkout-card">
+            <h2>{t("link.checkout")}</h2>
+            <div className="payment-checkout-content">
+              <div className="qr" aria-label={t("link.qrLabel")} />
+              <div>
+                <p className="status ok">{t("link.awaiting")}</p>
+                <h3>125.50 USD</h3>
+                <p>{t("link.methods")}</p>
+                <button className="mini lx-cta" type="button" onClick={() => action(t("notice.paymentMarked"))}>
+                  {t("link.simulatePaid")}
+                </button>
+              </div>
             </div>
           </article>
         </div>
@@ -352,27 +482,48 @@ export default function PaymentsView() {
           </div>
 
           <div className="actions">
-            <button className="primary lx-cta" type="button" onClick={() => action(t("notice.reconcileRun"))}>
+            <button className="lx-cta" type="button" onClick={() => action(t("notice.reconcileRun"))}>
               {t("reconcile.run")}
             </button>
-            <button className="ghost" type="button">{t("reconcile.detail")}</button>
+            <button className="ghost" type="button" onClick={() => setModal("manualReview")}>{t("reconcile.detail")}</button>
           </div>
         </div>
       )}
 
       {tab === "payee" && (
         <div className="panel">
-          <h2>{t("payees.title")}</h2>
-          <p className="lx-section-sub">{t("payees.subtitle")}</p>
+          <div className="section-head">
+            <div>
+              <h2>{t("payees.title")}</h2>
+              <p>{t("payees.subtitle")}</p>
+            </div>
+            <button className="lx-cta" type="button" onClick={() => setModal("beneficiary")}>
+              {t("payees.add")}
+            </button>
+          </div>
 
-          <div className="actions" style={{ justifyContent: "space-between" }}>
-            <div className="field" style={{ flex: 1, maxWidth: 320 }}>
+          <div className="form-grid beneficiary-filters">
+            <div className="field">
               <label>{t("payees.search")}</label>
               <input placeholder={t("payees.searchPlaceholder")} />
             </div>
-            <button className="primary lx-cta" type="button" onClick={() => action(t("notice.payeeSaved"))}>
-              {t("payees.add")}
-            </button>
+            <div className="field">
+              <label>{t("payees.type")}</label>
+              <select defaultValue="all">
+                <option value="all">{t("payees.allTypes")}</option>
+                <option value="bank">{t("payees.bank")}</option>
+                <option value="wallet">{t("payees.wallet")}</option>
+                <option value="internal">{t("payees.internal")}</option>
+              </select>
+            </div>
+            <div className="field">
+              <label>{t("payees.status")}</label>
+              <select defaultValue="verified">
+                <option value="verified">{t("payees.verified")}</option>
+                <option value="pending">{t("payees.pending")}</option>
+                <option value="blocked">{t("payees.blocked")}</option>
+              </select>
+            </div>
           </div>
 
           <div className="table-scroll" style={{ marginTop: 18 }}>
@@ -403,29 +554,22 @@ export default function PaymentsView() {
       )}
 
       {tab === "refund" && (
-        <div className="panel">
-          <h2>{t("refund.title")}</h2>
-          <p className="lx-section-sub">{t("refund.subtitle")}</p>
-
-          <div className="grid two" style={{ marginTop: 18 }}>
-            <div className="field">
-              <label>{t("refund.customer")}</label>
-              <input defaultValue="Jade & Co." />
+        <div className="grid two">
+          <div className="panel">
+            <h2>{t("refund.requestTitle")}</h2>
+            <div className="form-grid" style={{ marginTop: 18 }}>
+              <div className="field"><label>{t("refund.orderId")}</label><input defaultValue="ORD-202607-0821" /></div>
+              <div className="field"><label>{t("refund.amount")}</label><input defaultValue="$88.00 USD" /></div>
+              <div className="field"><label>{t("refund.reason")}</label><select defaultValue="customer"><option value="customer">{t("refund.reasonCustomer")}</option><option value="duplicate">{t("refund.reasonDuplicate")}</option><option value="chargeback">{t("refund.reasonChargeback")}</option></select></div>
+              <div className="field"><label>{t("refund.approval")}</label><select defaultValue="required"><option value="required">{t("refund.approvalValue")}</option></select></div>
             </div>
-            <div className="field">
-              <label>{t("refund.amount")}</label>
-              <input defaultValue="$2,380.00" />
+            <div className="actions">
+              <button className="lx-cta" type="button" onClick={() => action(t("notice.refundQueued"))}>{t("refund.submit")}</button>
             </div>
           </div>
-
-          <div className="actions">
-            <button className="primary lx-cta" type="button" onClick={() => action(t("notice.refundQueued"))}>
-              {t("refund.submit")}
-            </button>
-            <button className="ghost" type="button">{t("refund.retry")}</button>
-          </div>
-
-          <div className="table-scroll" style={{ marginTop: 18 }}>
+          <div className="panel">
+            <h2>{t("refund.title")}</h2>
+            <div className="table-scroll" style={{ marginTop: 18 }}>
             <table className="table">
               <thead>
                 <tr>
@@ -452,7 +596,199 @@ export default function PaymentsView() {
                 ))}
               </tbody>
             </table>
+            </div>
+            <button className="ghost" type="button" onClick={() => action(t("refund.retryNotice"))}>{t("refund.retry")}</button>
           </div>
+        </div>
+      )}
+
+      {modal && (
+        <div
+          className="lx-checkout-modal"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setModal(null);
+            }
+          }}
+        >
+          <section className="lx-checkout-modal__panel" role="dialog" aria-modal="true" aria-labelledby="payments-modal-title">
+            <div className="lx-checkout-modal__head">
+              <h2 id="payments-modal-title">
+                {modal === "manualReview" ? t("reconcile.reviewTitle")
+                  : modal === "beneficiary" ? t("payees.form.title")
+                    : modal === "evidence" ? t("batch.modal.evidenceTitle")
+                      : modal === "schedule" ? t("batch.modal.scheduleTitle")
+                        : t("link.title")}
+              </h2>
+              <button className="lx-checkout-modal__close" type="button" aria-label={t("batch.modal.close")} onClick={() => setModal(null)}>
+                ×
+              </button>
+            </div>
+
+            {modal === "beneficiary" ? (
+              <div className="lx-checkout-form" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                <div className="auth-note" style={{ gridColumn: "1 / -1" }}>{t("payees.form.note")}</div>
+                <label>{t("payees.form.name")}<input defaultValue={t("payees.form.nameValue")} /></label>
+                <label>{t("payees.form.type")}<select defaultValue="bank"><option value="bank">{t("payees.form.bank")}</option><option value="wallet">{t("payees.form.wallet")}</option><option value="internal">{t("payees.form.internal")}</option></select></label>
+                <label>{t("payees.form.contact")}<input defaultValue="vendor@global-supply.com" /></label>
+                <label>{t("payees.form.network")}<input defaultValue="SWIFT · DBSSSGSG / TRC20" /></label>
+                <label>{t("payees.form.account")}<input defaultValue="885-901-229-1" /></label>
+                <label>{t("payees.form.purpose")}<input defaultValue={t("payees.form.purposeValue")} /></label>
+                <label style={{ gridColumn: "1 / -1" }}>{t("payees.form.notes")}<textarea rows={3} defaultValue={t("payees.form.notesValue")} /></label>
+                <label className="check-row" style={{ gridColumn: "1 / -1" }}><input type="checkbox" defaultChecked />{t("payees.form.confirm")}</label>
+                <div className="lx-checkout-modal__actions" style={{ gridColumn: "1 / -1" }}><button className="lx-cta" type="button" onClick={() => { setModal(null); action(t("notice.payeeSaved")); }}>{t("payees.form.submit")}</button><button className="ghost" type="button" onClick={() => setModal(null)}>{cancelLabel}</button></div>
+              </div>
+            ) : modal === "manualReview" ? (
+              <div className="lx-checkout-form" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                <div className="auth-note" style={{ gridColumn: "1 / -1" }}>{t("reconcile.reviewNote")}</div>
+                <label>{t("reconcile.reviewReference")}<input defaultValue="A-9110" /></label>
+                <label>{t("reconcile.reviewSource")}<select defaultValue="invoice"><option value="invoice">{t("reconcile.reviewInvoice")}</option><option value="bank">{t("reconcile.reviewBank")}</option></select></label>
+                <label style={{ gridColumn: "1 / -1" }}>{t("reconcile.reviewComment")}<textarea rows={4} defaultValue={t("reconcile.reviewCommentValue")} /></label>
+                <div className="lx-checkout-modal__actions" style={{ gridColumn: "1 / -1" }}>
+                  <button className="lx-cta" type="button" onClick={() => { setModal(null); action(t("notice.reviewSubmitted")); }}>{t("reconcile.submitReview")}</button>
+                  <button className="ghost" type="button" onClick={() => setModal(null)}>{cancelLabel}</button>
+                </div>
+              </div>
+            ) : modal === "evidence" ? (
+              <>
+                <div className="auth-note">{evidenceNote}</div>
+                <div className="lx-checkout-form" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <label style={{ gridColumn: "1 / -1" }}>
+                    {evidencePurpose}
+                    <b style={{ color: "#d92d20" }}>{purposeRequired}</b>
+                    <textarea
+                      defaultValue={t("batch.modal.purposeValue")}
+                      rows={4}
+                      style={{ width: "100%", padding: "10px 12px", border: "1px solid #d9e1ed", borderRadius: "9px", resize: "vertical" }}
+                    />
+                  </label>
+
+                  <label>
+                    {trackingLabel}
+                    <input defaultValue={t("batch.modal.logisticsValue")} />
+                  </label>
+
+                  <label>
+                    {invoiceLabel}
+                    <input defaultValue={t("batch.modal.invoiceValue")} />
+                  </label>
+
+                  <label style={{ gridColumn: "1 / -1" }}>
+                    {screenshotLabel}
+                    <input type="file" accept="image/*,.pdf" style={{ padding: 0, border: "1px solid #d9e1ed", borderRadius: "9px" }} />
+                  </label>
+
+                  <label style={{ gridColumn: "1 / -1" }}>
+                    {docsLabel}
+                    <input type="file" accept="image/*,.pdf" multiple style={{ padding: 0, border: "1px solid #d9e1ed", borderRadius: "9px" }} />
+                  </label>
+
+                  <label style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 600, color: "#34435e" }}>
+                    <input type="checkbox" defaultChecked />
+                    <span style={{ whiteSpace: "nowrap"}}>{consentLabel}</span>
+                  </label>
+
+                  <div className="lx-checkout-modal__actions" style={{ gridColumn: "1 / -1" }}>
+                    <button
+                      className="lx-cta"
+                      type="button"
+                      onClick={() => {
+                        setModal(null);
+                        action(t("notice.purposeReady"));
+                      }}
+                    >
+                      {t("batch.fields.submit")}
+                    </button>
+                    <button className="ghost" type="button" onClick={() => setModal(null)}>
+                      {cancelLabel}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : modal === "link" ? (
+              <div className="lx-checkout-form" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                <div className="field">
+                  <label>{t("link.name")}</label>
+                  <input defaultValue={t("link.nameValue")} />
+                </div>
+                <div className="field">
+                  <label>{t("link.currency")}</label>
+                  <select defaultValue="USD">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>SGD</option>
+                    <option>USDC</option>
+                  </select>
+                </div>
+                <div className="field">
+                  <label>{t("link.amount")}</label>
+                  <input defaultValue="125.50" />
+                </div>
+                <div className="field">
+                  <label>{t("link.expiry")}</label>
+                  <select defaultValue={t("link.expiryValue")}>
+                    <option>{t("link.expiryValue")}</option>
+                    <option>{t("link.expiry48")}</option>
+                    <option>{t("link.expiry72")}</option>
+                  </select>
+                </div>
+
+                <div className="lx-checkout-modal__actions" style={{ gridColumn: "1 / -1" }}>
+                  <button
+                    className="lx-cta"
+                    type="button"
+                    onClick={() => {
+                      setModal(null);
+                      action(t("notice.linkCreated"));
+                    }}
+                  >
+                    {t("link.create")}
+                  </button>
+                  <button className="ghost" type="button" onClick={() => setModal(null)}>
+                    {cancelLabel}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="lx-checkout-form" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                <label>
+                  {scheduleRecipient}
+                  <input defaultValue={t("batch.modal.recipientValue")} />
+                </label>
+
+                <label>
+                  {scheduleCycle}
+                  <select defaultValue="monthly">
+                    <option value="monthly">{t("batch.modal.cycleMonthly")}</option>
+                    <option value="weekly">{t("batch.modal.cycleWeekly")}</option>
+                    <option value="quarterly">{t("batch.modal.cycleQuarterly")}</option>
+                  </select>
+                </label>
+
+                <label style={{ gridColumn: "1 / -1" }}>
+                  {scheduleAmount}
+                  <input defaultValue={t("batch.modal.amountValue")} />
+                </label>
+
+                <div className="lx-checkout-modal__actions" style={{ gridColumn: "1 / -1" }}>
+                  <button
+                    className="lx-cta"
+                    type="button"
+                    onClick={() => {
+                      setModal(null);
+                      action(successScheduleText);
+                    }}
+                  >
+                    {t("batch.schedule")}
+                  </button>
+                  <button className="ghost" type="button" onClick={() => setModal(null)}>
+                    {cancelLabel}
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
         </div>
       )}
     </DashboardShell>

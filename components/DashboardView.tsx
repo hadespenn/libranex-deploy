@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import DashboardShell from "./DashboardShell";
 
 type Currency = {
@@ -140,6 +142,8 @@ function QuickIconSvg({ name }: { name: QuickIcon }) {
 
 export default function DashboardView() {
   const tDash = useTranslations("dashboard");
+  const params = useParams<{ locale: string }>();
+  const locale = params.locale;
 
   return (
     <DashboardShell
@@ -162,7 +166,7 @@ export default function DashboardView() {
           </span>
         </div>
       </div>
-      <div className="lx-overview-card">
+      <div className="lx-overview-card lx-panel">
         <div className="lx-overview-card__main">
           <div className="lx-overview-card__label">
             {tDash("fundOverview.balance")}
@@ -186,9 +190,9 @@ export default function DashboardView() {
           <h2 className="lx-section-title">{tDash("balances.title")}</h2>
           <p className="lx-section-sub">{tDash("balances.subtitle")}</p>
         </div>
-        <a href="#" className="lx-link">
+        <Link href={`/${locale}/accounts`} className="lx-link">
           {tDash("balances.viewAll")}
-        </a>
+        </Link>
       </div>
 
       <div className="lx-currency-grid">
@@ -234,11 +238,12 @@ export default function DashboardView() {
             <div className="lx-currency-card__equiv">
               {tDash(`balances.equiv.${c.key}`)}
             </div>
-            <button className="lx-btn-outline" type="button">
+
+            <Link href={`/${locale}/accounts`} className="lx-btn-outline">
               {c.pending
                 ? tDash("balances.viewCrypto")
                 : tDash("balances.viewLedger")}
-            </button>
+            </Link>
           </article>
         ))}
       </div>

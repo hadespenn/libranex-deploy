@@ -156,11 +156,23 @@ export default function DashboardShell({
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [operationOpen, setOperationOpen] = useState(false);
+  const [toastVisible, setToastVisible] = useState(Boolean(toast));
   const t = useTranslations();
   const tDash = useTranslations("dashboard");
   const params = useParams<{ locale: string }>();
   const locale = params.locale;
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (!toast) {
+      setToastVisible(false);
+      return;
+    }
+
+    setToastVisible(true);
+    const timer = window.setTimeout(() => setToastVisible(false), 3500);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
 
   const notifications = [
     {
@@ -212,8 +224,10 @@ export default function DashboardShell({
   useEffect(() => {
     function closeAccountMenu(event: PointerEvent) {
       const target = event.target as Element | null;
-      if (target && !target.closest(".lx-account-menu")) setAccountMenuOpen(false);
-      if (target && !target.closest(".lx-notification-menu")) setNotificationOpen(false);
+      if (target && !target.closest(".lx-account-menu"))
+        setAccountMenuOpen(false);
+      if (target && !target.closest(".lx-notification-menu"))
+        setNotificationOpen(false);
     }
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -400,11 +414,19 @@ export default function DashboardShell({
             </button>
 
             {notificationOpen && (
-              <div id="notification-center" className="lx-notification-menu__panel" role="dialog" aria-modal="false" aria-label="notification center">
+              <div
+                id="notification-center"
+                className="lx-notification-menu__panel"
+                role="dialog"
+                aria-modal="false"
+                aria-label="notification center"
+              >
                 <div className="lx-notification-menu__header">
                   <div>
                     {/* <div className="lx-notification-menu__eyebrow">{locale === "en" ? "INBOX" : "通知中心"}</div> */}
-                    <strong>{locale === "en" ? "Notifications" : "通知中心"}</strong>
+                    <strong>
+                      {locale === "en" ? "Notifications" : "通知中心"}
+                    </strong>
                   </div>
                   <button
                     className="lx-notification-menu__close"
@@ -418,10 +440,15 @@ export default function DashboardShell({
 
                 <div className="lx-notification-menu__summary">
                   <div>
-                    <strong>{notifications.filter((item) => item.unread).length}</strong>
+                    <strong>
+                      {notifications.filter((item) => item.unread).length}
+                    </strong>
                     <small>{locale === "en" ? "unread" : "未读消息"}</small>
                   </div>
-                  <button type="button" className="lx-notification-menu__summary-button">
+                  <button
+                    type="button"
+                    className="lx-notification-menu__summary-button"
+                  >
                     {locale === "en" ? "Mark all read" : "全部已读"}
                   </button>
                 </div>
@@ -434,89 +461,163 @@ export default function DashboardShell({
                       onClick={() => setNotificationOpen(false)}
                     >
                       <div className="lx-notification-menu__icon">
-                        {item.type === "warn" ? "!" : item.type === "success" ? "✓" : "•"}
+                        {item.type === "warn"
+                          ? "!"
+                          : item.type === "success"
+                            ? "✓"
+                            : "•"}
                       </div>
                       <div className="lx-notification-menu__content">
                         <strong>{item.title}</strong>
                         <p>{item.description}</p>
                       </div>
-                      <div className="lx-notification-menu__time">{item.time}</div>
+                      <div className="lx-notification-menu__time">
+                        {item.time}
+                      </div>
                     </div>
                   ))}
                 </div>
 
                 <div className="lx-notification-menu__footer">
-                  <a href={`/${locale}/notifications`} onClick={() => setNotificationOpen(false)}>{locale === "en" ? "View all notifications" : "查看全部通知"}</a>
-                  <button type="button" onClick={() => setNotificationOpen(false)}>{locale === "en" ? "Close" : "关闭"}</button>
+                  <a
+                    href={`/${locale}/notifications`}
+                    onClick={() => setNotificationOpen(false)}
+                  >
+                    {locale === "en"
+                      ? "View all notifications"
+                      : "查看全部通知"}
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setNotificationOpen(false)}
+                  >
+                    {locale === "en" ? "Close" : "关闭"}
+                  </button>
                 </div>
               </div>
             )}
           </div>
 
-          <button className="lx-user" type="button" onClick={() => setActivationOpen(true)}>
+          <button
+            className="lx-user"
+            type="button"
+            onClick={() => setActivationOpen(true)}
+          >
             {tDash("activate")}
           </button>
-          <button className="lx-cta" type="button" onClick={() => setOperationOpen(true)}>
+          <button
+            className="lx-cta"
+            type="button"
+            onClick={() => setOperationOpen(true)}
+          >
             {tDash("startOperation")}
           </button>
 
           <div className="lx-account-menu">
-          <button
-            className="lx-user"
-            type="button"
-            aria-expanded={accountMenuOpen}
-            aria-haspopup="menu"
-            onClick={() => {
-              setNotificationOpen(false);
-              setAccountMenuOpen((open) => !open);
-            }}
-          >
-            <span className="lx-user__avatar">LM</span>
-            <span>Lin Manager</span>
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
+            <button
+              className="lx-user"
+              type="button"
+              aria-expanded={accountMenuOpen}
+              aria-haspopup="menu"
+              onClick={() => {
+                setNotificationOpen(false);
+                setAccountMenuOpen((open) => !open);
+              }}
             >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
-          {accountMenuOpen && (
-            <div className="lx-account-menu__panel" role="menu">
-              <div className="lx-account-menu__summary">
-               
-                <strong>Lin Manager</strong><small>finance@unitycentre.com</small>
+              <span className="lx-user__avatar">LM</span>
+              <span>Lin Manager</span>
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            {accountMenuOpen && (
+              <div className="lx-account-menu__panel" role="menu">
+                <div className="lx-account-menu__summary">
+                  <strong>Lin Manager</strong>
+                  <small>finance@unitycentre.com</small>
+                </div>
+                <Link
+                  href={`/${locale}/settings`}
+                  role="menuitem"
+                  onClick={() => setAccountMenuOpen(false)}
+                >
+                  {locale === "en"
+                    ? "Account profile & security"
+                    : "账户资料与安全"}
+                </Link>
+                <Link
+                  href={`/${locale}/settings`}
+                  role="menuitem"
+                  onClick={() => setAccountMenuOpen(false)}
+                >
+                  {locale === "en"
+                    ? "Team & access permissions"
+                    : "团队与访问权限"}
+                </Link>
+                <button
+                  className="lx-account-menu__logout"
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    window.location.href = `/${locale}/login`;
+                  }}
+                >
+                  {locale === "en" ? "Sign out" : "退出登录"}
+                </button>
               </div>
-              <Link href={`/${locale}/settings`} role="menuitem" onClick={() => setAccountMenuOpen(false)}>
-                {locale === "en" ? "Account profile & security" : "账户资料与安全"}
-              </Link>
-              <Link href={`/${locale}/settings`} role="menuitem" onClick={() => setAccountMenuOpen(false)}>
-                {locale === "en" ? "Team & access permissions" : "团队与访问权限"}
-              </Link>
-              <button className="lx-account-menu__logout" type="button" role="menuitem" onClick={() => { window.location.href = `/${locale}/login`; }}>
-                {locale === "en" ? "Sign out" : "退出登录"}
-              </button>
-            </div>
-          )}
+            )}
           </div>
         </header>
 
         <section className="lx-content">{children}</section>
       </main>
 
-      {toast && <div className="lx-toast">{toast}</div>}
-      {activationOpen && <AccountActivation onClose={() => setActivationOpen(false)} />}
+      {toast && toastVisible && (
+        <div className="lx-toast" role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
+      {activationOpen && (
+        <AccountActivation onClose={() => setActivationOpen(false)} />
+      )}
       {operationOpen && (
-        <div className="lx-operation-modal" role="dialog" aria-modal="true" aria-labelledby="operation-title" onClick={(event) => {
-          if (event.target === event.currentTarget) setOperationOpen(false);
-        }}>
+        <div
+          className="lx-operation-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="operation-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setOperationOpen(false);
+          }}
+        >
           <div className="lx-operation-modal__panel">
             <div className="lx-operation-modal__head">
-              <div><span className="lx-modal-eyebrow">QUICK ACTION</span><h2 id="operation-title">{locale === "en" ? "Start an operation" : "发起操作"}</h2><p>{locale === "en" ? "Choose an action to continue securely." : "选择一项资金操作，填写信息后进入安全审核流程。"}</p></div>
-              <button className="lx-operation-modal__close" type="button" aria-label="关闭" onClick={() => setOperationOpen(false)}>×</button>
+              <div>
+                {/* <span className="lx-modal-eyebrow">QUICK ACTION</span> */}
+                <h2 id="operation-title">
+                  {locale === "en" ? "Start an operation" : "发起操作"}
+                </h2>
+                <p>
+                  {locale === "en"
+                    ? "Choose an action to continue securely."
+                    : "选择一项资金操作，填写信息后进入安全审核流程。"}
+                </p>
+              </div>
+              <button
+                className="lx-operation-modal__close"
+                type="button"
+                aria-label="关闭"
+                onClick={() => setOperationOpen(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="lx-operation-modal__grid">
               {[
@@ -524,9 +625,32 @@ export default function DashboardShell({
                 ["↗", "批量付款", "上传付款清单并提交审批"],
                 ["＋", "充值 / 入金", "发起法币或虚拟币入金"],
                 ["⌁", "生成收款链接", "创建链接或二维码收款"],
-              ].map(([icon, title, description]) => <button key={title} className="lx-operation-choice" type="button" onClick={() => setOperationOpen(false)}><span>{icon}</span><strong>{locale === "en" ? ({"兑换与转账":"Exchange & transfer","批量付款":"Batch payments","充值 / 入金":"Top up / deposit","生成收款链接":"Payment link"}[title] || title) : title}</strong><small>{description}</small><b>›</b></button>)}
+              ].map(([icon, title, description]) => (
+                <button
+                  key={title}
+                  className="lx-operation-choice"
+                  type="button"
+                  onClick={() => setOperationOpen(false)}
+                >
+                  <span>{icon}</span>
+                  <strong>
+                    {locale === "en"
+                      ? {
+                          兑换与转账: "Exchange & transfer",
+                          批量付款: "Batch payments",
+                          "充值 / 入金": "Top up / deposit",
+                          生成收款链接: "Payment link",
+                        }[title] || title
+                      : title}
+                  </strong>
+                  <small>{description}</small>
+                  <b>›</b>
+                </button>
+              ))}
             </div>
-            <div className="lx-operation-note">🔒 所有操作都会经过权限校验、合规筛查及必要的双人审批。</div>
+            <div className="lx-operation-note">
+              🔒 所有操作都会经过权限校验、合规筛查及必要的双人审批。
+            </div>
           </div>
         </div>
       )}

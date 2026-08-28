@@ -1,20 +1,11 @@
-import { setRequestLocale } from 'next-intl/server';
 import { redirect } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-export function generateStaticParams() {
-  return [
-    { locale: 'zh-CN' },
-    { locale: 'zh-TW' },
-    { locale: 'en' },
-  ];
-}
-
-export default async function LocaleRootPage({
+export default function LocaleRootPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  redirect(`/${locale}/login`);
+  unstable_setRequestLocale(params.locale);
+  redirect(`/${params.locale}/login`);
 }

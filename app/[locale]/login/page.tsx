@@ -1,20 +1,7 @@
 import LoginView from '@/components/LoginView';
-import { setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-export function generateStaticParams() {
-  return [
-    { locale: 'zh-CN' },
-    { locale: 'zh-TW' },
-    { locale: 'en' },
-  ];
-}
-
-export default async function LoginPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default function LoginPage({ params }: { params: { locale: string } }) {
+  unstable_setRequestLocale(params.locale);
   return <LoginView />;
 }
