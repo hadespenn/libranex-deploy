@@ -119,7 +119,13 @@ export default function AccountsView() {
 
   const submitCreate = () => {
     setCreateOpen(false);
-    setNotice(t(accountType === "fiat" ? "createModal.fiat.success" : "createModal.crypto.success"));
+    setNotice(
+      t(
+        accountType === "fiat"
+          ? "createModal.fiat.success"
+          : "createModal.crypto.success",
+      ),
+    );
   };
 
   return (
@@ -157,7 +163,10 @@ export default function AccountsView() {
       </div>
 
       {/* ===== 账户总览（accounts）===== */}
-      <div className={`subpage ${activeTab === "accounts" ? "active" : ""}`} id="acct-overview">
+      <div
+        className={`subpage ${activeTab === "accounts" ? "active" : ""}`}
+        id="acct-overview"
+      >
         {/* 资产总额估算概览卡 */}
         <div className="lx-overview-card lx-overview-card--navy lx-overview-card--split">
           <div className="lx-overview-card__main">
@@ -197,7 +206,11 @@ export default function AccountsView() {
           title={t("fiat.title")}
           desc={t("fiat.subtitle")}
           action={
-            <button className="lx-cta" type="button" onClick={() => openCreate("fiat")}>
+            <button
+              className="lx-cta"
+              type="button"
+              onClick={() => openCreate("fiat")}
+            >
               {t("fiat.create")}
             </button>
           }
@@ -249,7 +262,11 @@ export default function AccountsView() {
           title={t("virtual.title")}
           desc={t("virtual.subtitle")}
           action={
-            <button className="lx-cta" type="button" onClick={() => openCreate("crypto")}>
+            <button
+              className="lx-cta"
+              type="button"
+              onClick={() => openCreate("crypto")}
+            >
               {t("virtual.create")}
             </button>
           }
@@ -312,14 +329,17 @@ export default function AccountsView() {
       </div>
 
       {/* ===== 充值 / 入金（topup）===== */}
-      <div className={`subpage ${activeTab === "topup" ? "active" : ""}`} id="acct-topup">
+      <div
+        className={`subpage ${activeTab === "topup" ? "active" : ""}`}
+        id="acct-topup"
+      >
         <div className="panel">
           <div className="section-head">
             <div>
-              <h2>{t('i18n.topupTab')}</h2>
-              <p>{t('i18n.topupDesc')}</p>
+              <h2>{t("i18n.topupTab")}</h2>
+              <p>{t("i18n.topupDesc")}</p>
             </div>
-            <span className="status ok">{t('i18n.topupSecure')}</span>
+            <span className="status ok">{t("i18n.topupSecure")}</span>
           </div>
           <div className="topup-choice">
             <button
@@ -328,8 +348,8 @@ export default function AccountsView() {
               onClick={() => setTopupMethod("fiat")}
             >
               <span className="topup-choice-icon">¥</span>
-              <b>{t('i18n.fiatTopup')}</b>
-              <small>{t('i18n.fiatTopupDesc')}</small>
+              <b>{t("i18n.fiatTopup")}</b>
+              <small>{t("i18n.fiatTopupDesc")}</small>
             </button>
             <button
               type="button"
@@ -337,16 +357,18 @@ export default function AccountsView() {
               onClick={() => setTopupMethod("crypto")}
             >
               <span className="topup-choice-icon">₿</span>
-              <b>{t('i18n.cryptoTopup')}</b>
-              <small>{t('i18n.cryptoTopupDesc')}</small>
+              <b>{t("i18n.cryptoTopup")}</b>
+              <small>{t("i18n.cryptoTopupDesc")}</small>
             </button>
           </div>
 
           {/* 法币充值表单 */}
-          <div className={`topup-form ${topupMethod === "fiat" ? "active" : ""}`}>
+          <div
+            className={`topup-form ${topupMethod === "fiat" ? "active" : ""}`}
+          >
             <div className="form-grid">
               <div className="field">
-                <label>{t('i18n.creditAccount')}</label>
+                <label>{t("i18n.creditAccount")}</label>
                 <select defaultValue="USD · 8301 2245 6677">
                   <option>USD · 8301 2245 6677</option>
                   <option>EUR · 7301 9921 4421</option>
@@ -354,11 +376,11 @@ export default function AccountsView() {
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.topupAmount')}</label>
+                <label>{t("i18n.topupAmount")}</label>
                 <input defaultValue="25,000" />
               </div>
               <div className="field">
-                <label>{t('i18n.topupCurrency')}</label>
+                <label>{t("i18n.topupCurrency")}</label>
                 <select defaultValue="USD">
                   <option>USD</option>
                   <option>EUR</option>
@@ -367,50 +389,65 @@ export default function AccountsView() {
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.sourceBank')}</label>
+                <label>{t("i18n.sourceBank")}</label>
                 <input defaultValue="DBS Bank · ****2291" />
               </div>
               <div className="field">
-                <label>{t('i18n.senderName')}</label>
+                <label>{t("i18n.senderName")}</label>
                 <input defaultValue="Unity Centre Investment Ltd." />
               </div>
               <div className="field">
-                <label>{t('i18n.fiatReference')}</label>
+                <label>{t("i18n.fiatReference")}</label>
                 <input defaultValue="LNX-TOPUP-20260731" />
               </div>
             </div>
             <div className="topup-instructions">
-              <b>{t('i18n.fiatInstructionsTitle')}</b>
-              <p><span>{t('i18n.beneficiaryBank')}</span> · Libranex Treasury / DBS Singapore</p>
-              <p><span>{t('i18n.beneficiaryAccount')}</span> · 8301 2245 6677</p>
-              <p><span>{t('i18n.bankReference')}</span> · LNX-TOPUP-20260731</p>
-              <button className="ghost mini" type="button">{t('i18n.copyInstructions')}</button>
+              <b>{t("i18n.fiatInstructionsTitle")}</b>
+              <p>
+                <span>{t("i18n.beneficiaryBank")}</span> · Libranex Treasury /
+                DBS Singapore
+              </p>
+              <p>
+                <span>{t("i18n.beneficiaryAccount")}</span> · 8301 2245 6677
+              </p>
+              <p>
+                <span>{t("i18n.bankReference")}</span> · LNX-TOPUP-20260731
+              </p>
+              <button className="ghost mini" type="button">
+                {t("i18n.copyInstructions")}
+              </button>
             </div>
             <div className="actions">
-              <button className="lx-cta" type="button">{t('i18n.submitTopup')}</button>
-              <button className="ghost" type="button">{t('i18n.viewTopupRecords')}</button>
+              <button className="lx-cta" type="button">
+                {t("i18n.submitTopup")}
+              </button>
+              <button className="ghost" type="button">
+                {t("i18n.viewTopupRecords")}
+              </button>
             </div>
           </div>
 
           {/* Crypto 充值表单 */}
-          <div className={`topup-form ${topupMethod === "crypto" ? "active" : ""}`}>
+          <div
+            className={`topup-form ${topupMethod === "crypto" ? "active" : ""}`}
+          >
             <div className="form-grid">
               <div className="field">
-                <label>{t('i18n.creditAccount')}</label>
+                <label>{t("i18n.creditAccount")}</label>
                 <select defaultValue="USDT · 0x82F1...AA91">
                   <option>USDT · 0x82F1...AA91</option>
                   <option>USDC · 0x4A90...19C2</option>
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.cryptoAsset')}</label>
+                <label>{t("i18n.cryptoAsset")}</label>
                 <select defaultValue="USDT">
                   <option>USDT</option>
                   <option>USDC</option>
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.cryptoNetwork')}</label>
+                <label>{t("i18n.cryptoNetwork")}</label>
                 <select defaultValue="TRON · TRC20">
                   <option>TRON · TRC20</option>
                   <option>Ethereum · ERC20</option>
@@ -418,39 +455,43 @@ export default function AccountsView() {
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.topupAmount')}</label>
+                <label>{t("i18n.topupAmount")}</label>
                 <input defaultValue="10,000" />
               </div>
             </div>
             <div className="crypto-deposit-notice">
-              <b>{t('i18n.cryptoDepositWarning')}</b>
-              <p>{t('i18n.cryptoDepositWarningDesc')}</p>
+              <b>{t("i18n.cryptoDepositWarning")}</b>
+              <p>{t("i18n.cryptoDepositWarningDesc")}</p>
             </div>
             <div className="crypto-address-box crypto-topup-address">
               <span className="lock">▣</span>
-              <b>{t('i18n.cryptoGenerateAddress')}</b>
+              <b>{t("i18n.cryptoGenerateAddress")}</b>
             </div>
             <div className="actions">
-              <button className="lx-cta" type="button">{t('i18n.generateTopupAddress')}</button>
-              <button className="ghost" type="button">{t('i18n.viewTopupRecords')}</button>
+              <button className="lx-cta" type="button">
+                {t("i18n.generateTopupAddress")}
+              </button>
+              <button className="ghost" type="button">
+                {t("i18n.viewTopupRecords")}
+              </button>
             </div>
           </div>
 
           <div className="panel" style={{ marginTop: 16 }}>
             <div className="section-head">
               <div>
-                <h2>{t('i18n.topupHistory')}</h2>
-                <p>{t('i18n.topupHistoryDesc')}</p>
+                <h2>{t("i18n.topupHistory")}</h2>
+                <p>{t("i18n.topupHistoryDesc")}</p>
               </div>
-              <span className="status warn">{t('i18n.topupStatus')}</span>
+              <span className="status warn">{t("i18n.topupStatus")}</span>
             </div>
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.vaRef')}</th>
-                  <th>{t('i18n.colCurrencyAmount')}</th>
-                  <th>{t('i18n.colChannel')}</th>
-                  <th>{t('i18n.vaStatus')}</th>
+                  <th>{t("i18n.vaRef")}</th>
+                  <th>{t("i18n.colCurrencyAmount")}</th>
+                  <th>{t("i18n.colChannel")}</th>
+                  <th>{t("i18n.vaStatus")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -458,13 +499,21 @@ export default function AccountsView() {
                   <td>TOPUP-20260731-01</td>
                   <td>USD 25,000</td>
                   <td>DBS Bank</td>
-                  <td><span className="status ok">{t('i18n.statusCredited')}</span></td>
+                  <td>
+                    <span className="status ok">
+                      {t("i18n.statusCredited")}
+                    </span>
+                  </td>
                 </tr>
                 <tr>
                   <td>TOPUP-20260730-14</td>
                   <td>USDT 10,000</td>
                   <td>TRON · TRC20</td>
-                  <td><span className="status warn">{t('i18n.topupConfirming')}</span></td>
+                  <td>
+                    <span className="status warn">
+                      {t("i18n.topupConfirming")}
+                    </span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -473,60 +522,67 @@ export default function AccountsView() {
       </div>
 
       {/* ===== 内部划转（internal）===== */}
-      <div className={`subpage ${activeTab === "internal" ? "active" : ""}`} id="acct-transfer">
+      <div
+        className={`subpage ${activeTab === "internal" ? "active" : ""}`}
+        id="acct-transfer"
+      >
         <div className="grid two">
           <div className="panel">
-            <h2>{t('i18n.internalTransfer')}</h2>
+            <h2>{t("i18n.internalTransfer")}</h2>
             <div className="form-grid">
               <div className="field">
-                <label>{t('i18n.fromAccount')}</label>
+                <label>{t("i18n.fromAccount")}</label>
                 <select defaultValue="USD · 8301 2245 6677">
                   <option>USD · 8301 2245 6677</option>
                   <option>EUR · 7301 9921 4421</option>
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.toAccount')}</label>
+                <label>{t("i18n.toAccount")}</label>
                 <select defaultValue="SGD · 4200 0100 9900">
                   <option>SGD · 4200 0100 9900</option>
                   <option>HKD · 6210 8821 0033</option>
                 </select>
               </div>
               <div className="field">
-                <label>{t('i18n.amount')}</label>
+                <label>{t("i18n.amount")}</label>
                 <input defaultValue="25000" />
               </div>
               <div className="field">
-                <label>{t('i18n.purpose')}</label>
-                <input placeholder={t('i18n.transferPurposePh')} />
+                <label>{t("i18n.purpose")}</label>
+                <input placeholder={t("i18n.transferPurposePh")} />
               </div>
             </div>
             <div className="actions">
-              <button className="lx-cta" type="button">{t('i18n.confirmTransfer')}</button>
-              <button className="ghost" type="button">{t('i18n.saveBeneficiary')}</button>
+              <button className="lx-cta" type="button">
+                {t("i18n.confirmTransfer")}
+              </button>
+              <button className="ghost" type="button">
+                {t("i18n.saveBeneficiary")}
+              </button>
             </div>
           </div>
           <div className="panel">
-            <h2>{t('i18n.ledgerSync')}</h2>
+            <h2>{t("i18n.ledgerSync")}</h2>
             <div className="timeline">
               <div className="step done">
                 <b>1</b>
                 <div>
-                  <h4>{t('i18n.verifyBalance')}</h4>
+                  <h4>{t("i18n.verifyBalance")}</h4>
                   <p>Passed · 0.13s</p>
                 </div>
               </div>
               <div className="step done">
                 <b>2</b>
                 <div>
-                  <h4>{t('i18n.riskCheck')}</h4>
+                  <h4>{t("i18n.riskCheck")}</h4>
                   <p>2FA required for high risk actions</p>
                 </div>
               </div>
               <div className="step">
                 <b>3</b>
                 <div>
-                  <h4>{t('i18n.syncLedger')}</h4>
+                  <h4>{t("i18n.syncLedger")}</h4>
                   <p>Pending confirmation</p>
                 </div>
               </div>
@@ -536,99 +592,120 @@ export default function AccountsView() {
       </div>
 
       {/* ===== 外部账户绑定（external）===== */}
-      <div className={`subpage ${activeTab === "external" ? "active" : ""}`} id="acct-bind">
+      <div
+        className={`subpage ${activeTab === "external" ? "active" : ""}`}
+        id="acct-bind"
+      >
         <div className="grid three">
           <div className="card">
-            <h3>{t('i18n.bankBinding')}</h3>
-            <p>{t('i18n.bankBindingDesc')}</p>
-            <span className="status ok">{t('i18n.verified')}</span>
+            <h3>{t("i18n.bankBinding")}</h3>
+            <p>{t("i18n.bankBindingDesc")}</p>
+            <span className="status ok">{t("i18n.verified")}</span>
             <div className="actions">
-              <button className="ghost mini" type="button">{t('i18n.bindNew')}</button>
+              <button className="ghost mini" type="button">
+                {t("i18n.bindNew")}
+              </button>
             </div>
           </div>
           <div className="card">
-            <h3>{t('i18n.walletBinding')}</h3>
-            <p>{t('i18n.walletBindingDesc')}</p>
-            <span className="status warn">{t('i18n.pendingAuth')}</span>
+            <h3>{t("i18n.walletBinding")}</h3>
+            <p>{t("i18n.walletBindingDesc")}</p>
+            <span className="status warn">{t("i18n.pendingAuth")}</span>
             <div className="actions">
-              <button className="ghost mini" type="button">OAuth</button>
+              <button className="ghost mini" type="button">
+                OAuth
+              </button>
             </div>
           </div>
           <div className="card">
-            <h3>{t('i18n.cryptoBinding')}</h3>
-            <p>{t('i18n.cryptoBindingDesc')}</p>
+            <h3>{t("i18n.cryptoBinding")}</h3>
+            <p>{t("i18n.cryptoBindingDesc")}</p>
             <span className="status gray">Phase 3</span>
             <div className="actions">
-              <button className="ghost mini" type="button">{t('i18n.riskScan')}</button>
+              <button className="ghost mini" type="button">
+                {t("i18n.riskScan")}
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {/* ===== 交易限额（limit）===== */}
-      <div className={`subpage ${activeTab === "limit" ? "active" : ""}`} id="acct-limits">
+      <div
+        className={`subpage ${activeTab === "limit" ? "active" : ""}`}
+        id="acct-limits"
+      >
         <div className="panel">
-          <h2>{t('i18n.limitSettings')}</h2>
+          <h2>{t("i18n.limitSettings")}</h2>
           <div className="form-grid">
             <div className="field">
-              <label>{t('i18n.singleLimit')}</label>
+              <label>{t("i18n.singleLimit")}</label>
               <input defaultValue="100,000 USD" />
             </div>
             <div className="field">
-              <label>{t('i18n.dailyLimit')}</label>
+              <label>{t("i18n.dailyLimit")}</label>
               <input defaultValue="500,000 USD" />
             </div>
             <div className="field">
-              <label>{t('i18n.monthlyLimit')}</label>
+              <label>{t("i18n.monthlyLimit")}</label>
               <input defaultValue="5,000,000 USD" />
             </div>
             <div className="field">
-              <label>{t('i18n.approvalRule')}</label>
+              <label>{t("i18n.approvalRule")}</label>
               <select defaultValue="rule">
-                <option value="rule">≥ 50,000 USD requires admin approval</option>
+                <option value="rule">
+                  ≥ 50,000 USD requires admin approval
+                </option>
               </select>
             </div>
           </div>
           <div className="actions">
-            <button className="lx-cta" type="button">{t('i18n.saveLimits')}</button>
+            <button className="lx-cta" type="button">
+              {t("i18n.saveLimits")}
+            </button>
           </div>
         </div>
       </div>
 
       {/* ===== VA / Collection（va）===== */}
-      <div className={`subpage ${activeTab === "va" ? "active" : ""}`} id="acct-va">
+      <div
+        className={`subpage ${activeTab === "va" ? "active" : ""}`}
+        id="acct-va"
+      >
         <div className="account-board-summary panel">
           <div>
-            <p className="eyebrow">{t('i18n.acctVa')}</p>
-            <h2>{t('i18n.vaTitle')}</h2>
-            <p>{t('i18n.vaDesc')}</p>
+            <p className="eyebrow">{t("i18n.acctVa")}</p>
+            <h2>{t("i18n.vaTitle")}</h2>
+            <p>{t("i18n.vaDesc")}</p>
           </div>
           <div className="account-board-total">
-            <small>{t('i18n.vaCount')}</small>
+            <small>{t("i18n.vaCount")}</small>
             <b>6</b>
-            <span>{t('i18n.vaActive')}</span>
+            <span>{t("i18n.vaActive")}</span>
           </div>
         </div>
 
         <div className="account-board-section">
           <div className="account-board-section-head">
             <div>
-              <h2>{t('i18n.vaList')}</h2>
-              <p>{t('i18n.vaListDesc')}</p>
+              <h2>{t("i18n.vaList")}</h2>
+              <p>{t("i18n.vaListDesc")}</p>
             </div>
-            <button className="primary mini" type="button">{t('i18n.applyVa')}</button>
+            <button className="primary mini" type="button">
+              {t("i18n.applyVa")}
+            </button>
           </div>
           <div className="panel">
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.vaNo')}</th>
-                  <th>{t('i18n.vaCur')}</th>
-                  <th>{t('i18n.vaRegion')}</th>
-                  <th>{t('i18n.vaNet')}</th>
-                  <th>{t('i18n.purpose')}</th>
-                  <th>{t('i18n.vaProviderName')}</th>
-                  <th>{t('i18n.vaStatus')}</th>
+                  <th>{t("i18n.vaNo")}</th>
+                  <th>{t("i18n.vaCur")}</th>
+                  <th>{t("i18n.vaRegion")}</th>
+                  <th>{t("i18n.vaNet")}</th>
+                  <th>{t("i18n.purpose")}</th>
+                  <th>{t("i18n.vaProviderName")}</th>
+                  <th>{t("i18n.vaStatus")}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -638,30 +715,50 @@ export default function AccountsView() {
                   <td>USD</td>
                   <td>Singapore</td>
                   <td>Local</td>
-                  <td>{t('i18n.vaUseCollection')}</td>
+                  <td>{t("i18n.vaUseCollection")}</td>
                   <td>VA-PRO-01</td>
-                  <td><span className="status ok">{t('i18n.statusActive')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManage')}</button></td>
+                  <td>
+                    <span className="status ok">{t("i18n.statusActive")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManage")}
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>VA-EUR-4410</td>
                   <td>EUR</td>
                   <td>Germany</td>
                   <td>SEPA</td>
-                  <td>{t('i18n.vaUseSettle')}</td>
+                  <td>{t("i18n.vaUseSettle")}</td>
                   <td>VA-PRO-02</td>
-                  <td><span className="status ok">{t('i18n.statusActive')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManage')}</button></td>
+                  <td>
+                    <span className="status ok">{t("i18n.statusActive")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManage")}
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>VA-SGD-1193</td>
                   <td>SGD</td>
                   <td>Singapore</td>
                   <td>Local</td>
-                  <td>{t('i18n.vaUseCollection')}</td>
+                  <td>{t("i18n.vaUseCollection")}</td>
                   <td>VA-PRO-01</td>
-                  <td><span className="status warn">{t('i18n.statusPaused')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManage')}</button></td>
+                  <td>
+                    <span className="status warn">
+                      {t("i18n.statusPaused")}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManage")}
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -672,18 +769,18 @@ export default function AccountsView() {
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.vaInbound')}</h2>
-                <p>{t('i18n.vaInboundDesc')}</p>
+                <h2>{t("i18n.vaInbound")}</h2>
+                <p>{t("i18n.vaInboundDesc")}</p>
               </div>
-              <span className="status warn">{t('i18n.vaPending')}</span>
+              <span className="status warn">{t("i18n.vaPending")}</span>
             </div>
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.vaRef')}</th>
-                  <th>{t('i18n.amount')}</th>
-                  <th>{t('i18n.vaPayer')}</th>
-                  <th>{t('i18n.vaMatch')}</th>
+                  <th>{t("i18n.vaRef")}</th>
+                  <th>{t("i18n.amount")}</th>
+                  <th>{t("i18n.vaPayer")}</th>
+                  <th>{t("i18n.vaMatch")}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -692,74 +789,96 @@ export default function AccountsView() {
                   <td>INV-2041</td>
                   <td>USD 12,800</td>
                   <td>Acme Trading</td>
-                  <td><span className="status warn">{t('i18n.statusPending')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManualMatch')}</button></td>
+                  <td>
+                    <span className="status warn">
+                      {t("i18n.statusPending")}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManualMatch")}
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>INV-2042</td>
                   <td>EUR 9,400</td>
                   <td>Berlin GmbH</td>
-                  <td><span className="status bad">{t('i18n.statusUnmatched')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaReturn')}</button></td>
+                  <td>
+                    <span className="status bad">
+                      {t("i18n.statusUnmatched")}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaReturn")}
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
             <div className="actions">
-              <button className="ghost" type="button">{t('i18n.vaManualMatch')}</button>
-              <button className="ghost" type="button">{t('i18n.vaReturn')}</button>
+              <button className="ghost" type="button">
+                {t("i18n.vaManualMatch")}
+              </button>
+              <button className="ghost" type="button">
+                {t("i18n.vaReturn")}
+              </button>
             </div>
           </div>
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.vaLifecycle')}</h2>
-                <p>{t('i18n.vaLifecycleDesc')}</p>
+                <h2>{t("i18n.vaLifecycle")}</h2>
+                <p>{t("i18n.vaLifecycleDesc")}</p>
               </div>
             </div>
             <div className="timeline">
               <div className="step done">
                 <b>1</b>
                 <div>
-                  <h4>{t('i18n.vaStepApply')}</h4>
-                  <p>{t('i18n.vaStepApplyDesc')}</p>
+                  <h4>{t("i18n.vaStepApply")}</h4>
+                  <p>{t("i18n.vaStepApplyDesc")}</p>
                 </div>
               </div>
               <div className="step done">
                 <b>2</b>
                 <div>
-                  <h4>{t('i18n.vaStepOpen')}</h4>
-                  <p>{t('i18n.vaStepOpenDesc')}</p>
+                  <h4>{t("i18n.vaStepOpen")}</h4>
+                  <p>{t("i18n.vaStepOpenDesc")}</p>
                 </div>
               </div>
               <div className="step warn">
                 <b>3</b>
                 <div>
-                  <h4>{t('i18n.vaActive')}</h4>
-                  <p>{t('i18n.vaStepActiveDesc')}</p>
+                  <h4>{t("i18n.vaActive")}</h4>
+                  <p>{t("i18n.vaStepActiveDesc")}</p>
                 </div>
               </div>
             </div>
-            <div className="auth-note">{t('i18n.vaNote')}</div>
+            <div className="auth-note">{t("i18n.vaNote")}</div>
           </div>
         </div>
 
         <div className="account-board-section">
           <div className="account-board-section-head">
             <div>
-              <h2>{t('i18n.vaManaged')}</h2>
-              <p>{t('i18n.vaManagedDesc')}</p>
+              <h2>{t("i18n.vaManaged")}</h2>
+              <p>{t("i18n.vaManagedDesc")}</p>
             </div>
-            <button className="primary mini" type="button">{t('i18n.vaManagedCreate')}</button>
+            <button className="primary mini" type="button">
+              {t("i18n.vaManagedCreate")}
+            </button>
           </div>
           <div className="panel">
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.vaCustomer')}</th>
-                  <th>{t('i18n.vaNo')}</th>
-                  <th>{t('i18n.vaCur')}</th>
-                  <th>{t('i18n.vaOwnership')}</th>
-                  <th>{t('i18n.vaStatus')}</th>
+                  <th>{t("i18n.vaCustomer")}</th>
+                  <th>{t("i18n.vaNo")}</th>
+                  <th>{t("i18n.vaCur")}</th>
+                  <th>{t("i18n.vaOwnership")}</th>
+                  <th>{t("i18n.vaStatus")}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -768,17 +887,29 @@ export default function AccountsView() {
                   <td>Shop A Pte.</td>
                   <td>VA-USD-5512</td>
                   <td>USD</td>
-                  <td>{t('i18n.vaOwnDown')}</td>
-                  <td><span className="status ok">{t('i18n.statusActive')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManage')}</button></td>
+                  <td>{t("i18n.vaOwnDown")}</td>
+                  <td>
+                    <span className="status ok">{t("i18n.statusActive")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManage")}
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>Supplier B</td>
                   <td>VA-EUR-7730</td>
                   <td>EUR</td>
-                  <td>{t('i18n.vaOwnDown')}</td>
-                  <td><span className="status ok">{t('i18n.statusActive')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.vaManage')}</button></td>
+                  <td>{t("i18n.vaOwnDown")}</td>
+                  <td>
+                    <span className="status ok">{t("i18n.statusActive")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.vaManage")}
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -788,29 +919,41 @@ export default function AccountsView() {
         <div className="panel">
           <div className="section-head">
             <div>
-              <h2>{t('i18n.vaProvider')}</h2>
-              <p>{t('i18n.vaProviderDesc')}</p>
+              <h2>{t("i18n.vaProvider")}</h2>
+              <p>{t("i18n.vaProviderDesc")}</p>
             </div>
-            <span className="status ok">{t('i18n.vaHealthy')}</span>
+            <span className="status ok">{t("i18n.vaHealthy")}</span>
           </div>
           <div className="feature-matrix">
-            <div className="feature"><b>{t('i18n.vaRoute')}</b><small>VA-PRO-01 · 98.7% SLA</small></div>
-            <div className="feature"><b>{t('i18n.vaWebhook')}</b><small>{t('i18n.vaWebhookDesc')}</small></div>
-            <div className="feature"><b>{t('i18n.vaRecon')}</b><small>{t('i18n.vaReconDesc')}</small></div>
+            <div className="feature">
+              <b>{t("i18n.vaRoute")}</b>
+              <small>VA-PRO-01 · 98.7% SLA</small>
+            </div>
+            <div className="feature">
+              <b>{t("i18n.vaWebhook")}</b>
+              <small>{t("i18n.vaWebhookDesc")}</small>
+            </div>
+            <div className="feature">
+              <b>{t("i18n.vaRecon")}</b>
+              <small>{t("i18n.vaReconDesc")}</small>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ===== Settlement（settlement）===== */}
-      <div className={`subpage ${activeTab === "settlement" ? "active" : ""}`} id="acct-settlement">
+      <div
+        className={`subpage ${activeTab === "settlement" ? "active" : ""}`}
+        id="acct-settlement"
+      >
         <div className="account-board-summary panel">
           <div>
-            <p className="eyebrow">{t('i18n.stEyebrow')}</p>
-            <h2>{t('i18n.stTitle')}</h2>
-            <p>{t('i18n.stDesc')}</p>
+            <p className="eyebrow">{t("i18n.stEyebrow")}</p>
+            <h2>{t("i18n.stTitle")}</h2>
+            <p>{t("i18n.stDesc")}</p>
           </div>
           <div className="account-board-total">
-            <small>{t('i18n.stSummary')}</small>
+            <small>{t("i18n.stSummary")}</small>
             <b>$1,280,400.00</b>
             <span>USD</span>
           </div>
@@ -819,20 +962,20 @@ export default function AccountsView() {
         <div className="account-board-section">
           <div className="account-board-section-head">
             <div>
-              <h2>{t('i18n.stBatch')}</h2>
-              <p>{t('i18n.stBatchDesc')}</p>
+              <h2>{t("i18n.stBatch")}</h2>
+              <p>{t("i18n.stBatchDesc")}</p>
             </div>
-            <div className="auth-note">{t('i18n.merchantReleaseNote')}</div>
+            <div className="auth-note">{t("i18n.merchantReleaseNote")}</div>
           </div>
           <div className="panel">
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.stBatchId')}</th>
-                  <th>{t('i18n.stSource')}</th>
-                  <th>{t('i18n.amount')}</th>
-                  <th>{t('i18n.stDate')}</th>
-                  <th>{t('i18n.vaStatus')}</th>
+                  <th>{t("i18n.stBatchId")}</th>
+                  <th>{t("i18n.stSource")}</th>
+                  <th>{t("i18n.amount")}</th>
+                  <th>{t("i18n.stDate")}</th>
+                  <th>{t("i18n.vaStatus")}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -842,16 +985,30 @@ export default function AccountsView() {
                   <td>VA Collection</td>
                   <td>USD 420,000</td>
                   <td>2026-08-11</td>
-                  <td><span className="status ok">{t('i18n.statusSettled')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.stViewBatch')}</button></td>
+                  <td>
+                    <span className="status ok">{t("i18n.statusSettled")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.stViewBatch")}
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>STL-20260810-07</td>
                   <td>OSL Crypto</td>
                   <td>USD 180,500</td>
                   <td>2026-08-10</td>
-                  <td><span className="status warn">{t('i18n.statusPendingRelease')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.stViewBatch')}</button></td>
+                  <td>
+                    <span className="status warn">
+                      {t("i18n.statusPendingRelease")}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.stViewBatch")}
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -862,31 +1019,43 @@ export default function AccountsView() {
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.stAllocate')}</h2>
-                <p>{t('i18n.stAllocateDesc')}</p>
+                <h2>{t("i18n.stAllocate")}</h2>
+                <p>{t("i18n.stAllocateDesc")}</p>
               </div>
             </div>
             <div className="feature-matrix">
-              <div className="feature"><b>{t('i18n.stToPayment')}</b><small>USD 260,000</small></div>
-              <div className="feature"><b>{t('i18n.stToSafe')}</b><small>USD 80,000</small></div>
-              <div className="feature"><b>{t('i18n.stToDown')}</b><small>USD 60,000</small></div>
-              <div className="feature"><b>{t('i18n.stToBank')}</b><small>USD 120,000</small></div>
+              <div className="feature">
+                <b>{t("i18n.stToPayment")}</b>
+                <small>USD 260,000</small>
+              </div>
+              <div className="feature">
+                <b>{t("i18n.stToSafe")}</b>
+                <small>USD 80,000</small>
+              </div>
+              <div className="feature">
+                <b>{t("i18n.stToDown")}</b>
+                <small>USD 60,000</small>
+              </div>
+              <div className="feature">
+                <b>{t("i18n.stToBank")}</b>
+                <small>USD 120,000</small>
+              </div>
             </div>
           </div>
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.stRecon')}</h2>
-                <p>{t('i18n.stReconDesc')}</p>
+                <h2>{t("i18n.stRecon")}</h2>
+                <p>{t("i18n.stReconDesc")}</p>
               </div>
               <span className="status bad">1</span>
             </div>
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.stDiffId')}</th>
-                  <th>{t('i18n.amount')}</th>
-                  <th>{t('i18n.vaStatus')}</th>
+                  <th>{t("i18n.stDiffId")}</th>
+                  <th>{t("i18n.amount")}</th>
+                  <th>{t("i18n.vaStatus")}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -894,26 +1063,35 @@ export default function AccountsView() {
                 <tr>
                   <td>BRK-0092</td>
                   <td>USD 1,200</td>
-                  <td><span className="status bad">{t('i18n.statusOpen')}</span></td>
-                  <td><button className="ghost mini" type="button">{t('i18n.stDiff')}</button></td>
+                  <td>
+                    <span className="status bad">{t("i18n.statusOpen")}</span>
+                  </td>
+                  <td>
+                    <button className="ghost mini" type="button">
+                      {t("i18n.stDiff")}
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <div className="auth-note">{t('i18n.stAudit')}</div>
+            <div className="auth-note">{t("i18n.stAudit")}</div>
           </div>
         </div>
       </div>
 
       {/* ===== Safeguarding（safeguard）===== */}
-      <div className={`subpage ${activeTab === "safeguard" ? "active" : ""}`} id="acct-safeguarding">
+      <div
+        className={`subpage ${activeTab === "safeguard" ? "active" : ""}`}
+        id="acct-safeguarding"
+      >
         <div className="account-board-summary panel">
           <div>
-            <p className="eyebrow">{t('i18n.sgEyebrow')}</p>
-            <h2>{t('i18n.sgTitle')}</h2>
-            <p>{t('i18n.sgDesc')}</p>
+            <p className="eyebrow">{t("i18n.sgEyebrow")}</p>
+            <h2>{t("i18n.sgTitle")}</h2>
+            <p>{t("i18n.sgDesc")}</p>
           </div>
           <div className="account-board-total">
-            <small>{t('i18n.sgIsolated')}</small>
+            <small>{t("i18n.sgIsolated")}</small>
             <b>$320,000.00</b>
             <span>USD</span>
           </div>
@@ -923,64 +1101,78 @@ export default function AccountsView() {
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.sgInfo')}</h2>
-                <p>{t('i18n.sgInfoDesc')}</p>
+                <h2>{t("i18n.sgInfo")}</h2>
+                <p>{t("i18n.sgInfoDesc")}</p>
               </div>
-              <span className="status ok">{t('i18n.sgLocked')}</span>
+              <span className="status ok">{t("i18n.sgLocked")}</span>
             </div>
             <div className="ops-data-list">
-              <div className="ops-data"><small>{t('i18n.sgOwner')}</small><b>Unity Centre Investment Ltd.</b></div>
-              <div className="ops-data"><small>{t('i18n.sgReason')}</small><b>{t('i18n.sgReasonText')}</b></div>
-              <div className="ops-data"><small>{t('i18n.sgReleaseCond')}</small><b>{t('i18n.sgReleaseCondText')}</b></div>
+              <div className="ops-data">
+                <small>{t("i18n.sgOwner")}</small>
+                <b>Unity Centre Investment Ltd.</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.sgReason")}</small>
+                <b>{t("i18n.sgReasonText")}</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.sgReleaseCond")}</small>
+                <b>{t("i18n.sgReleaseCondText")}</b>
+              </div>
             </div>
             <div className="actions">
-              <div className="auth-note">{t('i18n.safeguardOpsNote')}</div>
-              <button className="ghost" type="button">{t('i18n.sgControlledIn')}</button>
+              <div className="auth-note">{t("i18n.safeguardOpsNote")}</div>
+              <button className="ghost" type="button">
+                {t("i18n.sgControlledIn")}
+              </button>
             </div>
           </div>
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.sgAuditLog')}</h2>
-                <p>{t('i18n.sgAuditDesc')}</p>
+                <h2>{t("i18n.sgAuditLog")}</h2>
+                <p>{t("i18n.sgAuditDesc")}</p>
               </div>
             </div>
             <table className="table">
               <thead>
                 <tr>
-                  <th>{t('i18n.sgEvent')}</th>
-                  <th>{t('i18n.sgActor')}</th>
-                  <th>{t('i18n.stDate')}</th>
+                  <th>{t("i18n.sgEvent")}</th>
+                  <th>{t("i18n.sgActor")}</th>
+                  <th>{t("i18n.stDate")}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{t('i18n.sgControlledIn')}</td>
-                  <td>{t('i18n.systemActor')}</td>
+                  <td>{t("i18n.sgControlledIn")}</td>
+                  <td>{t("i18n.systemActor")}</td>
                   <td>2026-08-09</td>
                 </tr>
                 <tr>
-                  <td>{t('i18n.sgEvFreeze')}</td>
+                  <td>{t("i18n.sgEvFreeze")}</td>
                   <td>Lin Manager</td>
                   <td>2026-08-09</td>
                 </tr>
               </tbody>
             </table>
-            <div className="auth-note">{t('i18n.sgNote')}</div>
+            <div className="auth-note">{t("i18n.sgNote")}</div>
           </div>
         </div>
       </div>
 
       {/* ===== 法币理财（wealth）===== */}
-      <div className={`subpage ${activeTab === "wealth" ? "active" : ""}`} id="acct-investment">
+      <div
+        className={`subpage ${activeTab === "wealth" ? "active" : ""}`}
+        id="acct-investment"
+      >
         <div className="account-board-summary panel">
           <div>
-            <p className="eyebrow">{t('i18n.acctInvestment')}</p>
-            <h2>{t('i18n.acctInvestment')}</h2>
-            <p>{t('i18n.invDesc')}</p>
+            <p className="eyebrow">{t("i18n.acctInvestment")}</p>
+            <h2>{t("i18n.acctInvestment")}</h2>
+            <p>{t("i18n.invDesc")}</p>
           </div>
           <div className="account-board-total">
-            <small>{t('i18n.invInvested')}</small>
+            <small>{t("i18n.invInvested")}</small>
             <b>$540,000.00</b>
             <span>USD</span>
           </div>
@@ -990,30 +1182,55 @@ export default function AccountsView() {
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.invFiat')}</h2>
-                <p>{t('i18n.invFiatDesc')}</p>
+                <h2>{t("i18n.invFiat")}</h2>
+                <p>{t("i18n.invFiatDesc")}</p>
               </div>
-              <button className="primary mini" type="button">{t('i18n.invSubscribe')}</button>
+              <button className="primary mini" type="button">
+                {t("i18n.invSubscribe")}
+              </button>
             </div>
             <div className="ops-data-list">
-              <div className="ops-data"><small>{t('i18n.invApr')}</small><b>3.20%</b></div>
-              <div className="ops-data"><small>{t('i18n.invPrincipal')}</small><b>$300,000</b></div>
-              <div className="ops-data"><small>{t('i18n.invEarn')}</small><b>$2,400 / 30d</b></div>
+              <div className="ops-data">
+                <small>{t("i18n.invApr")}</small>
+                <b>3.20%</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.invPrincipal")}</small>
+                <b>$300,000</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.invEarn")}</small>
+                <b>$2,400 / 30d</b>
+              </div>
             </div>
           </div>
           <div className="panel">
             <div className="section-head">
               <div>
-                <h2>{t('i18n.invFixed')}</h2>
-                <p>{t('i18n.invFixedDesc')}</p>
+                <h2>{t("i18n.invFixed")}</h2>
+                <p>{t("i18n.invFixedDesc")}</p>
               </div>
-              <button className="primary mini" type="button">{t('i18n.invSubscribe')}</button>
+              <button className="primary mini" type="button">
+                {t("i18n.invSubscribe")}
+              </button>
             </div>
             <div className="ops-data-list">
-              <div className="ops-data"><small>{t('i18n.invApr')}</small><b>5.10%</b></div>
-              <div className="ops-data"><small>{t('i18n.invPrincipal')}</small><b>$240,000</b></div>
-              <div className="ops-data"><small>{t('i18n.invTerm')}</small><b>{t('i18n.ninetyDays')}</b></div>
-              <div className="ops-data"><small>{t('i18n.invMaturity')}</small><b>2026-11-09</b></div>
+              <div className="ops-data">
+                <small>{t("i18n.invApr")}</small>
+                <b>5.10%</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.invPrincipal")}</small>
+                <b>$240,000</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.invTerm")}</small>
+                <b>{t("i18n.ninetyDays")}</b>
+              </div>
+              <div className="ops-data">
+                <small>{t("i18n.invMaturity")}</small>
+                <b>2026-11-09</b>
+              </div>
             </div>
           </div>
         </div>
@@ -1021,63 +1238,93 @@ export default function AccountsView() {
         <div className="panel">
           <div className="section-head">
             <div>
-              <h2>{t('i18n.invHoldings')}</h2>
-              <p>{t('i18n.invHoldingsDesc')}</p>
+              <h2>{t("i18n.invHoldings")}</h2>
+              <p>{t("i18n.invHoldingsDesc")}</p>
             </div>
           </div>
           <table className="table">
             <thead>
               <tr>
-                <th>{t('i18n.invProduct')}</th>
-                <th>{t('i18n.invPrincipal')}</th>
-                <th>{t('i18n.invApr')}</th>
-                <th>{t('i18n.invTerm')}</th>
-                <th>{t('i18n.invMaturity')}</th>
-                <th>{t('i18n.vaStatus')}</th>
+                <th>{t("i18n.invProduct")}</th>
+                <th>{t("i18n.invPrincipal")}</th>
+                <th>{t("i18n.invApr")}</th>
+                <th>{t("i18n.invTerm")}</th>
+                <th>{t("i18n.invMaturity")}</th>
+                <th>{t("i18n.vaStatus")}</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{t('i18n.invFiat')}</td>
+                <td>{t("i18n.invFiat")}</td>
                 <td>$300,000</td>
                 <td>3.20%</td>
                 <td>-</td>
                 <td>-</td>
-                <td><span className="status ok">{t('i18n.statusHolding')}</span></td>
-                <td><button className="ghost mini" type="button">{t('i18n.invRedeemEarly')}</button></td>
+                <td>
+                  <span className="status ok">{t("i18n.statusHolding")}</span>
+                </td>
+                <td>
+                  <button className="ghost mini" type="button">
+                    {t("i18n.invRedeemEarly")}
+                  </button>
+                </td>
               </tr>
               <tr>
-                <td>{t('i18n.invFixed')}</td>
+                <td>{t("i18n.invFixed")}</td>
                 <td>$240,000</td>
                 <td>5.10%</td>
                 <td>90d</td>
                 <td>2026-11-09</td>
-                <td><span className="status ok">{t('i18n.statusHolding')}</span></td>
-                <td><button className="ghost mini" type="button">{t('i18n.invRedeemEarly')}</button></td>
+                <td>
+                  <span className="status ok">{t("i18n.statusHolding")}</span>
+                </td>
+                <td>
+                  <button className="ghost mini" type="button">
+                    {t("i18n.invRedeemEarly")}
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
-          <div className="auth-note">{t('i18n.invNote')}</div>
+          <div className="auth-note">{t("i18n.invNote")}</div>
         </div>
       </div>
 
       {createOpen && (
-        <div className="lx-checkout-modal" role="dialog" aria-modal="true" aria-labelledby="account-create-title" onMouseDown={(event) => {
-          if (event.target === event.currentTarget) setCreateOpen(false);
-        }}>
+        <div
+          className="lx-checkout-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="account-create-title"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setCreateOpen(false);
+          }}
+        >
           <div className="lx-checkout-modal__panel lx-account-create-modal">
             <div className="lx-checkout-modal__head">
               <div>
                 {/* <span className="lx-modal-eyebrow">ACCOUNT</span> */}
                 <h2 id="account-create-title">{t("createModal.title")}</h2>
               </div>
-              <button className="lx-checkout-modal__close" type="button" aria-label={t("createModal.close")} onClick={() => setCreateOpen(false)}>×</button>
+              <button
+                className="lx-checkout-modal__close"
+                type="button"
+                aria-label={t("createModal.close")}
+                onClick={() => setCreateOpen(false)}
+              >
+                ×
+              </button>
             </div>
 
             <div className="lx-account-type-choice">
               {(["fiat", "crypto"] as const).map((type) => (
-                <button key={type} type="button" className={`lx-account-type ${accountType === type ? "lx-account-type--active" : ""}`} onClick={() => setAccountType(type)}>
+                <button
+                  key={type}
+                  type="button"
+                  className={`lx-account-type ${accountType === type ? "lx-account-type--active" : ""}`}
+                  onClick={() => setAccountType(type)}
+                >
                   <strong>{t(`createModal.${type}.type`)}</strong>
                   <small>{t(`createModal.${type}.typeDesc`)}</small>
                 </button>
@@ -1087,30 +1334,105 @@ export default function AccountsView() {
             {accountType === "fiat" ? (
               <div className="lx-account-create-form">
                 <div className="lx-checkout-form">
-                  <label>{t("createModal.currency")}<select defaultValue="USD"><option>USD</option><option>EUR</option><option>SGD</option><option>HKD</option></select></label>
-                  <label>{t("createModal.purpose")}<input defaultValue="Supplier settlement" placeholder={t("createModal.purposePlaceholder")} /></label>
+                  <label>
+                    {t("createModal.currency")}
+                    <select defaultValue="USD">
+                      <option>USD</option>
+                      <option>EUR</option>
+                      <option>SGD</option>
+                      <option>HKD</option>
+                    </select>
+                  </label>
+                  <label>
+                    {t("createModal.purpose")}
+                    <input
+                      defaultValue="Supplier settlement"
+                      placeholder={t("createModal.purposePlaceholder")}
+                    />
+                  </label>
                 </div>
-                <div className="lx-account-create-note">{t("createModal.fiat.notice")}</div>
-                <label className="check-row"><input type="checkbox" defaultChecked />{t("createModal.fiat.consent")}</label>
+                <div className="lx-account-create-note">
+                  {t("createModal.fiat.notice")}
+                </div>
+                <label className="check-row">
+                  <input type="checkbox" defaultChecked />
+                  {t("createModal.fiat.consent")}
+                </label>
                 <div className="lx-checkout-modal__actions">
-                  <button className="lx-cta" type="button" onClick={submitCreate}>{t("fiat.create")}</button>
-                  <button className="ghost" type="button" onClick={() => setCreateOpen(false)}>{t("createModal.cancel")}</button>
+                  <button
+                    className="lx-cta"
+                    type="button"
+                    onClick={submitCreate}
+                  >
+                    {t("fiat.create")}
+                  </button>
+                  <button
+                    className="ghost"
+                    type="button"
+                    onClick={() => setCreateOpen(false)}
+                  >
+                    {t("createModal.cancel")}
+                  </button>
                 </div>
               </div>
             ) : (
               <div className="lx-account-create-form">
                 <div className="lx-checkout-form">
-                  <label>{t("createModal.crypto.asset")}<select defaultValue="USDT"><option>USDT</option><option>USDC</option></select></label>
-                  <label>{t("createModal.crypto.network")}<select defaultValue="TRON · TRC20"><option>TRON · TRC20</option><option>Ethereum · ERC20</option><option>Polygon</option></select></label>
-                  <label style={{ gridColumn: "1 / -1" }}>{t("createModal.purpose")}<input placeholder={t("createModal.crypto.purposePlaceholder")} /></label>
+                  <label>
+                    {t("createModal.crypto.asset")}
+                    <select defaultValue="USDT">
+                      <option>USDT</option>
+                      <option>USDC</option>
+                    </select>
+                  </label>
+                  <label>
+                    {t("createModal.crypto.network")}
+                    <select defaultValue="TRON · TRC20">
+                      <option>TRON · TRC20</option>
+                      <option>Ethereum · ERC20</option>
+                      <option>Polygon</option>
+                    </select>
+                  </label>
+                  <label style={{ gridColumn: "1 / -1" }}>
+                    {t("createModal.purpose")}
+                    <input
+                      placeholder={t("createModal.crypto.purposePlaceholder")}
+                    />
+                  </label>
                 </div>
-                <div className="lx-account-create-note"><strong>{t("createModal.crypto.responsibilityTitle")}</strong><br />{t("createModal.crypto.responsibility")}</div>
-                <div className="lx-account-create-note"><strong>{t("createModal.crypto.dataTitle")}</strong><br />{t("createModal.crypto.dataConsent")}</div>
-                <label className="check-row"><input type="checkbox" />{t("createModal.crypto.consent")}</label>
-                <label className="check-row"><input type="checkbox" />{t("createModal.crypto.riskConsent")}</label>
+                <div className="lx-account-create-note">
+                  <strong>{t("createModal.crypto.responsibilityTitle")}</strong>
+                  <br />
+                  {t("createModal.crypto.responsibility")}
+                </div>
+                <div className="lx-account-create-note">
+                  <strong>{t("createModal.crypto.dataTitle")}</strong>
+                  <br />
+                  {t("createModal.crypto.dataConsent")}
+                </div>
+                <label className="check-row">
+                  <input type="checkbox" />
+                  {t("createModal.crypto.consent")}
+                </label>
+                <label className="check-row">
+                  <input type="checkbox" />
+                  {t("createModal.crypto.riskConsent")}
+                </label>
                 <div className="lx-checkout-modal__actions">
-                  <button className="lx-cta" type="button" onClick={submitCreate}>{t("createModal.crypto.submit")}</button>
-                  <button className="ghost" type="button" onClick={() => setCreateOpen(false)}>{t("createModal.cancel")}</button>
+                  <button
+                    className="lx-cta"
+                    type="button"
+                    onClick={submitCreate}
+                  >
+                    {t("createModal.crypto.submit")}
+                  </button>
+                  <button
+                    className="ghost"
+                    type="button"
+                    onClick={() => setCreateOpen(false)}
+                  >
+                    {t("createModal.cancel")}
+                  </button>
                 </div>
               </div>
             )}

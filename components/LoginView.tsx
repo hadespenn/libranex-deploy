@@ -112,9 +112,9 @@ export default function LoginView() {
                 <input type="checkbox" defaultChecked />
                 <span>{t('login.remember')}</span>
               </label>
-              <a href="#" className="lx-link">
+              <Link href={`/${locale}/forgot-password`} className="lx-link">
                 {t('login.forgot')}
-              </a>
+              </Link>
             </div>
 
             <button type="submit" className="lx-btn-primary">
@@ -132,10 +132,10 @@ export default function LoginView() {
 
             <p className="lx-foot">
               {t('login.noAccount')}
-              <a href="#" className="lx-link">
+              <Link href={`/${locale}/register`} className="lx-link">
                 {' '}
                 {t('login.register')}
-              </a>
+              </Link>
             </p>
             <p className="lx-staff">
               {t('login.staffPortal')}

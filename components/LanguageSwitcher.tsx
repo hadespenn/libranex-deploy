@@ -9,15 +9,25 @@ const labels: Record<string, string> = {
   en: 'English',
 };
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({
+  value,
+  onLocaleChange,
+}: {
+  value?: string;
+  onLocaleChange?: (locale: string) => void;
+} = {}) {
   const router = useRouter();
   const pathname = usePathname() || '/';
   const t = useTranslations('common');
 
-  const current = pathname.split('/')[1] || 'zh-CN';
+  const current = value || pathname.split('/')[1] || 'zh-CN';
 
   function onChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const next = e.target.value;
+    if (onLocaleChange) {
+      onLocaleChange(next);
+      return;
+    }
     const segments = pathname.split('/');
     segments[1] = next;
     const newPath = segments.join('/') || '/';
