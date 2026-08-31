@@ -282,7 +282,12 @@ export default function AccountActivation({
                       note="必填 · 展示最终受益所有人"
                       required
                     />
-                    <FileUpload title={t("businessPremisesPhotos")} note="选填" />
+                    <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
+                      title={t("businessPremisesPhotos")}
+                      note="选填"
+                    />
                   </div>
                 </KycBlock>
               </section>
