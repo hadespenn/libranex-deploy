@@ -17,14 +17,14 @@ type View =
   | "review"
   | "submitted";
 
-const views: { id: View; label: string; stage: number }[] = [
-  { id: "company", label: "企业档案", stage: 1 },
-  { id: "address", label: "企业地址", stage: 1 },
-  { id: "business", label: "业务信息", stage: 1 },
-  { id: "operations", label: "经营情况", stage: 1 },
-  { id: "owner", label: "受益所有人", stage: 2 },
-  { id: "identity", label: "身份核验", stage: 2 },
-  { id: "review", label: "复核与提交", stage: 3 },
+const views: { id: View; labelKey: keyof typeof zhCnMessages.activation; stage: number }[] = [
+  { id: "company", labelKey: "companyProfile", stage: 1 },
+  { id: "address", labelKey: "companyAddress", stage: 1 },
+  { id: "business", labelKey: "businessDetails", stage: 1 },
+  { id: "operations", labelKey: "businessOperations", stage: 1 },
+  { id: "owner", labelKey: "beneficialOwner", stage: 2 },
+  { id: "identity", labelKey: "identityVerification", stage: 2 },
+  { id: "review", labelKey: "reviewSubmit", stage: 3 },
 ];
 
 function Field({
@@ -52,10 +52,14 @@ function FileUpload({
   title,
   note,
   required = false,
+  buttonLabel,
+  emptyLabel,
 }: {
   title: string;
   note?: string;
   required?: boolean;
+  buttonLabel: string;
+  emptyLabel: string;
 }) {
   return (
     <div className="kyc-evidence-card">
@@ -68,8 +72,8 @@ function FileUpload({
       </div>
       <label className="file-picker">
         <input type="file" hidden />
-        <span className="file-picker-button">选择文件</span>
-        <em className="file-picker-name">未选择文件</em>
+        <span className="file-picker-button">{buttonLabel}</span>
+        <em className="file-picker-name">{emptyLabel}</em>
       </label>
     </div>
   );
@@ -148,7 +152,7 @@ export default function AccountActivation({
           >
             ×
           </button>
-          <b>激活你的账户</b>
+          <b>{t("activateYourAccount")}</b>
         </div>
         <div className="activation-lan">
           <LanguageSwitcher value={locale} onLocaleChange={setLocale} />
@@ -186,7 +190,7 @@ export default function AccountActivation({
                         className={`${view === v.id ? "active" : ""} ${views.findIndex((item) => item.id === v.id) <= views.findIndex((item) => item.id === view) ? "done" : ""}`}
                         onClick={() => go(v.id)}
                       >
-                        {v.label}
+                        {t(v.labelKey)}
                       </button>
                     </li>
                   ))}
@@ -199,9 +203,9 @@ export default function AccountActivation({
           <div className="activation-form">
             {view !== "submitted" && (
               <div className="activation-hero">
-                <h1>激活企业账户</h1>
+                <h1>{t("activateYourBusinessAccount")}</h1>
                 <p>
-                  完成以下信息后，即可申请开通多币种账户、收付款、兑换和结算能力。
+                  {t("completeTheInformationBelowToApplyForMultiCurrencyAccountsCollectionsPay")}
                 </p>
               </div>
             )}
@@ -215,10 +219,10 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("legalBusinessForm")}>
                       <select>
-                        <option>有限公司 / 公司制法人</option>
-                        <option>合伙企业</option>
-                        <option>NGO / 慈善机构</option>
-                        <option>受监管金融机构</option>
+                        <option>{t("limitedCompanyIncorporatedEntity")}</option>
+                        <option>{t("partnership")}</option>
+                        <option>{t("ngoCharity")}</option>
+                        <option>{t("regulatedFinancialInstitution")}</option>
                       </select>
                     </Field>
                     <Field label={t("registrationNumber")}>
@@ -258,16 +262,22 @@ export default function AccountActivation({
                 <KycBlock title={t("businessRegistrationAndCoreEvidence")} level="h3">
                   <div className="kyc-evidence-grid">
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("businessLicenceCertificateOfIncorporation")}
                       note={t("requiredCurrentValidVersion")}
                       required
                     />
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("articlesConstitution")}
                       note={t("requiredArticlesConstitution")}
                       required
                     />
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("ownershipStructureChart")}
                       note="必填 · 展示最终受益所有人"
                       required
@@ -313,10 +323,14 @@ export default function AccountActivation({
                 <KycBlock title={t("proofOfAddress")} level="h3">
                   <div className="kyc-evidence-grid">
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title="注册地址证明"
                       note="三个月内的银行账单或公共事业账单"
                     />
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title="经营场所证明"
                       note="租赁合同、产权证明或有效账单"
                     />
@@ -356,6 +370,8 @@ export default function AccountActivation({
                   </div>
                   <div className="kyc-evidence-grid" style={{ marginTop: 12 }}>
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("bankAccountProof")}
                       note="如银行对账单或开户确认函"
                       required
@@ -385,7 +401,7 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("primarySourceOfFunds")}>
                       <select>
-                        <option>企业自有资金</option>
+                        <option>{t("corporateFunds")}</option>
                         <option>营业收入</option>
                         <option>股东投资</option>
                         <option>贷款/融资</option>
@@ -420,13 +436,13 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("willThirdPartyPaymentsBeInvolved")}>
                       <select>
-                        <option>否</option>
+                        <option>{t("no")}</option>
                         <option>是</option>
                       </select>
                     </Field>
                     <Field label={t("willAgentMerchantChannelsBeUsed")}>
                       <select>
-                        <option>否</option>
+                        <option>{t("no")}</option>
                         <option>是</option>
                       </select>
                     </Field>
@@ -444,7 +460,7 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("natureOfTransactionFunds")}>
                       <select>
-                        <option>企业自有资金</option>
+                        <option>{t("corporateFunds")}</option>
                         <option>贸易货款</option>
                         <option>服务收入</option>
                       </select>
@@ -495,7 +511,7 @@ export default function AccountActivation({
                       <select>
                         <option>最终受益所有人 (UBO)</option>
                         <option>董事</option>
-                        <option>授权代表</option>
+                        <option>{t("authorizedRepresentative")}</option>
                       </select>
                     </Field>
                     <Field label={t("ownership")}>
@@ -549,11 +565,15 @@ export default function AccountActivation({
                   <KycBlock title={t("uboSupportingDocuments")} level="h3">
                     <div className="kyc-evidence-grid">
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("identityDocumentsForUbosOver25")}
                         note="必需 · 所有持股或控制权超过 25% 的自然人"
                         required
                       />
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("uboPersonalProofOfAddress")}
                         note="如注册地址为 PO，则需提供水电缴费单等地址证明"
                       />
@@ -564,7 +584,7 @@ export default function AccountActivation({
                 <KycBlock title={t("otherShareholdersAndOwnershipStructure")} level="h3">
                   <div className="kyc-repeater">
                     <div className="kyc-repeater-row">
-                      <b>自然人股东</b>
+                      <b>{t("individualShareholder")}</b>
                       <div className="form-grid">
                         <Field label={t("name")}>
                           <input defaultValue="Chunhua Xu" />
@@ -578,8 +598,8 @@ export default function AccountActivation({
                         </Field>
                         <Field label={t("documentType")}>
                           <select>
-                            <option>护照</option>
-                            <option>身份证</option>
+                            <option>{t("passport")}</option>
+                            <option>{t("nationalIdCard")}</option>
                           </select>
                         </Field>
                         <Field label={t("documentNumber")}>
@@ -590,8 +610,8 @@ export default function AccountActivation({
                         </Field>
                         <Field label={t("gender")}>
                           <select>
-                            <option>女</option>
-                            <option>男</option>
+                            <option>{t("female")}</option>
+                            <option>{t("male")}</option>
                           </select>
                         </Field>
                         <Field label={t("dateOfBirth")}>
@@ -603,7 +623,7 @@ export default function AccountActivation({
                       </div>
                     </div>
                     <div className="kyc-repeater-row">
-                      <b>企业股东</b>
+                      <b>{t("corporateShareholder")}</b>
                       <div className="form-grid">
                         <Field label={t("companyName")}>
                           <input defaultValue="示例控股有限公司" />
@@ -629,8 +649,8 @@ export default function AccountActivation({
                         <div className="form-grid">
                           <Field label="股东类型">
                             <select>
-                              <option>自然人股东</option>
-                              <option>企业股东</option>
+                              <option>{t("individualShareholder")}</option>
+                              <option>{t("corporateShareholder")}</option>
                             </select>
                           </Field>
                           <Field label="姓名 / 企业名称">
@@ -682,14 +702,14 @@ export default function AccountActivation({
                     type="button"
                     onClick={() => go("operations")}
                   >
-                    返回
+                    {t("back")}
                   </button>
                   <button
                     className="primary"
                     type="button"
                     onClick={() => go("identity")}
                   >
-                    保存并继续
+                    {t("saveAndContinue")}
                   </button>
                 </div>
               </section>
@@ -701,20 +721,22 @@ export default function AccountActivation({
                   <div className="form-grid">
                     <Field label={t("documentType")}>
                       <select>
-                        <option>护照</option>
-                        <option>身份证</option>
+                        <option>{t("passport")}</option>
+                        <option>{t("nationalIdCard")}</option>
                         <option>驾驶证</option>
                       </select>
                     </Field>
                     <Field label={t("verificationMethod")}>
                       <select>
-                        <option>证件真伪校验 + 人证比对</option>
-                        <option>征信记录</option>
-                        <option>信赖第三方核验</option>
+                        <option>{t("documentAuthenticityCheckLivenessMatch")}</option>
+                        <option>{t("creditFile")}</option>
+                        <option>{t("relianceOnATrustedThirdParty")}</option>
                       </select>
                     </Field>
                     <Field label={t("identityDocument")}>
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("identityDocument")}
                         note="护照、身份证或政府签发证件"
                         required
@@ -722,11 +744,13 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("livenessMatch")}>
                       <button className="secondary" type="button">
-                        开始安全验证
+                        {t("startSecureVerification")}
                       </button>
                     </Field>
                     <Field label={t("ownershipStructureChart")}>
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("ownershipStructureChart")}
                         note="最新版本，显示持股比例与实际控制人"
                         required
@@ -734,6 +758,8 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("authorizationEvidence")}>
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("authorizationEvidence")}
                         note="董事会决议、授权书或同等文件"
                         required
@@ -741,6 +767,8 @@ export default function AccountActivation({
                     </Field>
                     <Field label={t("directorAndLegalRepresentativeIdentityDocuments")} full>
                       <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                         title={t("directorAndLegalRepresentativeIdentityDocuments")}
                         note="所有董事及法定代表人的有效证件"
                         required
@@ -752,14 +780,20 @@ export default function AccountActivation({
                 <KycBlock title={t("bviSpecificDocumentsIfApplicable")} level="h3">
                   <div className="kyc-evidence-grid">
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("cogsCertificateOfGoodStanding")}
                       note={t("forBviRegisteredEntitiesOnly")}
                     />
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title={t("coiCertificateOfIncumbency")}
                       note="Certificate of Incumbency"
                     />
                     <FileUpload
+                      buttonLabel={t("chooseFile")}
+                      emptyLabel={t("noFileChosen")}
                       title="ROM / ROD"
                       note="Register of Members / Register of Directors"
                     />
@@ -768,7 +802,7 @@ export default function AccountActivation({
 
                 <KycBlock title={t("sanctionsPepAdverseMediaScreening")} level="h3">
                   <p>
-                    提交后将对企业、授权人、UBO、控制人及必要关联方执行筛查。出现疑似匹配时将暂停可逆操作并路由至合规团队，系统不会向客户披露筛查原因。
+                    {t("afterSubmissionWeScreenTheBusinessAuthorizedRepresentativesUbosControlle")}
                   </p>
                   <div className="check-row">
                     <div className="check-title">
@@ -813,47 +847,47 @@ export default function AccountActivation({
                 <KycBlock title={t("reviewAndSubmit")}>
                   <div className="activation-review">
                     <div className="review-item">
-                      <b>企业资料</b>
+                      <b>{t("businessProfile")}</b>
                       <span>Unity Centre Investment Ltd. · Canada</span>
                       <button
                         className="secondary"
                         type="button"
                         onClick={() => go("company")}
                       >
-                        编辑
+                        {t("edit")}
                       </button>
                     </div>
                     <div className="review-item">
-                      <b>业务与交易画像</b>
+                      <b>{t("businessAndTransactionProfile")}</b>
                       <span>Investment & Asset Management · B2B</span>
                       <button
                         className="secondary"
                         type="button"
                         onClick={() => go("business")}
                       >
-                        编辑
+                        {t("edit")}
                       </button>
                     </div>
                     <div className="review-item">
-                      <b>受益所有权</b>
+                      <b>{t("beneficialOwnership")}</b>
                       <span>1 位受益所有人 · Aline Chen 62%</span>
                       <button
                         className="secondary"
                         type="button"
                         onClick={() => go("owner")}
                       >
-                        编辑
+                        {t("edit")}
                       </button>
                     </div>
                     <div className="review-item">
-                      <b>身份与文件</b>
+                      <b>{t("identityAndDocuments")}</b>
                       <span>身份证明文件待提交 · 授权证明待提交</span>
                       <button
                         className="secondary"
                         type="button"
                         onClick={() => go("identity")}
                       >
-                        编辑
+                        {t("edit")}
                       </button>
                     </div>
                   </div>
@@ -873,28 +907,28 @@ export default function AccountActivation({
               <section className="activation-view active" id="act-submitted">
                 <div className="auth-status warn">
                   <div className="status-orb">⌛</div>
-                  <h2>激活申请已提交</h2>
+                  <h2>{t("activationApplicationSubmitted")}</h2>
                   <p>
                     我们将在 1–3
                     个工作日内审核。你可以使用基础控制台功能；收款、付款、兑换与虚拟账户将在审核通过后开放。
                   </p>
                   <aside>
-                    系统会保留审核记录、材料来源、筛查结果和决策轨迹，满足审计与监管留存要求。
+                    {t("theSystemRetainsReviewRecordsDocumentSourcesScreeningResultsAndDecisionT")}
                   </aside>
                 </div>
                 <div className="activation-actions">
                   <button className="secondary" type="button" onClick={onClose}>
-                    返回
+                    {t("back")}
                   </button>
                   <button className="lx-cta" type="button" onClick={onClose}>
-                    进入受限控制台
+                    {t("enterLimitedConsole")}
                   </button>
                 </div>
               </section>
             ) : (
               <div className="activation-actions">
                 <button type="button" className="secondary" onClick={onClose}>
-                  返回
+                  {t("back")}
                 </button>
                 <button
                   type="button"

@@ -1709,6 +1709,8 @@
     "saasDigitalServices": "SaaS / 数字服务",
     "female": "女",
     "male": "男",
-    "beneficialOwnership": "受益所有权"
+    "beneficialOwnership": "受益所有权",
+    "chooseFile": "選擇檔案",
+    "noFileChosen": "未選擇檔案"
   }
 }

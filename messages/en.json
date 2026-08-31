@@ -1702,6 +1702,8 @@
     "saasDigitalServices": "SaaS / digital services",
     "female": "Female",
     "male": "Male",
-    "beneficialOwnership": "Beneficial ownership"
+    "beneficialOwnership": "Beneficial ownership",
+    "chooseFile": "Choose file",
+    "noFileChosen": "No file chosen"
   }
 }
