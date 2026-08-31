@@ -164,6 +164,13 @@ export default function DashboardShell({
   const pathname = usePathname();
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("activate") === "1") {
+      setActivationOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (!toast) {
       setToastVisible(false);
       return;

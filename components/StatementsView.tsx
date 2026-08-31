@@ -45,10 +45,12 @@ function DataTable({
   heads,
   rows,
   action,
+  actionLabel,
 }: {
   heads: string[];
   rows: string[][];
   action?: (id: string) => void;
+  actionLabel?: string;
 }) {
   return (
     <div className="statement-table-scroll">
@@ -73,7 +75,7 @@ function DataTable({
                     type="button"
                     onClick={() => action(row[1])}
                   >
-                    ↗
+                    {actionLabel ?? "↗"}
                   </button>
                 </td>
               )}
@@ -91,6 +93,8 @@ export default function StatementsView() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [modalAsset, setModalAsset] = useState("all");
   const [notice, setNotice] = useState("");
+  const [detailId, setDetailId] = useState<string | null>(null);
+  const detail = TRANSACTIONS.find((row) => row[1] === detailId);
   const exportCsv = () => {
     const csv = TRANSACTIONS.map((r) => r.join(",")).join("\n");
     const a = document.createElement("a");
@@ -248,7 +252,8 @@ export default function StatementsView() {
             t(`transactions.types.${r[2]}`),
             ...r.slice(3),
           ])}
-          action={(id) => setNotice(t("notices.detail", { id }))}
+          actionLabel={t("transactions.viewDetails")}
+          action={(id) => setDetailId(id)}
         />
       </section>
       <div className="grid two statement-notes">
@@ -323,6 +328,40 @@ export default function StatementsView() {
               >
                 {t("filterModal.apply")}
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {detail && (
+        <div
+          className="statement-filter-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="statement-detail-title"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setDetailId(null);
+          }}
+        >
+          <div className="statement-filter-modal__panel statement-detail-modal__panel">
+            <div className="statement-filter-modal__head">
+              <div>
+                <h2 id="statement-detail-title">{t("detailModal.title")}</h2>
+                <p>{t("detailModal.description")}</p>
+              </div>
+              <button className="statement-filter-modal__close" type="button" aria-label={t("detailModal.close")} onClick={() => setDetailId(null)}>×</button>
+            </div>
+            <div className="statement-detail-grid">
+              <div><small>{t("transactions.columns.event")}</small><b>{detail[1]}</b></div>
+              <div><small>{t("detailModal.type")}</small><b>{t(`transactions.types.${detail[2]}`)}</b></div>
+              <div><small>{t("detailModal.date")}</small><b>{detail[0]}</b></div>
+              <div><small>{t("detailModal.amount")}</small><b>{detail[4] !== "0.00" ? `${detail[4]} ${detail[3]} · ${t("detailModal.credit")}` : `${detail[5]} ${detail[3]} · ${t("detailModal.debit")}`}</b></div>
+            </div>
+            <div className="statement-detail-tip">
+              <div>此交易详情来自用户提供的 Statement 结构化演示数据，实际系统应从账务或投资系统实时读取。</div>
+            </div>
+            <div className="statement-filter-modal__actions">
+              {/* <button className="ghost" type="button" onClick={() => setDetailId(null)}>{t("detailModal.close")}</button> */}
+              <button className="lx-cta" type="button" onClick={exportCsv}>{t("detailModal.export")}</button>
             </div>
           </div>
         </div>

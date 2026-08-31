@@ -17,7 +17,7 @@ const CURRENCIES: readonly Currency[] = [
   { key: "usd", letter: "$", letterBg: "#2a5fe0", letterColor: "#fff" },
   { key: "eur", letter: "€", letterBg: "#0a2540", letterColor: "#fff" },
   { key: "sgd", letter: "S$", letterBg: "#7a4fff", letterColor: "#fff" },
-  { key: "usdt", letter: "₮", letterBg: "#26a17b", letterColor: "#fff" },
+  { key: "usdt", letter: "₮", letterBg: "#26a17b", letterColor: "#fff", pending: true, },
   {
     key: "usdc",
     letter: "$",
@@ -238,7 +238,7 @@ export default function DashboardView() {
               {tDash(`balances.equiv.${c.key}`)}
             </div>
 
-            <Link href={`/${locale}/accounts`} className="lx-btn-outline">
+            <Link href={c.pending ? `/${locale}/crypto` : `/${locale}/accounts`} className="lx-btn-outline">
               {c.pending
                 ? tDash("balances.viewCrypto")
                 : tDash("balances.viewLedger")}
@@ -264,7 +264,6 @@ export default function DashboardView() {
           ))}
         </div>
       </div>
-      <footer className="lx-dashboard-footer">{tDash("footer")}</footer>
     </DashboardShell>
   );
 }

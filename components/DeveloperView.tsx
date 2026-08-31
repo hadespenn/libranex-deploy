@@ -73,9 +73,9 @@ export default function DeveloperView() {
             <h2>{t("logs.title")}</h2>
             <p className="lx-section-sub">{t("logs.subtitle")}</p>
           </div>
-          <button className="lx-outline-btn" type="button">
+          {/* <button className="lx-outline-btn" type="button">
             {t("logs.view")}
-          </button>
+          </button> */}
         </div>
         <div className="lx-dev-log-table">
           <div>

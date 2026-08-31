@@ -60,7 +60,7 @@ export default function LoginView() {
       </aside>
 
       <main className="lx-form-side">
-        <section className="lx-card">
+        <section className="lx-card lx-panel">
           <header className="lx-card__header">
             <div className="lx-card__brand">
               <img src="/libranex-logo.svg" alt="Libranex" />
@@ -146,6 +146,7 @@ export default function LoginView() {
             </p>
           </form>
         </section>
+        <footer className="lx-login-footer">{t('login.footer')}</footer>
       </main>
     </div>
   );

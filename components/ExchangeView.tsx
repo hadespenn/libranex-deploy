@@ -116,7 +116,11 @@ export default function ExchangeView() {
             <div className="beneficiary-empty">
               <h3>{t("transfer.saved")}</h3>
               <p>{t("transfer.savedDesc")}</p>
-              <button className="ghost mini" type="button" onClick={() => setModal("beneficiary")}>
+              <button
+                className="ghost mini"
+                type="button"
+                onClick={() => setModal("beneficiary")}
+              >
                 {t("transfer.add")}
               </button>
             </div>
@@ -163,7 +167,11 @@ export default function ExchangeView() {
                 <button className="primary lx-cta" type="button">
                   {t("transfer.submit")}
                 </button>
-                <button className="ghost" type="button" onClick={() => setModal("purpose")}>
+                <button
+                  className="ghost"
+                  type="button"
+                  onClick={() => setModal("purpose")}
+                >
                   {t("transfer.purpose")}
                 </button>
               </div>
@@ -172,41 +180,136 @@ export default function ExchangeView() {
         </div>
       </div>
       {modal && (
-        <div className="lx-exchange-modal" role="dialog" aria-modal="true" onClick={(event) => {
-          if (event.target === event.currentTarget) setModal(null);
-        }}>
+        <div
+          className="lx-exchange-modal"
+          role="dialog"
+          aria-modal="true"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setModal(null);
+          }}
+        >
           <div className="lx-exchange-modal__panel">
             <div className="lx-exchange-modal__head">
-              <h2>{t(modal === "purpose" ? "modal.purposeTitle" : "modal.beneficiaryTitle")}</h2>
-              <button className="lx-exchange-modal__close" type="button" aria-label={t("modal.close")} onClick={() => setModal(null)}>×</button>
+              <h2>
+                {t(
+                  modal === "purpose"
+                    ? "modal.purposeTitle"
+                    : "modal.beneficiaryTitle",
+                )}
+              </h2>
+              <button
+                className="lx-exchange-modal__close"
+                type="button"
+                aria-label={t("modal.close")}
+                onClick={() => setModal(null)}
+              >
+                ×
+              </button>
             </div>
             {modal === "purpose" ? (
               <>
                 <div className="auth-note">{t("modal.purposeNote")}</div>
                 <div className="form-grid lx-exchange-modal__form">
-                  <div className="field lx-full"><label>{t("modal.purposeLabel")} <b className="lx-required">{t("modal.required")}</b></label><textarea defaultValue={t("modal.purposeValue")} placeholder={t("modal.purposePlaceholder")} /></div>
-                  <div className="field"><label>{t("modal.tracking")}</label><input defaultValue="DHL-7788-20260730" placeholder={t("modal.trackingPlaceholder")} /></div>
-                  <div className="field"><label>{t("modal.invoice")}</label><input defaultValue="INV-2026-0729" placeholder={t("modal.invoicePlaceholder")} /></div>
-                  <div className="field lx-full"><label>{t("modal.screenshot")}</label><input type="file" accept="image/*,.pdf" /><small>{t("modal.fileHint")}</small></div>
-                  <div className="field lx-full"><label>{t("modal.documents")}</label><input type="file" accept="image/*,.pdf" multiple /><small>{t("modal.documentHint")}</small></div>
+                  <div className="field lx-full">
+                    <label>
+                      {t("modal.purposeLabel")}{" "}
+                      <b className="lx-required">{t("modal.required")}</b>
+                    </label>
+                    <textarea
+                      defaultValue={t("modal.purposeValue")}
+                      placeholder={t("modal.purposePlaceholder")}
+                    />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.tracking")}</label>
+                    <input
+                      defaultValue="DHL-7788-20260730"
+                      placeholder={t("modal.trackingPlaceholder")}
+                    />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.invoice")}</label>
+                    <input
+                      defaultValue="INV-2026-0729"
+                      placeholder={t("modal.invoicePlaceholder")}
+                    />
+                  </div>
+                  <div className="field lx-full">
+                    <label>{t("modal.screenshot")}</label>
+                    <input type="file" accept="image/*,.pdf" />
+                    <small>{t("modal.fileHint")}</small>
+                    
+                  </div>
+                  <div className="field lx-full">
+                    <label>{t("modal.documents")}</label>
+                    <input type="file" accept="image/*,.pdf" multiple />
+                    <small>{t("modal.documentHint")}</small>
+                  </div>
                 </div>
-                <label className="check-row"><input type="checkbox" defaultChecked />{t("modal.confirmPurpose")}</label>
-                <button className="lx-cta" type="button" onClick={() => setModal(null)}>{t("modal.savePurpose")}</button>
+                <div style={{ marginBottom: "16px" }}>
+                  <label className="check-row">
+                    <input type="checkbox" defaultChecked />
+                    {t("modal.confirmPurpose")}
+                  </label>
+                </div>
+                <button
+                  className="lx-cta"
+                  type="button"
+                  onClick={() => setModal(null)}
+                >
+                  {t("modal.savePurpose")}
+                </button>
               </>
             ) : (
               <>
                 <div className="auth-note">{t("modal.beneficiaryNote")}</div>
                 <div className="form-grid lx-exchange-modal__form">
-                  <div className="field"><label>{t("modal.name")}</label><input defaultValue="Global Supply Pte." /></div>
-                  <div className="field"><label>{t("modal.type")}</label><select defaultValue="bank"><option value="bank">{t("modal.bank")}</option><option value="wallet">{t("modal.wallet")}</option><option value="internal">{t("modal.internal")}</option></select></div>
-                  <div className="field"><label>{t("modal.contact")}</label><input defaultValue="vendor@global-supply.com" /></div>
-                  <div className="field"><label>{t("modal.network")}</label><input defaultValue="SWIFT · DBSSSGSG / TRC20" /></div>
-                  <div className="field"><label>{t("modal.account")}</label><input defaultValue="885-901-229-1" /></div>
-                  <div className="field"><label>{t("modal.defaultPurpose")}</label><input defaultValue={t("modal.purposeDefault")} /></div>
-                  <div className="field lx-full"><label>{t("modal.notes")}</label><textarea defaultValue={t("modal.notesValue")} /></div>
+                  <div className="field">
+                    <label>{t("modal.name")}</label>
+                    <input defaultValue="Global Supply Pte." />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.type")}</label>
+                    <select defaultValue="bank">
+                      <option value="bank">{t("modal.bank")}</option>
+                      <option value="wallet">{t("modal.wallet")}</option>
+                      <option value="internal">{t("modal.internal")}</option>
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.contact")}</label>
+                    <input defaultValue="vendor@global-supply.com" />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.network")}</label>
+                    <input defaultValue="SWIFT · DBSSSGSG / TRC20" />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.account")}</label>
+                    <input defaultValue="885-901-229-1" />
+                  </div>
+                  <div className="field">
+                    <label>{t("modal.defaultPurpose")}</label>
+                    <input defaultValue={t("modal.purposeDefault")} />
+                  </div>
+                  <div className="field lx-full">
+                    <label>{t("modal.notes")}</label>
+                    <textarea defaultValue={t("modal.notesValue")} />
+                  </div>
                 </div>
-                <label className="check-row"><input type="checkbox" defaultChecked />{t("modal.confirmBeneficiary")}</label>
-                <button className="lx-cta" type="button" onClick={() => setModal(null)}>{t("modal.saveBeneficiary")}</button>
+                <div>
+                  <label className="check-row">
+                    <input type="checkbox" defaultChecked />
+                    {t("modal.confirmBeneficiary")}
+                  </label>
+                </div>
+                <button
+                  className="lx-cta"
+                  type="button"
+                  onClick={() => setModal(null)}
+                >
+                  {t("modal.saveBeneficiary")}
+                </button>
               </>
             )}
           </div>

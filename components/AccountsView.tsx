@@ -136,13 +136,19 @@ export default function AccountsView() {
       toast={notice}
     >
       {/* hero（隐藏：DashboardShell header 已显示标题） */}
-      <h2 className="lx-section-title" style={{ display: "none" }}>
+      <div className="lx-section-header">
+        <div>
+      <h2 className="lx-section-title">
         {t("hero.title")}
       </h2>
-      <p className="lx-section-sub" style={{ display: "none" }}>
+      <p className="lx-section-sub">
         {t("hero.subtitle")}
       </p>
-
+      </div>
+       <button className="lx-cta" type="button" onClick={() => openCreate()}>
+          {t("cta.create")}
+        </button>
+</div>
       {/* tabs row */}
       <div className="lx-tabs-row">
         <div className="lx-tabs">
@@ -157,9 +163,7 @@ export default function AccountsView() {
             </button>
           ))}
         </div>
-        <button className="lx-cta" type="button" onClick={() => openCreate()}>
-          {t("cta.create")}
-        </button>
+       
       </div>
 
       {/* ===== 账户总览（accounts）===== */}
@@ -230,7 +234,7 @@ export default function AccountsView() {
           }
         >
           <div className="lx-table-card">
-            <div className="">{t("fiatList.title")}</div>
+            <h3 className="">{t("fiatList.title")}</h3>
             <div className="lx-table">
               <div className="lx-table__head lx-table__head--4">
                 <span>{t("fiatList.col.currency")}</span>
@@ -289,7 +293,7 @@ export default function AccountsView() {
           }
         >
           <div className="lx-table-card">
-            <div className="">{t("virtualList.title")}</div>
+            <h3 className="">{t("virtualList.title")}</h3>
             <div className="lx-table">
               <div className="lx-table__head lx-table__head--5">
                 <span>{t("virtualList.col.asset")}</span>
