@@ -12,7 +12,7 @@ export default function ExchangeView() {
   const [strategy, setStrategy] = useState<Strategy>("balanced");
   const [transfer, setTransfer] = useState<Transfer>("internal");
   const [expired, setExpired] = useState(false);
-  const [modal, setModal] = useState<"purpose" | "beneficiary" | null>(null);
+  const [modal, setModal] = useState<"purpose" | "beneficiary" | "fee" | null>(null);
   const rates: Record<Strategy, string> = {
     balanced: "1.36084",
     cost: "1.36210",
@@ -47,7 +47,7 @@ export default function ExchangeView() {
         <span className="status warn">{t("swap.badge")}</span>
       </div>
       <div className="grid two lx-exchange-grid">
-        <div className="panel">
+        <div className="panel lx-panel">
           <h2>{t("quote.title")}</h2>
           <div className="form-grid">
             <div className="field">
@@ -65,7 +65,11 @@ export default function ExchangeView() {
             <span className="countdown">
               {expired ? t("quote.expired") : "⏱ 28s"}
             </span>
-            <button className="ghost mini" type="button">
+            <button
+              className="ghost mini"
+              type="button"
+              onClick={() => setModal("fee")}
+            >
               {t("quote.fee")}
             </button>
           </div>
@@ -98,7 +102,7 @@ export default function ExchangeView() {
             </button>
           </div>
         </div>
-        <div className="panel">
+        <div className="panel lx-panel">
           <h2>{t("transfer.title")}</h2>
           <div className="tabs">
             {transferTabs.map((key) => (
@@ -113,17 +117,60 @@ export default function ExchangeView() {
             ))}
           </div>
           {transfer === "payee" ? (
-            <div className="beneficiary-empty">
-              <h3>{t("transfer.saved")}</h3>
-              <p>{t("transfer.savedDesc")}</p>
-              <button
-                className="ghost mini"
-                type="button"
-                onClick={() => setModal("beneficiary")}
-              >
-                {t("transfer.add")}
-              </button>
-            </div>
+            <>
+              <div className="section-head lx-payee-head">
+                <div>
+                  <h3>{t("transfer.saved")}</h3>
+                  <p>{t("transfer.savedDesc")}</p>
+                </div>
+                <button
+                  className="ghost mini"
+                  type="button"
+                  onClick={() => setModal("beneficiary")}
+                >
+                  {t("transfer.add")}
+                </button>
+              </div>
+              <table className="table lx-payee-table">
+                <thead>
+                  <tr>
+                    <th>{t("transfer.table.name")}</th>
+                    <th>{t("transfer.table.identifier")}</th>
+                    <th>{t("transfer.table.rail")}</th>
+                    <th>{t("transfer.table.lastUsed")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      name: "Global Supply Pte.",
+                      identifier: "vendor@global-supply.com",
+                      rail: "Internal",
+                      lastUsed: t("transfer.row1LastUsed"),
+                    },
+                    {
+                      name: "DBS Vendor",
+                      identifier: "DBSSSGSG · 885-901",
+                      rail: "SWIFT",
+                      lastUsed: t("transfer.row2LastUsed"),
+                    },
+                    {
+                      name: "Ad Network LLC",
+                      identifier: "US ACH · 026073150",
+                      rail: "ACH",
+                      lastUsed: t("transfer.row3LastUsed"),
+                    },
+                  ].map((row, idx) => (
+                    <tr key={idx}>
+                      <td>{row.name}</td>
+                      <td>{row.identifier}</td>
+                      <td>{row.rail}</td>
+                      <td>{row.lastUsed}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
           ) : (
             <>
               <div className="form-grid">
@@ -192,9 +239,11 @@ export default function ExchangeView() {
             <div className="lx-exchange-modal__head">
               <h2>
                 {t(
-                  modal === "purpose"
-                    ? "modal.purposeTitle"
-                    : "modal.beneficiaryTitle",
+                  modal === "fee"
+                    ? "modal.feeTitle"
+                    : modal === "purpose"
+                      ? "modal.purposeTitle"
+                      : "modal.beneficiaryTitle",
                 )}
               </h2>
               <button
@@ -236,13 +285,51 @@ export default function ExchangeView() {
                   </div>
                   <div className="field lx-full">
                     <label>{t("modal.screenshot")}</label>
-                    <input type="file" accept="image/*,.pdf" />
+                    <div className="file-picker">
+                      <input
+                        type="file"
+                        accept="image/*,.pdf"
+                        id="ex-invoice-file"
+                        style={{ display: "none" }}
+                      />
+                      <button
+                        type="button"
+                        className="file-picker-button"
+                        onClick={() =>
+                          document.getElementById("ex-invoice-file")?.click()
+                        }
+                      >
+                        {t("modal.chooseFile")}
+                      </button>
+                      <span className="file-picker-name">
+                        {t("modal.noFileChosen")}
+                      </span>
+                    </div>
                     <small>{t("modal.fileHint")}</small>
-                    
                   </div>
                   <div className="field lx-full">
                     <label>{t("modal.documents")}</label>
-                    <input type="file" accept="image/*,.pdf" multiple />
+                    <div className="file-picker">
+                      <input
+                        type="file"
+                        accept="image/*,.pdf"
+                        multiple
+                        id="ex-doc-file"
+                        style={{ display: "none" }}
+                      />
+                      <button
+                        type="button"
+                        className="file-picker-button"
+                        onClick={() =>
+                          document.getElementById("ex-doc-file")?.click()
+                        }
+                      >
+                        {t("modal.chooseFile")}
+                      </button>
+                      <span className="file-picker-name">
+                        {t("modal.noFileChosen")}
+                      </span>
+                    </div>
                     <small>{t("modal.documentHint")}</small>
                   </div>
                 </div>
@@ -260,7 +347,7 @@ export default function ExchangeView() {
                   {t("modal.savePurpose")}
                 </button>
               </>
-            ) : (
+            ) : modal === "beneficiary" ? (
               <>
                 <div className="auth-note">{t("modal.beneficiaryNote")}</div>
                 <div className="form-grid lx-exchange-modal__form">
@@ -297,7 +384,7 @@ export default function ExchangeView() {
                     <textarea defaultValue={t("modal.notesValue")} />
                   </div>
                 </div>
-                <div>
+                <div style={{ marginBottom: '16px'}}>
                   <label className="check-row">
                     <input type="checkbox" defaultChecked />
                     {t("modal.confirmBeneficiary")}
@@ -310,6 +397,33 @@ export default function ExchangeView() {
                 >
                   {t("modal.saveBeneficiary")}
                 </button>
+              </>
+            ) : (
+              <>
+                <table className="table lx-fee-table">
+                  <tbody>
+                    <tr>
+                      <td>{t("modal.feeRows.midMarket")}</td>
+                      <td>{t("modal.feeRows.midMarketValue")}</td>
+                    </tr>
+                    <tr>
+                      <td>{t("modal.feeRows.execution")}</td>
+                      <td>{t("modal.feeRows.executionValue")}</td>
+                    </tr>
+                    <tr>
+                      <td>{t("modal.feeRows.spread")}</td>
+                      <td>{t("modal.feeRows.spreadValue")}</td>
+                    </tr>
+                    <tr>
+                      <td>{t("modal.feeRows.service")}</td>
+                      <td>{t("modal.feeRows.serviceValue")}</td>
+                    </tr>
+                    <tr>
+                      <td>{t("modal.feeRows.arrival")}</td>
+                      <td>{t("modal.feeRows.arrivalValue")}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             )}
           </div>

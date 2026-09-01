@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -138,30 +138,48 @@ const NAV_ITEMS = [
   },
 ] as const;
 
+const CRYPTO_SUB_ITEMS = [
+  { key: "overview", labelKey: "subnav.overview" },
+  { key: "orders", labelKey: "subnav.orders" },
+  { key: "addresses", labelKey: "subnav.addresses" },
+  { key: "transactions", labelKey: "subnav.transactions" },
+  { key: "investment", labelKey: "subnav.investment" },
+  { key: "fixedTerm", labelKey: "subnav.fixedTerm" },
+  { key: "safeguarding", labelKey: "subnav.safeguarding" },
+  { key: "settlement", labelKey: "subnav.settlement" },
+] as const;
+
 export default function DashboardShell({
   children,
   active,
   headerTitle,
   headerSubtitle,
   toast,
+  cryptoSubActive,
+  onCryptoSubChange,
 }: {
   children: React.ReactNode;
   active: string;
   headerTitle: string;
   headerSubtitle: string;
   toast?: string;
+  cryptoSubActive?: string;
+  onCryptoSubChange?: (key: string) => void;
 }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activationOpen, setActivationOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [operationOpen, setOperationOpen] = useState(false);
+  const [cryptoNavOpen, setCryptoNavOpen] = useState(active === "crypto");
   const [toastVisible, setToastVisible] = useState(Boolean(toast));
   const t = useTranslations();
   const tDash = useTranslations("dashboard");
+  const tCrypto = useTranslations("crypto");
   const params = useParams<{ locale: string }>();
   const locale = params.locale;
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -299,6 +317,48 @@ export default function DashboardShell({
             "crypto",
           ].includes(n.key),
         ).map((n) => {
+          if (n.key === "crypto") {
+            const isActive = active === "crypto";
+            return (
+              <div key={n.key} className={`crypto-nav ${isActive ? "active" : ""}`}>
+                <button
+                  className={`lx-sidebar__item ${isActive ? "active" : ""}`}
+                  onClick={() => {
+                    // On other pages, jump into the crypto overview first.
+                    if (!isActive) {
+                      router.push(`/${locale}/crypto`);
+                      setCryptoNavOpen(true);
+                    } else {
+                      setCryptoNavOpen((v) => !v);
+                    }
+                    setMobileNavOpen(false);
+                  }}
+                  type="button"
+                >
+                  <Icon>{n.icon}</Icon>
+                  <span>{tDash(`nav.${n.key}`)}</span>
+                  <span className="nav-chevron">{cryptoNavOpen ? "\u2303" : "\u2304"}</span>
+                </button>
+                {cryptoNavOpen && (
+                  <div className="crypto-nav-sub">
+                    {CRYPTO_SUB_ITEMS.map((sub) => (
+                      <button
+                        key={sub.key}
+                        className={cryptoSubActive === sub.key ? "active" : ""}
+                        type="button"
+                        onClick={() => {
+                          onCryptoSubChange?.(sub.key);
+                          setMobileNavOpen(false);
+                        }}
+                      >
+                        {tCrypto(sub.labelKey)}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          }
           const href = `/${locale}/${n.href}`;
           const isActive = active === n.key || pathname?.endsWith(`/${n.href}`);
           return (

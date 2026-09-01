@@ -6,24 +6,45 @@ import DashboardShell from "./DashboardShell";
 
 type Tab = "pending" | "history" | "policy";
 type ApprovalAction = "approve" | "reject" | "details";
+type DetailTab = "summary" | "evidence" | "audit";
+type DialogKind = "policy" | "delegation" | "approvers" | "invite";
 export default function ApprovalView() {
   const t = useTranslations("approval");
   const c = t.raw("ui") as Record<string, string>;
   const [tab, setTab] = useState<Tab>("pending");
   const [notice, setNotice] = useState("");
-  const [dialog, setDialog] = useState<"policy" | "delegation" | null>(null);
+  const [dialog, setDialog] = useState<DialogKind | null>(null);
+  const [detailTab, setDetailTab] = useState<DetailTab>("summary");
+  const [policyMfa, setPolicyMfa] = useState(false);
+  const [inviteName, setInviteName] = useState("");
+  const [inviteEmail, setInviteEmail] = useState("");
   const [requestDialog, setRequestDialog] = useState<{
     action: ApprovalAction;
+    id: string;
     row: string[];
   } | null>(null);
-  const act = () => {
-    setNotice(c.done);
+  const notify = (message: string) => {
+    setNotice(message);
     window.setTimeout(() => setNotice(""), 2200);
+  };
+  const act = () => notify(c.done);
+  const openDetails = (id: string, row: string[]) => {
+    setDetailTab("summary");
+    setRequestDialog({ action: "details", id, row });
+  };
+  const openRequest = (action: ApprovalAction, row: string[]) => {
+    const id = row[0].split("·").pop()?.trim() ?? "";
+    if (action === "details") openDetails(id, row);
+    else setRequestDialog({ action, id, row });
   };
   const rows = [
     [c.payment, c.supplier, c.newPayee, c.single, "18m"],
     [c.batch, c.chen, c.medium, c.batchRule, "2h"],
     [c.limit, c.lin, c.high, c.dual, c.today],
+  ];
+  const historyRows = [
+    { id: "REF-202607-112", row: [c.refund, c.chen, c.refundRisk, c.single] },
+    { id: "BEN-021", row: [c.beneficiaryRequest, c.lin, c.beneficiaryRisk, c.mfa] },
   ];
   return (
     <DashboardShell
@@ -73,17 +94,13 @@ export default function ApprovalView() {
               <p className="lx-section-sub">{t("section.subtitle")}</p>
             </div>
           </div>
-          <ApprovalTable
-            rows={rows}
-            c={c}
-            onAction={(action, row) => setRequestDialog({ action, row })}
-          />
+          <ApprovalTable rows={rows} c={c} onAction={openRequest} />
         </section>
       )}
       {tab === "history" && (
         <section className="lx-panel lx-approval-panel">
           <h2 className="lx-section-title">{c.history}</h2>
-          <ApprovalHistory c={c} />
+          <ApprovalHistory c={c} rows={historyRows} onReview={openDetails} />
         </section>
       )}
       {tab === "policy" && (
@@ -105,14 +122,23 @@ export default function ApprovalView() {
                 </label>
               ))}
             </div>
-            <button className="lx-cta" onClick={() => setDialog("policy")}>
+            <button
+              className="lx-cta"
+              onClick={() => {
+                setPolicyMfa(false);
+                setDialog("policy");
+              }}
+            >
               {c.save}
             </button>
           </section>
           <section className="lx-panel lx-approval-panel">
             <h2 className="lx-section-title">{c.separation}</h2>
             <p className="lx-section-sub">{c.separationDesc}</p>
-            <button className="lx-outline-btn" onClick={act}>
+            <button
+              className="lx-outline-btn"
+              onClick={() => setDialog("approvers")}
+            >
               {c.manage}
             </button>
           </section>
@@ -129,7 +155,13 @@ export default function ApprovalView() {
           <div className="lx-approval-modal__panel">
             <div className="lx-approval-modal__head">
               <h2>
-                {dialog === "policy" ? c.policyDialogTitle : c.delegationTitle}
+                {dialog === "policy"
+                  ? c.policyDialogTitle
+                  : dialog === "delegation"
+                    ? c.delegationTitle
+                    : dialog === "approvers"
+                      ? c.approversTitle
+                      : c.inviteTitle}
               </h2>
               <button
                 type="button"
@@ -139,63 +171,136 @@ export default function ApprovalView() {
                 ×
               </button>
             </div>
-            <p className="lx-section-sub">
-              {dialog === "policy" ? c.policyDialogNote : c.delegationNote}
-            </p>
-            {dialog === "policy" ? (
-              <div className="lx-approval-modal__rules">
-                {[
-                  [c.external, c.threshold],
-                  [c.bulk, c.always],
-                  [c.changes, c.mfa],
-                  [c.timeout, c.auto],
-                ].map(([label, value]) => (
-                  <div key={label}>
-                    <span>{label}</span>
-                    <b>{value}</b>
+            {dialog === "policy" && (
+              <>
+                <p className="lx-section-sub">{c.policyDialogNote}</p>
+                <label className="lx-approval-check">
+                  <input
+                    type="checkbox"
+                    checked={policyMfa}
+                    onChange={(e) => setPolicyMfa(e.target.checked)}
+                  />
+                  {c.policyMfaConfirm}
+                </label>
+              </>
+            )}
+            {dialog === "delegation" && (
+              <>
+                <p className="lx-section-sub">{c.delegationNote}</p>
+                <div className="lx-approval-form lx-approval-modal__form">
+                  <label>
+                    {c.delegateTo}
+                    <select defaultValue="lin">
+                      <option value="lin">{c.lin}</option>
+                      <option value="chen">{c.chen}</option>
+                    </select>
+                  </label>
+                  <label>
+                    {c.startDate}
+                    <input type="date" defaultValue="2026-08-28" />
+                  </label>
+                  <label>
+                    {c.endDate}
+                    <input type="date" defaultValue="2026-09-04" />
+                  </label>
+                  <label>
+                    {c.reason}
+                    <input defaultValue={c.reasonValue} />
+                  </label>
+                </div>
+              </>
+            )}
+            {dialog === "approvers" && (
+              <>
+                <p className="lx-section-sub">{c.approversNote}</p>
+                <div className="ops-data-list lx-approval-approvers">
+                  <div className="ops-data">
+                    <small>Finance</small>
+                    <b>{c.lin}</b>
+                    <span>{c.financeScope}</span>
                   </div>
-                ))}
-              </div>
-            ) : (
+                  <div className="ops-data">
+                    <small>Compliance</small>
+                    <b>Alex Morgan</b>
+                    <span>{c.complianceScope}</span>
+                  </div>
+                </div>
+              </>
+            )}
+            {dialog === "invite" && (
               <div className="lx-approval-form lx-approval-modal__form">
                 <label>
-                  {c.delegateTo}
-                  <select defaultValue="lin">
-                    <option value="lin">{c.lin}</option>
-                    <option value="chen">{c.chen}</option>
-                  </select>
+                  {c.approverName}
+                  <input
+                    value={inviteName}
+                    placeholder={c.approverNamePlaceholder}
+                    onChange={(e) => setInviteName(e.target.value)}
+                  />
                 </label>
                 <label>
-                  {c.startDate}
-                  <input type="date" defaultValue="2026-08-28" />
-                </label>
-                <label>
-                  {c.endDate}
-                  <input type="date" defaultValue="2026-09-04" />
-                </label>
-                <label>
-                  {c.reason}
-                  <input defaultValue={c.reasonValue} />
+                  {c.approverEmail}
+                  <input
+                    type="email"
+                    value={inviteEmail}
+                    placeholder="approver@company.com"
+                    onChange={(e) => setInviteEmail(e.target.value)}
+                  />
                 </label>
               </div>
             )}
             <div className="lx-approval-modal__actions">
-              <button
-                className="lx-outline-btn"
-                type="button"
-                onClick={() => setDialog(null)}
-              >
-                {c.cancel}
-              </button>
+              {dialog === "approvers" ? (
+                <button
+                  className="lx-outline-btn"
+                  type="button"
+                  onClick={() => setDialog("invite")}
+                >
+                  {c.inviteApprover}
+                </button>
+              ) : (
+                <button
+                  className="lx-outline-btn"
+                  type="button"
+                  onClick={() => setDialog(null)}
+                >
+                  {c.cancel}
+                </button>
+              )}
               <button
                 className="lx-cta"
                 type="button"
                 onClick={() => {
+                  if (dialog === "policy" && !policyMfa) {
+                    notify(c.policyMfaRequired);
+                    return;
+                  }
+                  if (
+                    dialog === "invite" &&
+                    (!inviteName.trim() || !inviteEmail.trim())
+                  ) {
+                    notify(c.inviteRequired);
+                    return;
+                  }
                   setDialog(null);
-                  act();
+                  if (dialog === "policy") {
+                    setPolicyMfa(false);
+                    notify(c.policySaved);
+                  } else if (dialog === "invite") {
+                    setInviteName("");
+                    setInviteEmail("");
+                    notify(c.inviteSent);
+                  } else if (dialog === "delegation") {
+                    act();
+                  }
                 }}
               >
-                {c.confirm}
+                {dialog === "policy"
+                  ? c.confirmSave
+                  : dialog === "invite"
+                    ? c.sendInvite
+                    : dialog === "approvers"
+                      ? c.doneBtn
+                      : c.confirm}
               </button>
             </div>
           </div>
@@ -214,7 +319,7 @@ export default function ApprovalView() {
             <div className="lx-approval-modal__head">
               <h2>
                 {c[`${requestDialog.action}Title`] || requestDialog.action} ·{" "}
-                {requestDialog.row[0].split("·").pop()?.trim()}
+                {requestDialog.id}
               </h2>
               <button
                 type="button"
@@ -240,29 +345,52 @@ export default function ApprovalView() {
                   ))}
                 </div>
                 <div className="lx-approval-detail-tabs">
-                  <b>{c.detailSummary}</b>
-                  <span>{c.detailEvidence}</span>
-                  <span>{c.detailAudit}</span>
+                  {(["summary", "evidence", "audit"] as DetailTab[]).map((k) => (
+                    <div
+                      key={k}
+                      className={detailTab === k ? "active" : ""}
+                      onClick={() => setDetailTab(k)}
+                    >
+                      {c[`detail${k.charAt(0).toUpperCase()}${k.slice(1)}`]}
+                    </div>
+                  ))}
                 </div>
-                <p>{c.detailSummaryText}</p>
-                <div className="lx-approval-timeline">
-                  <div className="lx-approval-row">
-                    <b>1</b><div className="lx-approval-content"><h4> {c.submitted}</h4><span> {c.submittedText}</span></div>
+                {detailTab === "summary" && (
+                  <>
+                    <p>{c.detailSummaryText}</p>
+                    <div className="lx-approval-timeline">
+                      <div className="lx-approval-row">
+                        <b>1</b><div className="lx-approval-content"><h4> {c.submitted}</h4><span> {c.submittedText}</span></div>
+                      </div>
+                      <div className="lx-approval-row">
+                        <b>2</b><div className="lx-approval-content"><h4> {c.automated}</h4><span>{c.automatedText}</span></div>
+                      </div>
+                      <div className="lx-approval-row">
+                        <b>3</b> <div className="lx-approval-content"><h4>{c.awaiting}</h4><span>{c.awaitingText}</span></div>
+                      </div>
+                    </div>
+                  </>
+                )}
+                {detailTab === "evidence" && (
+                  <>
+                    <div className="lx-approval-evidence">{c.evidenceText}</div>
+                    <button
+                      className="lx-outline-btn"
+                      type="button"
+                      onClick={() => notify(c.evidenceDownloaded)}
+                    >
+                      {c.downloadEvidence}
+                    </button>
+                  </>
+                )}
+                {detailTab === "audit" && (
+                  <div className="lx-approval-audit">
+                    <b>{c.created}</b>
+                    <span>2026-07-31 09:12</span>
+                    <b>{c.lastAction}</b>
+                    <span>{c.detailStatus}</span>
                   </div>
-                  <div className="lx-approval-row">
-                    <b>2</b><div className="lx-approval-content"><h4> {c.automated}</h4><span>{c.automatedText}</span></div>
-                  </div>
-                  <div className="lx-approval-row">
-                    <b>3</b> <div className="lx-approval-content"><h4>{c.awaiting}</h4><span>{c.awaitingText}</span></div>
-                  </div>
-                </div>
-                {/* <div className="lx-approval-evidence">{c.evidenceText}</div>
-                <div className="lx-approval-audit">
-                  <b>{c.created}</b>
-                  <span>2026-07-31 09:12</span>
-                  <b>{c.lastAction}</b>
-                  <span>{c.detailStatus}</span>
-                </div> */}
+                )}
               </>
             ) : (
               <>
@@ -410,7 +538,18 @@ function ApprovalTable({
     </div>
   );
 }
-function ApprovalHistory({ c }: { c: Record<string, string> }) {
+const historyApprovers = ["lin", "alex"];
+const historyTimes = ["Yesterday 16:42", "Yesterday 10:18"];
+const historyResults = ["approved", "rejected"] as const;
+function ApprovalHistory({
+  c,
+  rows,
+  onReview,
+}: {
+  c: Record<string, string>;
+  rows: { id: string; row: string[] }[];
+  onReview: (id: string, row: string[]) => void;
+}) {
   return (
     <div className="lx-native-table-wrap">
       <table className="lx-native-table">
@@ -422,28 +561,35 @@ function ApprovalHistory({ c }: { c: Record<string, string> }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{c.refund}</td>
-            <td>
-              <span className="lx-status lx-status--success">{c.approved}</span>
-            </td>
-            <td>{c.lin}</td>
-            <td>Yesterday 16:42</td>
-            <td>
-              <button className="lx-settings-ghost">{c.review}</button>
-            </td>
-          </tr>
-          <tr>
-            <td>BEN-021 · {c.beneficiary}</td>
-            <td>
-              <span className="lx-status lx-status--danger">{c.rejected}</span>
-            </td>
-            <td>Alex Morgan</td>
-            <td>Yesterday 10:18</td>
-            <td>
-              <button className="lx-settings-ghost">{c.review}</button>
-            </td>
-          </tr>
+          {rows.map((r, i) => (
+            <tr key={r.id}>
+              <td>{r.row[0]}</td>
+              <td>
+                <span
+                  className={`lx-status ${
+                    historyResults[i] === "approved"
+                      ? "lx-status--success"
+                      : "lx-status--danger"
+                  }`}
+                >
+                  {historyResults[i] === "approved" ? c.approved : c.rejected}
+                </span>
+              </td>
+              <td>
+                {historyApprovers[i] === "lin" ? c.lin : "Alex Morgan"}
+              </td>
+              <td>{historyTimes[i]}</td>
+              <td>
+                <button
+                  className="lx-settings-ghost"
+                  type="button"
+                  onClick={() => onReview(r.id, r.row)}
+                >
+                  {c.review}
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

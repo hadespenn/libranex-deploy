@@ -998,7 +998,21 @@
       "account": "收款账户",
       "saved": "已保存收款人",
       "savedDesc": "选择经过验证的收款人，减少重复录入并降低误付风险。",
-      "add": "新增收款人"
+      "add": "新增收款人",
+      "row1LastUsed": "今天",
+      "row2LastUsed": "昨天",
+      "row3LastUsed": "7月28日",
+      "table": {
+        "name": "名称",
+        "identifier": "标识符",
+        "rail": "渠道",
+        "lastUsed": "最近使用"
+      },
+      "rows": [
+        { "name": "Global Supply Pte.", "identifier": "vendor@global-supply.com", "rail": "Internal", "lastUsed": "今天" },
+        { "name": "DBS Vendor", "identifier": "DBSSSGSG · 885-901", "rail": "SWIFT", "lastUsed": "昨天" },
+        { "name": "Ad Network LLC", "identifier": "US ACH · 026073150", "rail": "ACH", "lastUsed": "7月28日" }
+      ]
     },
     "modal": {
       "close": "关闭",
@@ -1033,7 +1047,22 @@
       "notes": "备注与标签",
       "notesValue": "长期供应商；需要发票和物流凭证",
       "confirmBeneficiary": "我确认收款人信息已由企业授权人员核验。",
-      "saveBeneficiary": "保存并发起验证"
+      "saveBeneficiary": "保存并发起验证",
+      "feeTitle": "费用明细",
+      "chooseFile": "选择文件",
+      "noFileChosen": "未选择文件",
+      "feeRows": {
+        "midMarket": "中间市场汇率",
+        "midMarketValue": "1.36120",
+        "execution": "执行汇率",
+        "executionValue": "1.36084",
+        "spread": "汇差",
+        "spreadValue": "0.026%",
+        "service": "服务费",
+        "serviceValue": "70.00 USD",
+        "arrival": "预计到账",
+        "arrivalValue": "T+1"
+      }
     }
   },
   "global": {
@@ -1104,7 +1133,14 @@
       "newAsset": "新增资产"
     },
     "portfolio": {
-      "label": "持仓市值"
+      "label": "持仓市值",
+      "rangeActive": "7天",
+      "rangeRest": "| 30天 | 90天",
+      "chartLabel": "Portfolio chart",
+      "date1": "7月23日",
+      "date2": "7月25日",
+      "date3": "7月27日",
+      "date4": "7月29日"
     },
     "receive": {
       "title": "收款",
@@ -1145,6 +1181,115 @@
     "activity": {
       "title": "近期活动",
       "empty": "暂无近期订单"
+    },
+    "modals": {
+      "asset": {
+        "title": "新增资产",
+        "asset": "资产",
+        "network": "网络",
+        "decimals": "精度",
+        "note": "新增资产将执行合规与合约校验，启用前不可交易。",
+        "submit": "提交",
+        "cancel": "取消",
+        "submitted": "虚拟资产已提交，等待合规与合约校验。"
+      },
+      "address": {
+        "title": "充值地址",
+        "asset": "资产",
+        "network": "网络",
+        "addressTitle": "USDT (ERC-20)",
+        "addressValue": "0x9f3C1dEa7B4c2F8a6E0b1C9d4A2f7B8c3D5e6F01 (demo)",
+        "note": "网络与合规校验通过后激活；请勿在链上备注 / 附言中填写任何信息。",
+        "close": "关闭"
+      },
+      "exchange": {
+        "title": "法币 ↔ Crypto 互换",
+        "pay": "支付",
+        "payFiat": "USD 法币余额",
+        "receive": "兑换获得",
+        "amount": "金额",
+        "bridgeTitle": "法币账户 ↔ Crypto 互换",
+        "bridgeDesc": "平台仅负责展示报价、收集确认信息并将订单转接至 OSL；实际交易、资产兑换和结算由 OSL 完成。",
+        "executionTitle": "交易执行方：OSL",
+        "executionDesc": "Libranex 不执行数字资产交易，仅将你的兑换信息和确认结果安全转接至 OSL。最终报价、交易执行、资产托管及结算以 OSL 页面和协议为准。",
+        "ack": "我已知悉并同意由 OSL 完成实际互换，Libranex 仅作为信息转接平台。",
+        "note": "最终报价、交易执行、资产托管及结算以 OSL 页面和协议为准。",
+        "confirm": "确认并转接 OSL",
+        "cancel": "取消",
+        "ackRequired": "请先确认由 OSL 完成实际互换，Libranex 仅负责信息转接。",
+        "submitted": "已确认 OSL 执行互换，兑换信息正在安全转接；请在 OSL 页面完成最终确认。"
+      },
+      "withdrawal": {
+        "title": "添加提币地址",
+        "label": "标签",
+        "labelPlaceholder": "我的冷钱包",
+        "network": "网络",
+        "address": "地址",
+        "memo": "Memo",
+        "memoPlaceholder": "可选",
+        "note": "地址加入白名单后将进入 24 小时冷静期，并经邮件与 2FA 确认后方可启用提币。",
+        "submit": "提交并验证",
+        "cancel": "取消",
+        "submitted": "提币地址已提交，进入白名单冷静期与 2FA 确认。"
+      },
+      "invest": {
+        "title": "加密资产投资申购",
+        "product": "产品",
+        "principal": "本金",
+        "term": "期限",
+        "note": "锁定的 Crypto 本金按产品规则计算收益，赎回后返回 Crypto 账户。",
+        "submit": "提交申购",
+        "cancel": "取消",
+        "submitted": "申购已提交，进入合规与合约校验。"
+      },
+      "redeem": {
+        "title": "加密资产投资赎回",
+        "product": "产品",
+        "amount": "赎回金额",
+        "note": "提前赎回将按产品规则收取违约金并作废已计利息，赎回款返回 Crypto 账户。",
+        "submit": "确认赎回",
+        "cancel": "取消",
+        "submitted": "赎回已提交，本金与收益将返回 Crypto 账户。"
+      },
+      "fixedSubscribe": {
+        "title": "加密定期申购",
+        "product": "产品",
+        "amount": "锁仓量",
+        "term": "期限",
+        "note": "固定期限锁仓，约定收益，到期自动赎回至 Crypto 账户。",
+        "submit": "提交申购",
+        "cancel": "取消",
+        "submitted": "固定期限申购已提交，进入合约锁仓。"
+      },
+      "fixedRedeem": {
+        "title": "加密定期赎回",
+        "product": "产品",
+        "amount": "赎回金额",
+        "note": "提前赎回将按约定收取违约金并作废已计利息，赎回款返回 Crypto 账户。",
+        "submit": "确认赎回",
+        "cancel": "取消",
+        "submitted": "固定期限赎回已提交，本金与收益将返回 Crypto 账户。"
+      },
+      "safeguardIn": {
+        "title": "受控转入",
+        "asset": "资产",
+        "network": "网络",
+        "amount": "转入数量",
+        "note": "Crypto 资产按隔离要求受控转入，保持独立可追溯，释放需运营平台审批。",
+        "tip": "以上为只读信息；资金放行与释放由 Libranex 运营管理平台处理。",
+        "submit": "提交转入申请",
+        "cancel": "取消",
+        "submitted": "受控转入申请已提交，进入隔离与审批流程。"
+      },
+      "settleAllocate": {
+        "title": "分配",
+        "batch": "批次",
+        "asset": "资产",
+        "status": "状态",
+        "statusValue": "待运营分配放行",
+        "note": "以上为只读信息；资金放行与释放由 Libranex 运营管理平台处理。",
+        "cancel": "取消"
+      }
     },
     "pages": {
       "action": "打开操作",
@@ -1226,6 +1371,7 @@
         "convert": "兑换",
         "fiatCrypto": "法币 ↔ 加密货币"
       },
+      "balance": "余额",
       "pay": "您需支付",
       "recv": "您将收到",
       "trade": "交易执行方：OSL",
@@ -1351,8 +1497,8 @@
       "mfa": "双人复核 + MFA",
       "auto": "24h 自动失效",
       "done": "审批已更新",
-      "policyDialogTitle": "保存审批策略",
-      "policyDialogNote": "请确认审批规则后保存。变更将应用于新的申请，并记录在审计日志中。",
+      "policyDialogTitle": "确认保存审批策略",
+      "policyDialogNote": "策略变更将影响后续付款、批次、收款人和限额审批，并写入审计日志。",
       "delegationTitle": "设置临时授权",
       "delegationNote": "在限定时间内委托审批权限。原审批人仍承担责任，所有操作都会记录在审计日志中。",
       "delegateTo": "授权给",
@@ -1391,7 +1537,29 @@
       "evidenceText": "对付款、退款、新增收款人、账户绑定和限额变更执行分级审批，并保留完整审批链与记录。",
       "created": "创建时间",
       "lastAction": "最近动作",
-      "close": "关闭"
+      "close": "关闭",
+      "policyMfaConfirm": "我确认使用 MFA 保存策略变更。",
+      "policyMfaRequired": "请先确认 MFA。",
+      "policySaved": "审批策略已保存，变更已写入审计日志并等待生效。",
+      "confirmSave": "确认保存",
+      "approversTitle": "管理审批人",
+      "approversNote": "管理审批人角色、额度范围和职责分离设置。移除审批人前需要先完成待办转交。",
+      "financeScope": "可审批付款、退款和收款人",
+      "complianceScope": "可审批高风险和限额变更",
+      "inviteApprover": "邀请审批人",
+      "doneBtn": "完成",
+      "inviteTitle": "邀请审批人",
+      "approverName": "姓名",
+      "approverNamePlaceholder": "审批人姓名",
+      "approverEmail": "企业邮箱",
+      "sendInvite": "发送邀请",
+      "inviteRequired": "请填写姓名和企业邮箱。",
+      "inviteSent": "审批人邀请已发送，等待对方接受并完成 MFA。",
+      "downloadEvidence": "下载材料清单",
+      "evidenceDownloaded": "材料清单已准备下载。",
+      "refundRisk": "USD 12,400 · Low",
+      "beneficiaryRisk": "— · Medium",
+      "beneficiaryRequest": "BEN-021 · 新增收款人"
     }
   },
   "developer": {

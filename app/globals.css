@@ -18,10 +18,10 @@
   max-height: 86vh;
   overflow: auto;
   padding: 22px;
-  background: #fffdf8;
-  border: 1px solid rgba(216, 224, 229, .8);
-  border-radius: 17px;
-  box-shadow: var(--soft);
+  background: rgba(255,253,248,.9);
+  border: 1px solid rgba(216,224,229,.8);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(6,45,83,.09);
 }
 
 .lx-exchange-modal__head {
@@ -48,6 +48,47 @@
 
 .lx-exchange-modal__form {
   margin: 14px 0;
+}
+
+.lx-fee-table {
+  margin: 4px 0 6px;
+}
+
+.lx-fee-table td {
+  font-size: 13px;
+  color: #1f3a52;
+}
+
+.lx-fee-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: #0a2540;
+}
+
+/* Payee / beneficiary table in exchange transfer center */
+.lx-payee-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.lx-payee-head h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #12283d;
+  margin: 0 0 2px;
+}
+
+.lx-payee-head p {
+  font-size: 11px;
+  color: #718093;
+  margin: 0;
+}
+
+.lx-payee-table th {
+  white-space: nowrap;
 }
 
 .lx-exchange-modal__form .lx-full {
@@ -151,6 +192,11 @@
   color: #516274;
   font-size: 13px;
   line-height: 1.5
+}
+
+.lx-exchange-modal__panel .check-row {
+  font-size: 12px;
+  color: #66788b;
 }
 
 @media(max-width:640px) {
@@ -853,9 +899,15 @@
 .crypto-card-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 16px;
   width: 100%;
+}
+
+.crypto-card-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .crypto-page-head {
@@ -884,19 +936,70 @@
 
 .crypto-subnav button,
 .crypto-tabs button {
-  border: 1px solid #d8e0e5;
-  background: #fff;
-  color: #66788b;
-  padding: 8px 12px;
-  border-radius: 9px;
-  white-space: nowrap
+  border: 0;
+  background: transparent;
+  padding: 8px 3px;
+  border-radius: 7px;
+  color: #6f7d8b;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .crypto-subnav button.active,
 .crypto-tabs button.active {
-  background: #062d53;
-  color: #fff;
-  border-color: #062d53
+  background: #fff;
+  color: #172d44;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.crypto-amount-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Sidebar nested sub-menu for Crypto */
+.crypto-nav {
+  position: relative
+}
+
+.crypto-nav>.lx-sidebar__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer
+}
+
+.nav-chevron {
+  margin-left: auto;
+  color: #8ea8bc;
+  font-size: 12px
+}
+
+.crypto-nav-sub {
+  display: flex;
+  flex-direction: column;
+  padding: 3px 0 5px 34px;
+  border-left: 1px solid rgba(255, 255, 255, .14);
+  margin-left: 18px
+}
+
+.crypto-nav-sub button {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #aebfd0;
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 7px;
+  cursor: pointer
+}
+
+.crypto-nav-sub button:hover,
+.crypto-nav-sub button.active {
+  background: rgba(55, 138, 221, .18);
+  color: #fff
 }
 
 .crypto-notice {
@@ -943,12 +1046,75 @@
   padding: 18px;
   box-shadow: 0 12px 35px rgba(6, 45, 83, .06);
   margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
 
 }
+
+/* Only the portfolio card uses .crypto-chart; reset its inner layout
+   so the chart keeps a stable 150px height regardless of flex siblings. */
+.crypto-card:has(> .crypto-chart) {
+  display: block
+}
+.crypto-card:has(> .crypto-chart) > .crypto-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 4px
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart {
+  display: block;
+  width: 100%;
+  height: 150px;
+  min-height: 150px;
+  margin: 12px 0 0 0;
+  position: relative;
+  border-bottom: 1px solid #dfe6ed;
+  background-color: transparent;
+  overflow: hidden
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart::before,
+.crypto-card:has(> .crypto-chart) > .crypto-chart::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart::before {
+  top: 50px;
+  background: #eef2f6
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart::after {
+  top: 115px;
+  background: #dfe6ed
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels {
+  position: relative;
+  height: 14px;
+  margin-top: 4px;
+  color: #91a0ad;
+  font-size: 10px
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels > span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  transform: translateX(-50%)
+}
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels > span:nth-child(1) { left: 12% }
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels > span:nth-child(2) { left: 38% }
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels > span:nth-child(3) { left: 68% }
+.crypto-card:has(> .crypto-chart) > .crypto-chart-labels > span:nth-child(4) { left: 95% }
 
 .crypto-subpage-card {
   background: #fff;
@@ -1020,6 +1186,23 @@
   margin-top: 16px;
 }
 
+.crypto-kicker {
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: #8293a3;
+  text-transform: uppercase
+}
+.crypto-value {
+  font-size: 25px !important;
+  font-weight: 800;
+  margin: 4px 0;
+  color: #062d53
+}
+.crypto-range {
+  font-size: 11px;
+  color: var(--muted, #66788b)
+}
+
 .crypto-card-head strong {
   display: block;
   font-size: 28px;
@@ -1032,14 +1215,50 @@
   text-transform: uppercase
 }
 
+.crypto-card-head select {
+  min-width: 0;
+  max-width: 45%;
+  border: 0;
+  background: #f5f7fa;
+  border-radius: 18px;
+  padding: 7px 9px;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .crypto-card-head i {
   color: #a5b0ba;
   font-style: normal
 }
 
-.crypto-chart {
-  height: 125px;
-  border-bottom: 2px solid #20b67a
+.crypto-network {
+  display: inline-flex;
+  padding: 5px 9px;
+  background: #f2f6fa;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #344d64;
+}
+
+.crypto-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #f0f3f7;
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.crypto-swap {
+  display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    margin: -4px auto;
+    border-radius: 50%;
+    background: #f0f3f7;
+    color: #8292a2;
 }
 
 .crypto-chart-labels {
@@ -1077,7 +1296,8 @@
 }
 
 .crypto-table {
-  overflow-x: auto
+  overflow-x: auto;
+  width: 100%;
 }
 
 .crypto-table-row {
@@ -1104,13 +1324,6 @@
   color: #8996a3;
   padding: 38px 12px;
   width: 100%;
-}
-
-.crypto-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  margin: 14px 0
 }
 
 .crypto-exchange label {
@@ -1376,9 +1589,8 @@ button {
 }
 
 .mini {
-  min-height: 30px;
+  min-height: 40px;
   padding: 5px 10px;
-  margin-top: 12px;
 }
 
 .osl-notice {
@@ -1387,8 +1599,10 @@ button {
   align-items: center;
   gap: 20px;
   margin-bottom: 16px;
-  background: #fffaf0;
-  border-color: #ead8aa;
+  background: rgba(255,253,248,.9);
+  border: 1px solid rgba(216,224,229,.8);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(6, 45, 83, .09);
 }
 
 .status.warn {
@@ -1426,11 +1640,10 @@ button {
   width: 100%;
   height: 42px;
   padding: 0 12px;
-  border: 1px solid #ced9e3;
-  border-radius: 9px;
-  color: #143550;
+  border: 1px solid #d8e0e5;
   background: #fff;
   outline: none;
+  border-radius: 14px;
 }
 
 .field input:focus {
@@ -1450,8 +1663,9 @@ button {
   gap: 12px;
   margin-top: 14px;
   padding: 14px;
-  border-radius: 12px;
-  background: #f3f7fa;
+  border-radius: 18px;
+  border: 1px solid #d8e0e5;
+  background: linear-gradient(145deg,#fff,#f8fbff);
 }
 
 .quote-box small {
@@ -3603,6 +3817,46 @@ input {
   font-size: 12px;
 }
 
+/* Crypto 弹框（新增资产 / 充值地址）：对齐 index.html 原型的 .form-grid + .ops-card */
+.lx-crypto-modal__form {
+  margin: 20px 0;
+}
+
+.lx-crypto-address-box,
+.lx-crypto-info-card {
+  margin: 8px 0;
+  padding: 12px 14px;
+  border: 1px solid #e1e8f0;
+  border-radius: 12px;
+  background: #f7fafc;
+}
+
+.lx-crypto-address-box b,
+.lx-crypto-info-card b {
+  display: block;
+  color: #0a2540;
+  font-size: 14px;
+}
+
+.lx-crypto-address-box p,
+.lx-crypto-info-card p {
+  margin: 6px 0 8px;
+  color: #4a5c73;
+  font-size: 12px;
+  word-break: break-all;
+
+}
+
+.lx-crypto-info-card p {
+  line-height: 1.6;
+  word-break: normal;
+}
+
+.lx-crypto-info-card p b {
+  display: inline;
+  font-size: 12px;
+}
+
 @media (max-width:640px) {
   .lx-operation-modal {
     padding: 10px;
@@ -4908,7 +5162,8 @@ input {
 .lx-approval-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .lx-approval-form label {
@@ -5010,6 +5265,16 @@ input {
   padding: 9px;
 }
 
+.lx-approval-approvers {
+  margin-top: 16px;
+}
+
+.lx-approval-approvers .ops-data span {
+  display: block;
+  margin-top: 4px;
+
+}
+
 .lx-approval-modal__actions {
   display: flex;
   justify-content: flex-start;
@@ -5032,6 +5297,7 @@ input {
   border-radius: 999px;
   padding: 9px 13px;
   color: #52687d;
+  cursor: pointer;
 }
 
 .lx-approval-detail-tabs div.active {

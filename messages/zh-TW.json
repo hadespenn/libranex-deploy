@@ -998,7 +998,21 @@
       "account": "收款帳戶",
       "saved": "已儲存收款人",
       "savedDesc": "選擇經過驗證的收款人，減少重複輸入並降低誤付風險。",
-      "add": "新增收款人"
+      "add": "新增收款人",
+      "row1LastUsed": "今天",
+      "row2LastUsed": "昨天",
+      "row3LastUsed": "7月28日",
+      "table": {
+        "name": "名稱",
+        "identifier": "標識符",
+        "rail": "渠道",
+        "lastUsed": "最近使用"
+      },
+      "rows": [
+        { "name": "Global Supply Pte.", "identifier": "vendor@global-supply.com", "rail": "Internal", "lastUsed": "今天" },
+        { "name": "DBS Vendor", "identifier": "DBSSSGSG · 885-901", "rail": "SWIFT", "lastUsed": "昨天" },
+        { "name": "Ad Network LLC", "identifier": "US ACH · 026073150", "rail": "ACH", "lastUsed": "7月28日" }
+      ]
     },
     "modal": {
       "close": "關閉",
@@ -1033,7 +1047,22 @@
       "notes": "備註與標籤",
       "notesValue": "長期供應商；需要發票和物流憑證",
       "confirmBeneficiary": "我確認收款人資訊已由企業授權人員核驗。",
-      "saveBeneficiary": "儲存並發起驗證"
+      "saveBeneficiary": "儲存並發起驗證",
+      "feeTitle": "費用明細",
+      "chooseFile": "選擇檔案",
+      "noFileChosen": "未選擇檔案",
+      "feeRows": {
+        "midMarket": "中間市場匯率",
+        "midMarketValue": "1.36120",
+        "execution": "執行匯率",
+        "executionValue": "1.36084",
+        "spread": "匯差",
+        "spreadValue": "0.026%",
+        "service": "服務費",
+        "serviceValue": "70.00 USD",
+        "arrival": "預計到賬",
+        "arrivalValue": "T+1"
+      }
     }
   },
   "global": {
@@ -1109,7 +1138,14 @@
       "newAsset": "新增資產"
     },
     "portfolio": {
-      "label": "持倉市值"
+      "label": "持倉市值",
+      "rangeActive": "7d",
+      "rangeRest": "| 30d | 90d",
+      "chartLabel": "Portfolio chart",
+      "date1": "Jul 23",
+      "date2": "Jul 25",
+      "date3": "Jul 27",
+      "date4": "Jul 29"
     },
     "receive": {
       "title": "收款",
@@ -1129,7 +1165,7 @@
         "fiatCrypto": "法幣 ↔ 加密貨幣"
       },
       "pay": "您需支付",
-      "balance": "Balance: 0 USD",
+      "balance": "餘額",
       "trade": "交易執行方：OSL",
       "recv": "您將收到",
       "agree": "我已知悉並同意由 OSL 完成實際互換，Libranex 僅作為信息轉接平臺。",
@@ -1143,6 +1179,115 @@
       "recvCurrency": "— —",
       "reason": "原因（選填）",
       "defaultReason": "已打開「概覽」對應的詳情頁或下一步操作。"
+    },
+    "modals": {
+      "asset": {
+        "title": "新增資產",
+        "asset": "資產",
+        "network": "網路",
+        "decimals": "精度",
+        "note": "新增資產將執行合規與合約校驗，啟用前不可交易。",
+        "submit": "提交",
+        "cancel": "取消",
+        "submitted": "虛擬資產已提交，等待合規與合約校驗。"
+      },
+      "address": {
+        "title": "充值地址",
+        "asset": "資產",
+        "network": "網路",
+        "addressTitle": "USDT (ERC-20)",
+        "addressValue": "0x9f3C1dEa7B4c2F8a6E0b1C9d4A2f7B8c3D5e6F01 (demo)",
+        "note": "網路與合規校驗通過後啟動；請勿在鏈上備註 / 附言中填寫任何資訊。",
+        "close": "關閉"
+      },
+      "exchange": {
+        "title": "法幣 ↔ Crypto 互換",
+        "pay": "支付",
+        "payFiat": "USD 法幣餘額",
+        "receive": "兌換獲得",
+        "amount": "金額",
+        "bridgeTitle": "法幣帳戶 ↔ Crypto 互換",
+        "bridgeDesc": "平臺僅負責展示報價、收集確認資訊並將訂單轉接至 OSL；實際交易、資產兌換和結算由 OSL 完成。",
+        "executionTitle": "交易執行方：OSL",
+        "executionDesc": "Libranex 不執行數位資產交易，僅將你的兌換資訊和確認結果安全轉接至 OSL。最終報價、交易執行、資產托管及結算以 OSL 頁面和協議為準。",
+        "ack": "我已知悉並同意由 OSL 完成實際互換，Libranex 僅作為資訊轉接平臺。",
+        "note": "最終報價、交易執行、資產托管及結算以 OSL 頁面和協議為準。",
+        "confirm": "確認並轉接 OSL",
+        "cancel": "取消",
+        "ackRequired": "請先確認由 OSL 完成實際互換，Libranex 僅負責資訊轉接。",
+        "submitted": "已確認 OSL 執行互換，兌換資訊正在安全轉接；請在 OSL 頁面完成最終確認。"
+      },
+      "withdrawal": {
+        "title": "添加提幣地址",
+        "label": "標籤",
+        "labelPlaceholder": "我的冷錢包",
+        "network": "網路",
+        "address": "地址",
+        "memo": "Memo",
+        "memoPlaceholder": "可選",
+        "note": "地址加入白名單後將進入 24 小時冷靜期，並經郵件與 2FA 確認後方可啟用提幣。",
+        "submit": "提交並驗證",
+        "cancel": "取消",
+        "submitted": "提幣地址已提交，進入白名單冷靜期與 2FA 確認。"
+      },
+      "invest": {
+        "title": "加密資產投資申購",
+        "product": "產品",
+        "principal": "本金",
+        "term": "期限",
+        "note": "鎖定的 Crypto 本金依產品規則計算收益，赎回後返回 Crypto 帳戶。",
+        "submit": "提交申購",
+        "cancel": "取消",
+        "submitted": "申購已提交，進入合規與合約校驗。"
+      },
+      "redeem": {
+        "title": "加密資產投資贖回",
+        "product": "產品",
+        "amount": "贖回金額",
+        "note": "提前贖回將依產品規則收取違約金並作廢已計利息，贖回款返回 Crypto 帳戶。",
+        "submit": "確認贖回",
+        "cancel": "取消",
+        "submitted": "贖回已提交，本金與收益將返回 Crypto 帳戶。"
+      },
+      "fixedSubscribe": {
+        "title": "加密定期申購",
+        "product": "產品",
+        "amount": "鎖倉量",
+        "term": "期限",
+        "note": "固定期限鎖倉，約定收益，到期自動贖回至 Crypto 帳戶。",
+        "submit": "提交申購",
+        "cancel": "取消",
+        "submitted": "固定期限申購已提交，進入合約鎖倉。"
+      },
+      "fixedRedeem": {
+        "title": "加密定期贖回",
+        "product": "產品",
+        "amount": "贖回金額",
+        "note": "提前贖回將依約定收取違約金並作廢已計利息，贖回款返回 Crypto 帳戶。",
+        "submit": "確認贖回",
+        "cancel": "取消",
+        "submitted": "固定期限贖回已提交，本金與收益將返回 Crypto 帳戶。"
+      },
+      "safeguardIn": {
+        "title": "受控轉入",
+        "asset": "資產",
+        "network": "網絡",
+        "amount": "轉入數量",
+        "note": "Crypto 資產依隔離要求受控轉入，保持獨立可追溯，釋放需營運平台審批。",
+        "tip": "以上為只讀信息；資金放行與釋放由 Libranex 運營管理平臺處理。",
+        "submit": "提交轉入申請",
+        "cancel": "取消",
+        "submitted": "受控轉入申請已提交，進入隔離與審批流程。"
+      },
+      "settleAllocate": {
+        "title": "分配",
+        "batch": "批次",
+        "asset": "資產",
+        "status": "狀態",
+        "statusValue": "待營運分配放行",
+        "note": "以上為唯讀資訊；資金放行與釋放由 Libranex 營運管理平台處理。",
+        "cancel": "取消"
+      }
     },
     "pages": {
       "action": "打开操作",
@@ -1388,7 +1533,40 @@
       "evidenceText": "對付款、退款、新增收款人、帳戶綁定和限額變更執行分級審批，並保留完整審批鏈與 MFA 記錄。",
       "created": "建立時間",
       "lastAction": "最近動作",
-      "close": "關閉"
+      "close": "關閉",
+      "delegationTitle": "設定臨時授權",
+      "delegationNote": "在限定時間內委託審批權限。原審批人仍承擔責任，所有操作都會記錄在稽核日誌中。",
+      "delegateTo": "授權給",
+      "startDate": "開始日期",
+      "endDate": "結束日期",
+      "reason": "授權原因",
+      "reasonValue": "出差期間代審批",
+      "cancel": "取消",
+      "confirm": "確認",
+      "policyDialogTitle": "確認儲存審批策略",
+      "policyDialogNote": "策略變更將影響後續付款、批次、收款人和限額審批，並寫入稽核日誌。",
+      "policyMfaConfirm": "我確認使用 MFA 儲存策略變更。",
+      "policyMfaRequired": "請先確認 MFA。",
+      "policySaved": "審批策略已儲存，變更已寫入稽核日誌並等待生效。",
+      "confirmSave": "確認儲存",
+      "approversTitle": "管理審批人",
+      "approversNote": "管理審批人角色、額度範圍和職責分離設定。移除審批人前需要先完成待辦轉交。",
+      "financeScope": "可審批付款、退款和收款人",
+      "complianceScope": "可審批高風險和限額變更",
+      "inviteApprover": "邀請審批人",
+      "doneBtn": "完成",
+      "inviteTitle": "邀請審批人",
+      "approverName": "姓名",
+      "approverNamePlaceholder": "審批人姓名",
+      "approverEmail": "企業郵箱",
+      "sendInvite": "發送邀請",
+      "inviteRequired": "請填寫姓名和企業郵箱。",
+      "inviteSent": "審批人邀請已發送，等待對方接受並完成 MFA。",
+      "downloadEvidence": "下載材料清單",
+      "evidenceDownloaded": "材料清單已準備下載。",
+      "refundRisk": "USD 12,400 · Low",
+      "beneficiaryRisk": "— · Medium",
+      "beneficiaryRequest": "BEN-021 · 新增收款人"
     }
   },
   "developer": {

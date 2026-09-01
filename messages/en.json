@@ -998,7 +998,21 @@
       "account": "Recipient account",
       "saved": "Saved beneficiaries",
       "savedDesc": "Select a verified beneficiary to reduce duplicate entry and payment risk.",
-      "add": "Add beneficiary"
+      "add": "Add beneficiary",
+      "row1LastUsed": "Today",
+      "row2LastUsed": "Yesterday",
+      "row3LastUsed": "Jul 28",
+      "table": {
+        "name": "Name",
+        "identifier": "Identifier",
+        "rail": "Rail",
+        "lastUsed": "Last used"
+      },
+      "rows": [
+        { "name": "Global Supply Pte.", "identifier": "vendor@global-supply.com", "rail": "Internal", "lastUsed": "Today" },
+        { "name": "DBS Vendor", "identifier": "DBSSSGSG · 885-901", "rail": "SWIFT", "lastUsed": "Yesterday" },
+        { "name": "Ad Network LLC", "identifier": "US ACH · 026073150", "rail": "ACH", "lastUsed": "Jul 28" }
+      ]
     },
     "modal": {
       "close": "Close",
@@ -1033,7 +1047,22 @@
       "notes": "Notes and tags",
       "notesValue": "Long-term supplier; invoice and logistics evidence required",
       "confirmBeneficiary": "I confirm the beneficiary information has been verified by an authorized company representative.",
-      "saveBeneficiary": "Save and start verification"
+      "saveBeneficiary": "Save and start verification",
+      "feeTitle": "Fee details",
+      "chooseFile": "Choose file",
+      "noFileChosen": "No file chosen",
+      "feeRows": {
+        "midMarket": "Mid-market rate",
+        "midMarketValue": "1.36120",
+        "execution": "Execution rate",
+        "executionValue": "1.36084",
+        "spread": "FX spread",
+        "spreadValue": "0.026%",
+        "service": "Service fee",
+        "serviceValue": "70.00 USD",
+        "arrival": "Estimated arrival",
+        "arrivalValue": "T+1"
+      }
     }
   },
   "global": {
@@ -1104,7 +1133,14 @@
       "newAsset": "New asset"
     },
     "portfolio": {
-      "label": "PORTFOLIO VALUE"
+      "label": "Portfolio value",
+      "rangeActive": "7d",
+      "rangeRest": "| 30d | 90d",
+      "chartLabel": "Portfolio chart",
+      "date1": "Jul 23",
+      "date2": "Jul 25",
+      "date3": "Jul 27",
+      "date4": "Jul 29"
     },
     "receive": {
       "title": "Receive",
@@ -1145,6 +1181,115 @@
     "activity": {
       "title": "Recent activity",
       "empty": "No recent orders"
+    },
+    "modals": {
+      "asset": {
+        "title": "Add asset",
+        "asset": "Asset",
+        "network": "Network",
+        "decimals": "Decimals",
+        "note": "New assets require compliance and contract validation; trading is disabled until enabled.",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "submitted": "Crypto asset submitted, awaiting compliance and contract validation."
+      },
+      "address": {
+        "title": "Deposit address",
+        "asset": "Asset",
+        "network": "Network",
+        "addressTitle": "USDT (ERC-20)",
+        "addressValue": "0x9f3C1dEa7B4c2F8a6E0b1C9d4A2f7B8c3D5e6F01 (demo)",
+        "note": "Activated after network and compliance checks; do not put any text in the chain memo / note.",
+        "close": "Close"
+      },
+      "exchange": {
+        "title": "Fiat ↔ Crypto swap",
+        "pay": "Pay with",
+        "payFiat": "USD fiat balance",
+        "receive": "Receive",
+        "amount": "Amount",
+        "bridgeTitle": "Fiat account ↔ Crypto swap",
+        "bridgeDesc": "The platform only displays quotes, collects confirmations and relays the order to OSL; the actual trade, asset conversion and settlement are completed by OSL.",
+        "executionTitle": "Executed by: OSL",
+        "executionDesc": "Libranex does not execute digital asset trades. It securely relays your swap information and confirmation to OSL. The final quote, execution, custody and settlement are governed by OSL's page and agreements.",
+        "ack": "I acknowledge and agree that OSL completes the actual swap; Libranex only relays information.",
+        "note": "Final quote, execution, custody and settlement are governed by OSL's page and agreements.",
+        "confirm": "Confirm & relay to OSL",
+        "cancel": "Cancel",
+        "ackRequired": "Please acknowledge that OSL completes the actual swap; Libranex only relays information.",
+        "submitted": "OSL execution acknowledged; swap information is being relayed. Complete final confirmation on the OSL page."
+      },
+      "withdrawal": {
+        "title": "Add withdrawal address",
+        "label": "Label",
+        "labelPlaceholder": "My cold wallet",
+        "network": "Network",
+        "address": "Address",
+        "memo": "Memo",
+        "memoPlaceholder": "Optional",
+        "note": "Added addresses enter a 24h cooldown with email and 2FA confirmation before withdrawals are enabled.",
+        "submit": "Submit & verify",
+        "cancel": "Cancel",
+        "submitted": "Withdrawal address submitted, entering allowlist cooldown and 2FA confirmation."
+      },
+      "invest": {
+        "title": "crypto investment subscribe",
+        "product": "Product",
+        "principal": "Principal",
+        "term": "Term",
+        "note": "Locked crypto principal accrues per product rules; proceeds return to the crypto account on redemption.",
+        "submit": "Submit subscription",
+        "cancel": "Cancel",
+        "submitted": "Subscription submitted for compliance and contract validation."
+      },
+      "redeem": {
+        "title": "Crypto investment redemption",
+        "product": "Product",
+        "amount": "Redeem amount",
+        "note": "Early redemption incurs a penalty and forfeits accrued interest; proceeds return to the crypto account.",
+        "submit": "Confirm redemption",
+        "cancel": "Cancel",
+        "submitted": "Redemption submitted; principal and interest will return to the crypto account."
+      },
+      "fixedSubscribe": {
+        "title": "Crypto Fixed Term subscribe",
+        "product": "Product",
+        "amount": "Lock amount",
+        "term": "Term",
+        "note": "Lock for a fixed term at an agreed rate; auto-redeems to the crypto account at maturity.",
+        "submit": "Submit subscription",
+        "cancel": "Cancel",
+        "submitted": "Fixed-term subscription submitted; entering contract lock."
+      },
+      "fixedRedeem": {
+        "title": "Crypto Fixed Term redeem",
+        "product": "Product",
+        "amount": "Redeem amount",
+        "note": "Early redemption incurs a penalty and forfeits accrued interest; proceeds return to the crypto account.",
+        "submit": "Confirm redemption",
+        "cancel": "Cancel",
+        "submitted": "Fixed-term redemption submitted; principal and interest will return to the crypto account."
+      },
+      "safeguardIn": {
+        "title": "Controlled in",
+        "asset": "Asset",
+        "network": "Network",
+        "amount": "Amount",
+        "note": "Crypto assets are controlled-in per safeguarding rules, kept segregated and traceable; release requires ops approval.",
+        "tip": "View only here. Funds release and approval are owned by Ops.",
+        "submit": "Submit transfer-in",
+        "cancel": "Cancel",
+        "submitted": "Controlled-in request submitted; entering segregation and approval."
+      },
+      "settleAllocate": {
+        "title": "Allocation",
+        "batch": "Batch",
+        "asset": "Asset",
+        "status": "Status",
+        "statusValue": "Pending ops allocation release",
+        "note": "Read-only info above; fund release is handled by the Libranex operations platform.",
+        "cancel": "Cancel"
+      }
     },
     "pages": {
       "action": "Open action",
@@ -1227,6 +1372,7 @@
         "convert": "Convert",
         "fiatCrypto": "Fiat ↔ Crypto"
       },
+      "balance": "Balance",
       "pay": "You pay",
       "recv": "You receive",
       "trade": "Execution provider: OSL",
@@ -1352,8 +1498,8 @@
       "mfa": "Dual control + MFA",
       "auto": "Auto-expire after 24h",
       "done": "Approval updated",
-      "policyDialogTitle": "Save approval policy",
-      "policyDialogNote": "Review the approval rules before saving. Changes take effect for new requests and are recorded in the audit trail.",
+      "policyDialogTitle": "Confirm approval policy",
+      "policyDialogNote": "These changes affect future payout, batch, beneficiary and limit approvals and will be logged.",
       "delegationTitle": "Set temporary delegation",
       "delegationNote": "Delegate approval authority for a limited period. The original approver remains accountable and all actions are recorded.",
       "delegateTo": "Delegate to",
@@ -1392,7 +1538,29 @@
       "evidenceText": "Apply tiered approval to payouts, refunds, new beneficiaries, account binding and limit changes, with a complete approval chain and MFA record.",
       "created": "Created",
       "lastAction": "Last action",
-      "close": "Close"
+      "close": "Close",
+      "policyMfaConfirm": "I confirm this policy change with MFA.",
+      "policyMfaRequired": "Confirm with MFA first.",
+      "policySaved": "Approval policy saved, logged and queued for activation.",
+      "confirmSave": "Confirm save",
+      "approversTitle": "Manage approvers",
+      "approversNote": "Manage approver roles, limits and segregation-of-duties settings. Pending work must be delegated before removal.",
+      "financeScope": "Payouts, refunds and beneficiaries",
+      "complianceScope": "High-risk and limit changes",
+      "inviteApprover": "Invite approver",
+      "doneBtn": "Done",
+      "inviteTitle": "Invite approver",
+      "approverName": "Name",
+      "approverNamePlaceholder": "Approver name",
+      "approverEmail": "Business email",
+      "sendInvite": "Send invite",
+      "inviteRequired": "Enter the approver name and business email.",
+      "inviteSent": "Approver invitation sent. They must accept and complete MFA.",
+      "downloadEvidence": "Download evidence list",
+      "evidenceDownloaded": "Evidence list is ready to download.",
+      "refundRisk": "USD 12,400 · Low",
+      "beneficiaryRisk": "— · Medium",
+      "beneficiaryRequest": "BEN-021 · New beneficiary"
     }
   },
   "developer": {
