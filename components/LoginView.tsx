@@ -60,7 +60,7 @@ export default function LoginView() {
       </aside>
 
       <main className="lx-form-side">
-        <section className="lx-card lx-panel">
+        <section className="lx-card">
           <header className="lx-card__header">
             <div className="lx-card__brand">
               <img src="/libranex-logo.svg" alt="Libranex" />
@@ -112,7 +112,7 @@ export default function LoginView() {
                 <input type="checkbox" defaultChecked />
                 <span>{t('login.remember')}</span>
               </label>
-              <Link href={`/${locale}/forgot-password`} className="lx-link">
+              <Link href={`/${locale}/forgot-password`}>
                 {t('login.forgot')}
               </Link>
             </div>

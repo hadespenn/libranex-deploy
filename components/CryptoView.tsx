@@ -361,9 +361,7 @@ export default function CryptoView() {
               <section className="crypto-card">
                 <div className="crypto-card-head">
                   <div>
-                    <div className="crypto-kicker">
-                      {t("portfolio.label")}
-                    </div>
+                    <div className="crypto-kicker">{t("portfolio.label")}</div>
                     <div className="crypto-value">$0.00</div>
                   </div>
                   <span className="crypto-range">
@@ -458,7 +456,15 @@ export default function CryptoView() {
               </div>
             </section>
             <section className="crypto-card">
-              <h3>{t("activity.title")}</h3>
+              <div className="crypto-card-header">
+                <h3>{t("activity.title")}</h3>
+                <button
+                  className="ghost mini"
+                  onClick={() => setTab("transactions")}
+                >
+                  {t("activity.allActivitis")}
+                </button>
+              </div>
               <div className="crypto-empty">
                 ▧<br />
                 {t("activity.empty")}
@@ -487,7 +493,7 @@ export default function CryptoView() {
                 <span>{t("exchange.pay")}</span>
                 <span>{t("exchange.balance")}: 0 USD</span>
               </div>
-              
+
               <div className="crypto-amount-input">
                 <input defaultValue="0.00" inputMode="decimal" />
                 <select

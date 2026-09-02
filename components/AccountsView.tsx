@@ -283,7 +283,7 @@ export default function AccountsView() {
                     <div className="lx-balance-card__sub">{c.network}</div>
                     <div className="lx-balance-card__amount">{c.amount}</div>
                     <div className="lx-balance-card__status">
-                      <span className="lx-led-dot lx-led-dot--ok" />
+                      {/* <span className="lx-led-dot lx-led-dot--ok" /> */}
                       <span>{c.meta}</span>
                     </div>
                   </article>

@@ -66,7 +66,7 @@ export default function ApprovalView() {
           {c.delegate}
         </button>
       </div>
-      <div className="lx-management-stats">
+      {/* <div className="lx-management-stats">
         {(["pending", "today", "approved", "rejected"] as const).map((k) => (
           <article className="lx-panel lx-management-stat" key={k}>
             <span>{t(`stats.${k}.label`)}</span>
@@ -74,7 +74,7 @@ export default function ApprovalView() {
             <small>{t(`stats.${k}.hint`)}</small>
           </article>
         ))}
-      </div>
+      </div> */}
       <div className="lx-approval-tabs">
         {(["pending", "history", "policy"] as Tab[]).map((k) => (
           <button
@@ -90,7 +90,7 @@ export default function ApprovalView() {
         <section className="lx-panel lx-approval-panel">
           <div className="lx-section-header">
             <div>
-              <h2 className="lx-section-title">{t("section.title")}</h2>
+              <h2 className="">{t("section.title")}</h2>
               <p className="lx-section-sub">{t("section.subtitle")}</p>
             </div>
           </div>
@@ -99,14 +99,14 @@ export default function ApprovalView() {
       )}
       {tab === "history" && (
         <section className="lx-panel lx-approval-panel">
-          <h2 className="lx-section-title">{c.history}</h2>
+          <h2 className="">{c.history}</h2>
           <ApprovalHistory c={c} rows={historyRows} onReview={openDetails} />
         </section>
       )}
       {tab === "policy" && (
         <div className="lx-approval-grid">
           <section className="lx-panel lx-approval-panel">
-            <h2 className="lx-section-title">{c.policyTitle}</h2>
+            <h2 className="">{c.policyTitle}</h2>
             <div className="lx-approval-form">
               {[
                 [c.external, c.threshold],
@@ -133,8 +133,8 @@ export default function ApprovalView() {
             </button>
           </section>
           <section className="lx-panel lx-approval-panel">
-            <h2 className="lx-section-title">{c.separation}</h2>
-            <p className="lx-section-sub">{c.separationDesc}</p>
+            <h2 className="">{c.separation}</h2>
+            <p className="lx-section-sublx-section-tit">{c.separationDesc}</p>
             <button
               className="lx-outline-btn"
               onClick={() => setDialog("approvers")}
@@ -581,7 +581,7 @@ function ApprovalHistory({
               <td>{historyTimes[i]}</td>
               <td>
                 <button
-                  className="lx-settings-ghost"
+                  className="lx-settings-ghost mini"
                   type="button"
                   onClick={() => onReview(r.id, r.row)}
                 >

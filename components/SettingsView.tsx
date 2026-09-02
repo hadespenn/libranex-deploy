@@ -383,7 +383,7 @@ export default function SettingsView() {
       <section className="lx-panel lx-settings-access">
         <div className="lx-section-header">
           <div>
-            <h2 className="lx-section-title">{c.access}</h2>
+            <h2 className="">{c.access}</h2>
             <p className="lx-section-sub">{c.accessDesc}</p>
           </div>
           <div className="lx-settings-actions">
@@ -490,7 +490,8 @@ export default function SettingsView() {
             />
             <div className="lx-section-header">
               <div
-                className="lx-settings-filter"
+                className="lx-settings-filter
+                "
                 style={{ width: "90%", marginTop: "12px" }}
               >
                 <input placeholder={c.search} />
@@ -902,7 +903,7 @@ export default function SettingsView() {
               </label>
               <div className="lx-settings-modal__actions full">
                 <button
-                  className="lx-cta"
+                  className="lx-settings-ghost"
                   type="button"
                   onClick={() => setInviteModalOpen(false)}
                 >
@@ -1715,7 +1716,7 @@ function SettingsHead({
             </button>
           )}
           {action && (
-            <button className="lx-cta" type="button" onClick={onAction}>
+            <button className="lx-settings-ghost" type="button" onClick={onAction}>
               {action}
             </button>
           )}

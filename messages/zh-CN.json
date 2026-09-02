@@ -1180,6 +1180,7 @@
     },
     "activity": {
       "title": "近期活动",
+      "allActivitis": "查看全部",
       "empty": "暂无近期订单"
     },
     "modals": {
@@ -1315,7 +1316,7 @@
         "action": "添加地址"
       },
       "transactions": {
-        "title": "加密货币交易",
+        "title": "交易记录",
         "description": "查看链上充值、提现和合规审核记录。",
         "empty": "暂无数字资产交易记录。"
       },
@@ -1565,13 +1566,13 @@
   "developer": {
     "header": {
       "title": "开发者中心",
-      "subtitle": "API 密钥、Webhook、日志与集成工具"
+      "subtitle": "API、Webhooks 与密钥"
     },
     "hero": {
-      "title": "开发者工作台",
-      "subtitle": "构建、测试并监控 Libranex 系统集成。"
+      "title": "开发者中心",
+      "subtitle": "版本化 REST API、Webhooks、加密传输、API 密钥与调用审计。"
     },
-    "cta": "创建 API 密钥",
+    "cta": "生成 API 密钥",
     "stats": {
       "apiCalls": {
         "label": "今日 API 调用",
@@ -1621,33 +1622,39 @@
     "explorer": {
       "title": "API Explorer",
       "subtitle": "版本化 REST API、Webhooks、加密传输、API 密钥与调用审计。",
-      "run": "运行沙箱",
+      "run": "沙箱运行",
       "copy": "复制 cURL"
     },
     "capabilities": {
       "title": "API 能力",
       "subtitle": "集成可使用的核心资源。",
       "balance": {
-        "title": "余额",
+        "title": "Balance",
         "path": "GET /v1/accounts"
       },
       "transfer": {
-        "title": "转账",
+        "title": "Transfer",
         "path": "POST /v1/transfers"
       },
       "collection": {
-        "title": "收款",
+        "title": "Collection",
         "path": "POST /v1/payment_links"
       },
       "webhook": {
         "title": "Webhook",
-        "path": "幂等事件投递"
+        "path": "Idempotent event delivery"
       }
     },
     "logs": {
       "title": "API 调用审计",
       "subtitle": "最近的请求、响应与延迟。",
-      "view": "查看全部日志"
+      "view": "查看全部日志",
+      "table": {
+        "time": "Time",
+        "endpoint": "Endpoint",
+        "status": "Status",
+        "actor": "Actor"
+      }
     },
     "apiKeyModal": {
       "title": "生成 API 密钥",

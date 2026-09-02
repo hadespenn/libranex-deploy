@@ -249,21 +249,20 @@ export default function PaymentsView() {
         <div>
           {/* <span className="batch-progress__eyebrow">{t("batch.progress.eyebrow")}</span> */}
           <h2>{t("batch.progressTitle")}</h2>
-          <p>
+          {/* <p>
             {t("batch.progress.batchId")}: <b>BULK-20260828-126</b>
-          </p>
+          </p> */}
         </div>
-        <span className="status warn">{t("status.processing")}</span>
       </div>
       {/* <div className="batch-progress__summary">
         <div><small>{t("batch.progress.total")}</small><strong>1,000</strong></div>
         <div><small>{t("batch.progress.started")}</small><strong>12:48</strong></div>
         <div><small>{t("batch.progress.estimated")}</small><strong>13:18</strong></div>
       </div> */}
-      <div className="batch-progress__bar-label">
+      {/* <div className="batch-progress__bar-label">
         <b>{t("batch.progressLabel")}</b>
         <span>636 / 1,000</span>
-      </div>
+      </div> */}
       <div className="progress-track">
         <span style={{ width: "64%" }} />
       </div>

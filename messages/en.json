@@ -1180,6 +1180,7 @@
     },
     "activity": {
       "title": "Recent activity",
+      "allActivitis": "View all",
       "empty": "No recent orders"
     },
     "modals": {
@@ -1316,7 +1317,7 @@
         "subscribe": "Subscribe"
       },
       "transactions": {
-        "title": "Crypto transactions",
+        "title": "Transactions records",
         "description": "On-chain deposits, withdrawals and compliance review records.",
         "empty": "No records yet."
       },
@@ -1566,13 +1567,13 @@
   "developer": {
     "header": {
       "title": "Developer center",
-      "subtitle": "API keys, webhooks, logs and integration tools"
+      "subtitle": "APIs, webhooks and keys"
     },
     "hero": {
-      "title": "Developer workspace",
-      "subtitle": "Build, test and monitor your Libranex integration."
+      "title": "Developer Center",
+      "subtitle": "Versioned REST APIs, webhooks, encrypted transport, API keys and call audits."
     },
-    "cta": "Create API key",
+    "cta": "Generate API key",
     "stats": {
       "apiCalls": {
         "label": "API calls today",
@@ -1648,7 +1649,13 @@
     "logs": {
       "title": "API request audit",
       "subtitle": "Recent calls, responses and latency.",
-      "view": "View all logs"
+      "view": "View all logs",
+      "table": {
+        "time": "Time",
+        "endpoint": "Endpoint",
+        "status": "Status",
+        "actor": "Actor"
+      }
     },
     "apiKeyModal": {
       "title": "Generate API key",
