@@ -72,22 +72,31 @@ export default function PaymentsView() {
 
   const payeeRows = [
     {
-      name: "Blue Ocean Supply",
-      account: "USD · HSBC 2020",
-      risk: t("status.verified"),
-      amount: "$48,200",
+      key: "globalSupply",
+      name: t("payees.rows.globalSupply.name"),
+      type: t("payees.rows.globalSupply.type"),
+      purpose: t("payees.rows.globalSupply.purpose"),
+      status: t("payees.verified"),
+      lastUsedLabel: t("payees.lastUsedToday"),
+      canUse: true,
     },
     {
-      name: "Clover Logistics",
-      account: "SGD · DBS 7701",
-      risk: t("status.review"),
-      amount: "$18,660",
+      key: "dbsVendor",
+      name: t("payees.rows.dbsVendor.name"),
+      type: t("payees.rows.dbsVendor.type"),
+      purpose: t("payees.rows.dbsVendor.purpose"),
+      status: t("payees.verified"),
+      lastUsedLabel: t("payees.lastUsedYesterday"),
+      canUse: true,
     },
     {
-      name: "Northwind Retail",
-      account: "EUR · DEUT 1167",
-      risk: t("status.verified"),
-      amount: "$24,900",
+      key: "orbit",
+      name: t("payees.rows.orbit.name"),
+      type: t("payees.rows.orbit.type"),
+      purpose: t("payees.rows.orbit.purpose"),
+      status: t("payees.pending"),
+      lastUsedLabel: "Jul 28",
+      canUse: false,
     },
   ];
 
@@ -210,6 +219,7 @@ export default function PaymentsView() {
   const invoiceLabel = t("batch.modal.invoice");
   const screenshotLabel = t("batch.modal.screenshot");
   const docsLabel = t("batch.modal.documents");
+  const docsHint = t("batch.modal.documentHint");
   const consentLabel = t("batch.modal.confirm");
   const scheduleRecipient = t("batch.modal.recipient");
   const scheduleCycle = t("batch.modal.cycle");
@@ -382,7 +392,7 @@ export default function PaymentsView() {
           </div>
 
           <div className="grid two payment-lower">
-            <article className="panel">
+            <article className="panel lx-panel">
               <h2>{t("batch.uploadTitle")}</h2>
               <div className="upload">
                 <b>{t("batch.uploadHint")}</b>
@@ -515,7 +525,7 @@ export default function PaymentsView() {
 
       {tab === "link" && (
         <div className="grid two">
-          <article className="panel">
+          <article className="panel lx-panel">
             <h2>{t("link.title")}</h2>
             <div className="form-grid payment-link-form">
               <div className="field">
@@ -564,7 +574,7 @@ export default function PaymentsView() {
             </div>
           </article>
 
-          <article className="panel payment-checkout-card">
+          <article className="panel payment-checkout-card lx-panel">
             <h2>{t("link.checkout")}</h2>
             <div className="payment-checkout-content">
               <div className="qr" aria-label={t("link.qrLabel")} />
@@ -586,7 +596,7 @@ export default function PaymentsView() {
       )}
 
       {tab === "reconcile" && (
-        <div className="panel">
+        <div className="panel lx-panel">
           <h2>{t("reconcile.title")}</h2>
           <p className="lx-section-sub">{t("reconcile.subtitle")}</p>
 
@@ -654,7 +664,7 @@ export default function PaymentsView() {
       )}
 
       {tab === "payee" && (
-        <div className="panel">
+        <div className="panel lx-panel">
           <div className="section-head">
             <div>
               <h2>{t("payees.title")}</h2>
@@ -680,13 +690,14 @@ export default function PaymentsView() {
                 <option value="all">{t("payees.allTypes")}</option>
                 <option value="bank">{t("payees.bank")}</option>
                 <option value="wallet">{t("payees.wallet")}</option>
+                <option value="swift">{t("payees.swift")}</option>
                 <option value="internal">{t("payees.internal")}</option>
               </select>
             </div>
             <div className="field">
-              <label>{t("payees.status")}</label>
+              <label>{t("payees.filterStatusLabel")}</label>
               <select defaultValue="verified">
-                <option value="verified">{t("payees.verified")}</option>
+                <option value="verified">{t("payees.filterDefault")}</option>
                 <option value="pending">{t("payees.pending")}</option>
                 <option value="blocked">{t("payees.blocked")}</option>
               </select>
@@ -698,26 +709,56 @@ export default function PaymentsView() {
               <thead>
                 <tr>
                   <th>{t("payees.columns.name")}</th>
-                  <th>{t("payees.columns.account")}</th>
-                  <th>{t("payees.columns.risk")}</th>
-                  <th>{t("payees.columns.limit")}</th>
+                  <th>{t("payees.columns.type")}</th>
+                  <th>{t("payees.columns.defaultPurpose")}</th>
+                  <th>{t("payees.columns.status")}</th>
+                  <th>{t("payees.columns.lastUsed")}</th>
+                  <th>{t("payees.columns.actions")}</th>
                 </tr>
               </thead>
               <tbody>
-                {payeeRows.map((row) => (
-                  <tr key={row.name}>
-                    <td>{row.name}</td>
-                    <td>{row.account}</td>
-                    <td>
-                      <span
-                        className={`status ${row.risk === t("status.verified") ? "ok" : "gray"}`}
-                      >
-                        {row.risk}
-                      </span>
-                    </td>
-                    <td>{row.amount}</td>
-                  </tr>
-                ))}
+                {payeeRows.map((row) => {
+                  const isVerified = row.status === t("payees.verified");
+                  const statusClass = isVerified
+                    ? "ok"
+                    : row.status === t("payees.pending")
+                      ? "warn"
+                      : "gray";
+                  return (
+                    <tr key={row.key}>
+                      <td>{row.name}</td>
+                      <td>{row.type}</td>
+                      <td>{row.purpose}</td>
+                      <td>
+                        <span className={`status ${statusClass}`}>
+                          {row.status}
+                        </span>
+                      </td>
+                      <td>{row.lastUsedLabel}</td>
+                      <td>
+                        {row.canUse ? (
+                          <button
+                            className="ghost mini"
+                            type="button"
+                            onClick={() =>
+                              action(t("notice.payeeUsed", { name: row.name }))
+                            }
+                          >
+                            {t("payees.actions.use")}
+                          </button>
+                        ) : (
+                          <button
+                            className="ghost mini"
+                            type="button"
+                            onClick={() => setModal("beneficiary")}
+                          >
+                            {t("payees.actions.verify")}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -726,7 +767,7 @@ export default function PaymentsView() {
 
       {tab === "refund" && (
         <div className="grid two">
-          <div className="panel">
+          <div className="panel lx-panel">
             <h2>{t("refund.requestTitle")}</h2>
             <div className="form-grid" style={{ marginTop: 18 }}>
               <div className="field">
@@ -766,7 +807,7 @@ export default function PaymentsView() {
               </button>
             </div>
           </div>
-          <div className="panel">
+          <div className="panel lx-panel">
             <h2>{t("refund.title")}</h2>
             <div className="table-scroll" style={{ marginTop: 18 }}>
               <table className="table">
@@ -848,77 +889,91 @@ export default function PaymentsView() {
             </div>
 
             {modal === "beneficiary" ? (
-              <div
-                className="lx-checkout-form"
-                style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
-              >
+              <>
                 <div className="auth-note" style={{ gridColumn: "1 / -1" }}>
                   {t("payees.form.note")}
                 </div>
-                <label>
-                  {t("payees.form.name")}
-                  <input defaultValue={t("payees.form.nameValue")} />
-                </label>
-                <label>
-                  {t("payees.form.type")}
-                  <select defaultValue="bank">
-                    <option value="bank">{t("payees.form.bank")}</option>
-                    <option value="wallet">{t("payees.form.wallet")}</option>
-                    <option value="internal">
-                      {t("payees.form.internal")}
-                    </option>
-                  </select>
-                </label>
-                <label>
-                  {t("payees.form.contact")}
-                  <input defaultValue="vendor@global-supply.com" />
-                </label>
-                <label>
-                  {t("payees.form.network")}
-                  <input defaultValue="SWIFT · DBSSSGSG / TRC20" />
-                </label>
-                <label>
-                  {t("payees.form.account")}
-                  <input defaultValue="885-901-229-1" />
-                </label>
-                <label>
-                  {t("payees.form.purpose")}
-                  <input defaultValue={t("payees.form.purposeValue")} />
-                </label>
-                <label style={{ gridColumn: "1 / -1" }}>
-                  {t("payees.form.notes")}
-                  <textarea
-                    rows={3}
-                    defaultValue={t("payees.form.notesValue")}
-                  />
-                </label>
-                <label className="check-row" style={{ gridColumn: "1 / -1" }}>
-                  <input type="checkbox" defaultChecked />
-                  {t("payees.form.confirm")}
-                </label>
                 <div
-                  className="lx-checkout-modal__actions"
-                  style={{ gridColumn: "1 / -1" }}
+                  className="lx-checkout-form"
+                  style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
                 >
-                  <button
-                    className="lx-cta"
-                    type="button"
-                    onClick={() => {
-                      setModal(null);
-                      action(t("notice.payeeSaved"));
+                  <label>
+                    <span>{t("payees.form.name")}</span>
+                    <input defaultValue={t("payees.form.name")} />
+                  </label>
+                  <label>
+                    <span>{t("payees.form.type")}</span>
+                    <select defaultValue="bank">
+                      <option value="bank">{t("payees.form.bank")}</option>
+                      <option value="wallet">{t("payees.form.wallet")}</option>
+                      <option value="internal">
+                        {t("payees.form.internal")}
+                      </option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>{t("payees.form.contact")}</span>
+                    <input defaultValue="vendor@global-supply.com" />
+                  </label>
+                  <label>
+                    <span>{t("payees.form.network")}</span>
+                    <input defaultValue="SWIFT · DBSSSGSG / TRC20" />
+                  </label>
+                  <label>
+                    <span>{t("payees.form.account")}</span>
+                    <input defaultValue="885-901-229-1" />
+                  </label>
+                  <label>
+                    <span>{t("payees.form.purpose")}</span>
+                    <input defaultValue={t("payees.form.purposeValue")} />
+                  </label>
+                  <label style={{ gridColumn: "1 / -1" }}>
+                    <span>{t("payees.form.notes")}</span>
+                    <textarea
+                      rows={3}
+                      defaultValue={t("payees.form.notesValue")}
+                    />
+                  </label>
+
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      fontWeight: 600,
+                      color: "#34435e",
                     }}
                   >
-                    {t("payees.form.submit")}
-                  </button>
-                  <button
-                    className="ghost"
-                    type="button"
-                    onClick={() => setModal(null)}
+                    <input type="checkbox" defaultChecked />
+                    <span style={{ whiteSpace: "nowrap", marginBottom: "0" }}>
+                      {t("payees.form.confirm")}
+                    </span>
+                  </label>
+
+                  <div
+                    className="lx-checkout-modal__actions"
+                    style={{ gridColumn: "1 / -1" }}
                   >
-                    {cancelLabel}
-                  </button>
+                    <button
+                      className="lx-cta"
+                      type="button"
+                      onClick={() => {
+                        setModal(null);
+                        action(t("notice.payeeSaved"));
+                      }}
+                    >
+                      {t("payees.form.submit")}
+                    </button>
+                    <button
+                      className="ghost"
+                      type="button"
+                      onClick={() => setModal(null)}
+                    >
+                      {cancelLabel}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </>
             ) : modal === "manualReview" ? (
               <div
                 className="lx-checkout-form"
@@ -928,11 +983,11 @@ export default function PaymentsView() {
                   {t("reconcile.reviewNote")}
                 </div>
                 <label>
-                  {t("reconcile.reviewReference")}
+                  <span>{t("reconcile.reviewReference")}</span>
                   <input defaultValue="A-9110" />
                 </label>
                 <label>
-                  {t("reconcile.reviewSource")}
+                  <span>{t("reconcile.reviewSource")}</span>
                   <select defaultValue="invoice">
                     <option value="invoice">
                       {t("reconcile.reviewInvoice")}
@@ -941,7 +996,7 @@ export default function PaymentsView() {
                   </select>
                 </label>
                 <label style={{ gridColumn: "1 / -1" }}>
-                  {t("reconcile.reviewComment")}
+                  <span>{t("reconcile.reviewComment")}</span>
                   <textarea
                     rows={4}
                     defaultValue={t("reconcile.reviewCommentValue")}
@@ -998,18 +1053,18 @@ export default function PaymentsView() {
                   </label>
 
                   <label>
-                    {trackingLabel}
+                    <span>{trackingLabel}</span>
                     <input defaultValue={t("batch.modal.logisticsValue")} />
                   </label>
 
                   <label>
-                    {invoiceLabel}
+                    <span>{invoiceLabel}</span>
                     <input defaultValue={t("batch.modal.invoiceValue")} />
                   </label>
                 </div>
                 <div style={{ marginTop: "16px" }}>
-                  <label>
-                    {screenshotLabel}
+                  <label className="lx-checkout-row">
+                    <span>{screenshotLabel}</span>
                     <label className="file-picker">
                       <input
                         type="file"
@@ -1037,8 +1092,8 @@ export default function PaymentsView() {
                       </span>
                     </label>
                   </label>
-                  <label style={{ marginTop: "16px" }}>
-                    {docsLabel}
+                  <label className="lx-checkout-row">
+                    <span>{docsLabel}</span>
                     <label className="file-picker">
                       <input
                         type="file"
@@ -1065,6 +1120,7 @@ export default function PaymentsView() {
                         {uploaded ? fileName : t("batch.empty")}
                       </span>
                     </label>
+                    <p>{docsHint}</p>
                   </label>
 
                   <label
@@ -1163,12 +1219,12 @@ export default function PaymentsView() {
                 style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
               >
                 <label>
-                  {scheduleRecipient}
+                  <span>{scheduleRecipient}</span>
                   <input defaultValue={t("batch.modal.recipientValue")} />
                 </label>
 
                 <label>
-                  {scheduleCycle}
+                  <span>{scheduleCycle}</span>
                   <select defaultValue="monthly">
                     <option value="monthly">
                       {t("batch.modal.cycleMonthly")}
@@ -1183,7 +1239,7 @@ export default function PaymentsView() {
                 </label>
 
                 <label style={{ gridColumn: "1 / -1" }}>
-                  {scheduleAmount}
+                  <span>{scheduleAmount}</span>
                   <input defaultValue={t("batch.modal.amountValue")} />
                 </label>
 

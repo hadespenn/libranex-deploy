@@ -281,7 +281,7 @@ export default function StatementsView() {
             <div className="statement-filter-modal__head">
               <div>
                 <h2 id="statement-filter-title">{t("filterModal.title")}</h2>
-                <p>{t("filterModal.description")}</p>
+                
               </div>
               <button
                 className="statement-filter-modal__close"
@@ -292,6 +292,7 @@ export default function StatementsView() {
                 ×
               </button>
             </div>
+            <p>{t("filterModal.description")}</p>
             <div className="statement-filter-modal__field">
               <label htmlFor="statement-modal-asset">
                 {t("form.assetType")}
@@ -307,7 +308,7 @@ export default function StatementsView() {
             </div>
             <div className="statement-filter-modal__actions">
               <button
-                className="ghost"
+                className="mini ghost"
                 type="button"
                 onClick={() => {
                   setAsset("all");

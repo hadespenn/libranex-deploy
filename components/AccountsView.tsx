@@ -1339,7 +1339,7 @@ export default function AccountsView() {
               <div className="lx-account-create-form">
                 <div className="lx-checkout-form">
                   <label>
-                    {t("createModal.currency")}
+                    <span>{t("createModal.currency")}</span>
                     <select defaultValue="USD">
                       <option>USD</option>
                       <option>EUR</option>
@@ -1348,7 +1348,7 @@ export default function AccountsView() {
                     </select>
                   </label>
                   <label>
-                    {t("createModal.purpose")}
+                    <span>{t("createModal.purpose")}</span>
                     <input
                       defaultValue="Supplier settlement"
                       placeholder={t("createModal.purposePlaceholder")}
@@ -1383,14 +1383,14 @@ export default function AccountsView() {
               <div className="lx-account-create-form">
                 <div className="lx-checkout-form">
                   <label>
-                    {t("createModal.crypto.asset")}
+                    <span>{t("createModal.crypto.asset")}</span>
                     <select defaultValue="USDT">
                       <option>USDT</option>
                       <option>USDC</option>
                     </select>
                   </label>
                   <label>
-                    {t("createModal.crypto.network")}
+                    <span>{t("createModal.crypto.network")}</span>
                     <select defaultValue="TRON · TRC20">
                       <option>TRON · TRC20</option>
                       <option>Ethereum · ERC20</option>
@@ -1398,7 +1398,7 @@ export default function AccountsView() {
                     </select>
                   </label>
                   <label style={{ gridColumn: "1 / -1" }}>
-                    {t("createModal.purpose")}
+                    <span>{t("createModal.purpose")}</span>
                     <input
                       placeholder={t("createModal.crypto.purposePlaceholder")}
                     />

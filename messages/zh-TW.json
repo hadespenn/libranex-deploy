@@ -105,6 +105,11 @@
     "ai": "AI 助手",
     "aiHint": "按 E",
     "activate": "啟動帳戶",
+    "infra": {
+      "title": "基礎設施可用性",
+      "value": "99.99%",
+      "description": "120+ 市場 · 40+ 幣種 · 24/7 監控"
+    },
     "startOperation": "發起操作",
     "header": {
       "title": "儀表盤",
@@ -772,8 +777,9 @@
         "required": "必填",
         "logistics": "物流單號",
         "invoice": "發票編號",
-        "screenshot": "付款截圖",
-        "documents": "其他證明材料",
+        "screenshot": "交易截圖或訂單截圖",
+        "documents": "物流、發票或合同憑證",
+        "documentHint": "可上傳物流單、商業發票、合約、採購訂單等佐證材料。",
         "confirm": "我確認所提供的資訊真實、準確且完整。",
         "recipient": "收款人",
         "cycle": "付款週期",
@@ -858,7 +864,7 @@
       "submitReview": "確認人工匹配"
     },
     "payees": {
-      "title": "常用收款人管理",
+      "title": "常用收款人",
       "subtitle": "集中維護已驗證的企業、銀行帳戶、錢包地址和付款用途。",
       "search": "搜尋收款人",
       "searchPlaceholder": "名稱、電郵、帳號或標籤",
@@ -866,17 +872,47 @@
       "allTypes": "全部類型",
       "bank": "銀行帳戶",
       "wallet": "數位錢包",
+      "swift": "SWIFT",
+      "digitalWallet": "數位錢包",
       "internal": "平台內帳戶",
       "status": "狀態",
       "verified": "已驗證",
       "pending": "待驗證",
       "blocked": "已停用",
       "add": "新增收款人",
+      "filterStatusLabel": "狀態",
+      "filterDefault": "已驗證",
       "columns": {
         "name": "名稱",
-        "account": "帳戶",
-        "risk": "風險等級",
-        "limit": "日限額"
+        "type": "類型",
+        "defaultPurpose": "預設用途",
+        "status": "狀態",
+        "lastUsed": "最近使用",
+        "actions": "操作"
+      },
+      "rows": {
+        "globalSupply": {
+          "name": "Global Supply Pte.",
+          "type": "銀行帳戶",
+          "purpose": "供應商結算"
+        },
+        "dbsVendor": {
+          "name": "DBS Vendor",
+          "type": "SWIFT",
+          "purpose": "發票結算"
+        },
+        "orbit": {
+          "name": "Orbit Treasury",
+          "type": "數位錢包",
+          "purpose": "資金調撥"
+        }
+      },
+      "lastUsedToday": "今天",
+      "lastUsedYesterday": "昨天",
+      "lastUsedDate": "{date}",
+      "actions": {
+        "use": "使用",
+        "verify": "驗證"
       },
       "form": {
         "title": "新增收款人",
@@ -939,6 +975,7 @@
       "linkCreated": "收款連結已建立並啟用。",
       "reconcileRun": "自動對帳已啟動，結果將很快顯示。",
       "payeeSaved": "收款人已加入已保存清單。",
+      "payeeUsed": "已為付款草稿選擇 {name}。",
       "refundQueued": "退款申請已進入審批隊列。",
       "correctionMerged": "修正行已合併，所有記錄現在可以提交。",
       "linkCopied": "連結已複製",

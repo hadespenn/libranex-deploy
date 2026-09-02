@@ -105,6 +105,11 @@
     "ai": "AI assistant",
     "aiHint": "press E",
     "activate": "Activate",
+    "infra": {
+      "title": "Infrastructure availability",
+      "value": "99.99%",
+      "description": "120+ markets · 40+ currencies · 24/7 monitoring"
+    },
     "startOperation": "New action",
     "header": {
       "title": "Dashboard",
@@ -745,8 +750,9 @@
         "required": "Required",
         "logistics": "Logistics tracking number",
         "invoice": "Invoice number",
-        "screenshot": "Payment screenshot",
-        "documents": "Other supporting documents",
+        "screenshot": "Transaction screenshot or order screenshot",
+        "documents": "Logistics, invoice, or contract documentation",
+        "documentHint": "Upload logistics records, commercial invoices, contracts or purchase orders.",
         "confirm": "I confirm that the information provided is true, accurate and complete.",
         "recipient": "Recipient",
         "cycle": "Payment cycle",
@@ -858,7 +864,7 @@
       "submitReview": "Confirm manual match"
     },
     "payees": {
-      "title": "Frequent payee management",
+      "title": "Frequent payees",
       "subtitle": "Maintain verified companies, bank accounts, wallet addresses and payment purposes.",
       "search": "Search payees",
       "searchPlaceholder": "Name, email, account or tag",
@@ -866,17 +872,47 @@
       "allTypes": "All types",
       "bank": "Bank account",
       "wallet": "Digital wallet",
+      "swift": "SWIFT",
+      "digitalWallet": "Digital wallet",
       "internal": "Platform account",
       "status": "Status",
       "verified": "Verified",
-      "pending": "Pending verification",
+      "pending": "Pending",
       "blocked": "Disabled",
       "add": "Add beneficiary",
+      "filterStatusLabel": "Status",
+      "filterDefault": "Verified",
       "columns": {
         "name": "Name",
-        "account": "Account",
-        "risk": "Risk",
-        "limit": "Daily limit"
+        "type": "Type",
+        "defaultPurpose": "Default purpose",
+        "status": "Status",
+        "lastUsed": "Last used",
+        "actions": "Actions"
+      },
+      "rows": {
+        "globalSupply": {
+          "name": "Global Supply Pte.",
+          "type": "Bank account",
+          "purpose": "Supplier settlement"
+        },
+        "dbsVendor": {
+          "name": "DBS Vendor",
+          "type": "SWIFT",
+          "purpose": "Invoice settlement"
+        },
+        "orbit": {
+          "name": "Orbit Treasury",
+          "type": "Digital wallet",
+          "purpose": "Treasury transfer"
+        }
+      },
+      "lastUsedToday": "Today",
+      "lastUsedYesterday": "Yesterday",
+      "lastUsedDate": "{date}",
+      "actions": {
+        "use": "Use",
+        "verify": "Verify"
       },
       "form": {
         "title": "Add beneficiary",
@@ -939,6 +975,7 @@
       "linkCreated": "Collection link created and activated.",
       "reconcileRun": "Matching started. Results will appear shortly.",
       "payeeSaved": "Payee has been added to the saved list.",
+      "payeeUsed": "Added {name} to the active payment draft.",
       "refundQueued": "Refund request has been queued for approval.",
       "correctionMerged": "Correction rows merged. All records are ready for submission.",
       "linkCopied": "Link copied",

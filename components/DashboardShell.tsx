@@ -418,6 +418,14 @@ export default function DashboardShell({
               </Link>
             );
           })}
+
+        <div className="lx-sidebar__infra lx-infra">
+          <div className="lx-infra__title">{tDash("infra.title")}</div>
+          <div className="lx-infra__value">{tDash("infra.value")}</div>
+          <div className="lx-infra__description">
+            {tDash("infra.description")}
+          </div>
+        </div>
       </aside>
 
       <main className="lx-main">

@@ -160,7 +160,6 @@ export default function DashboardView() {
         </div>
         <div className="lx-overview-card__side">
           <span className="lx-status-pill lx-status-pill--ok">
-            <span className="lx-led-dot lx-led-dot--ok" />
             {tDash("fundOverview.updated")}
           </span>
         </div>
@@ -189,7 +188,7 @@ export default function DashboardView() {
           <h2 className="lx-section-title">{tDash("balances.title")}</h2>
           <p className="lx-section-sub">{tDash("balances.subtitle")}</p>
         </div>
-        <Link href={`/${locale}/accounts`} className="lx-link">
+        <Link href={`/${locale}/accounts`} className="lx-link lx-btn-outline">
           {tDash("balances.viewAll")}
         </Link>
       </div>
